@@ -1,0 +1,230 @@
+{
+  "version": "ecommerce-expansion-20261030",
+  "cases": [
+    {
+      "id": "N101",
+      "level": 1,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "missing_refunds",
+      "chart": null,
+      "allowed_routes": [
+        "clarify",
+        "refuse"
+      ],
+      "required_terms": [
+        "退款"
+      ],
+      "question": "帮我看看退款金额和扣掉退款后的净收入，最好再画个趋势图。"
+    },
+    {
+      "id": "N102",
+      "level": 1,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "recent_money",
+      "chart": "line",
+      "required_terms": [
+        "不完整",
+        "截至",
+        "未结束",
+        "尚未结束"
+      ],
+      "question": "最近三个月卖得怎么样？按商品金额画个趋势图。这个月是不是还没结束，也请说清楚。"
+    },
+    {
+      "id": "N103",
+      "level": 1,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "regional_rj",
+      "chart": "line",
+      "question": "先看2018年上半年SP、RJ、MG三个州每月已送达订单商品金额，画折线图。",
+      "turns": [
+        {
+          "question": "先看2018年上半年SP、RJ、MG三个州每月已送达订单商品金额，画折线图。",
+          "target": "regional_money",
+          "chart": "multi_line"
+        },
+        {
+          "question": "刚才那张图只保留RJ，其他口径保持不变。",
+          "target": "regional_rj",
+          "chart": "line"
+        }
+      ]
+    },
+    {
+      "id": "N201",
+      "level": 2,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "payment_mix",
+      "chart": "bar",
+      "question": "我们主要用哪些支付方式？统计已送达订单的支付笔数、去重订单数和支付金额，按金额从高到低画柱图。一笔订单可以有多种支付方式，不要把各方式订单数相加当成总订单数。"
+    },
+    {
+      "id": "N202",
+      "level": 2,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "delivery_states",
+      "chart": "bar",
+      "question": "2018年上半年哪些州配送延期率高？请按已送达订单统计各州延期单数、有效日期订单数、日期无效单数和延期率，仅保留有效分母至少20单的州，按延期率降序画柱图。实际送达晚于预计送达才算延期；日期缺失不按未延期处理。"
+    },
+    {
+      "id": "N203",
+      "level": 2,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "category_abc",
+      "chart": "bar",
+      "question": "想把商品类别做ABC贡献分层。按已送达订单商品金额降序计算累计占比，累计占比不超过80%为A、不超过95%为B，其余C，空类别归未知。列出金额前10类及金额、累计占比、分层，画金额柱图；累计占比用0到1的小数。"
+    },
+    {
+      "id": "N301",
+      "level": 3,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "rfm_definition",
+      "chart": null,
+      "allowed_routes": [
+        "clarify",
+        "chat"
+      ],
+      "required_terms": [
+        "RFM",
+        "最近",
+        "频次",
+        "金额"
+      ],
+      "question": "我想用RFM识别高价值客户，但还没想好怎么打分。请先结合这些表提出口径和评分方案，说明观察日期、客户标识、退款和金额限制，等我确认再计算。"
+    },
+    {
+      "id": "N302",
+      "level": 3,
+      "split": "expansion",
+      "mode": "investigate",
+      "target": "monthly_delivery",
+      "chart": null,
+      "causal_guard": true,
+      "question": "老板怀疑销售变化是配送拖慢造成的。调查2018年1月至6月已送达订单商品金额与延期率是否同步变化，先给每月商品金额、有效日期订单数和延期率的同口径对照表，再说明这些数据能否证明配送造成销售变化。日期不全的订单不进延期率分母，金额按下单月份，不含运费。"
+    },
+    {
+      "id": "N303",
+      "level": 3,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "repeat_30d",
+      "chart": "bar",
+      "question": "最近三个月首购客户的30天复购率怎么样？按客户首次已送达订单的下单月份分组，只让从首购到数据最新下单时间已经满30天的客户进入分母；统计首次订单之后30天内有另一笔已送达订单的客户。给首购月、有效客户数、30天复购客户数和复购率，画柱图。客户用customer_unique_id，分母为0的月份保留并返回NULL，比例用0到1小数。"
+    },
+    {
+      "id": "N304",
+      "level": 3,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "category_outliers",
+      "chart": "bar",
+      "question": "哪些商品类别更值得检查价格异常？仅看已送达订单明细，每类至少20条，按该类price的连续分位数Q1、Q3计算IQR，低于max(0,Q1-1.5IQR)或高于Q3+1.5IQR算异常候选。给异常占比最高前10类的明细数、异常条数和占比，画柱图；并列按类别英文名排序，占比用0到1小数。异常不等于错误，不自动删数据。"
+    },
+    {
+      "id": "N305",
+      "level": 2,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "missing_costs",
+      "chart": null,
+      "allowed_routes": [
+        "clarify",
+        "refuse"
+      ],
+      "required_terms": [
+        "成本"
+      ],
+      "question": "我要看各月净利润和净利润率。没有成本字段的话，能不能先把成本当0，直接给我利润趋势？"
+    },
+    {
+      "id": "N306",
+      "level": 3,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "waterfall",
+      "chart": "waterfall",
+      "question": "用瀑布图展示已送达订单商品金额从2018年5月到6月怎么变化：起点为5月商品总额，中间每个客户州为6月减5月的金额贡献，按贡献绝对值排序，终点为6月总额，不能遗漏其他州。请核对起点加全部贡献等于终点，金额为BRL、不含运费，并给文字结论。"
+    },
+    {
+      "id": "N307",
+      "level": 3,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "waterfall_category",
+      "chart": "waterfall",
+      "question": "换一个维度看2018年6月到7月的商品金额变化：请画瀑布图，起点6月总额，中间展示绝对影响前5个商品类别的7月减6月贡献，其余所有类别合并为“其他”，终点7月总额。类别空值为未知，已送达订单，不含运费，BRL。确保起点加所有贡献等于终点，不能只保留正贡献。"
+    },
+    {
+      "id": "N308",
+      "level": 1,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "last_two_complete_money",
+      "chart": "line",
+      "question": "最后两个完整日历月的已送达订单商品金额各是多少？按当前数据的观察截止时间选月份，排除截止时间所在的未完整月份，画折线图并说明范围。"
+    },
+    {
+      "id": "N104",
+      "level": 1,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "order_sample",
+      "chart": null,
+      "question": "请列出已送达订单中下单时间最早的123笔订单，只要订单号、下单时间、订单状态。按下单时间升序，再按订单号升序排列，结果用表格，不画图。"
+    },
+    {
+      "id": "F101",
+      "level": 1,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "missing_behavior_funnel",
+      "chart": null,
+      "allowed_routes": [
+        "clarify",
+        "refuse"
+      ],
+      "required_terms": [
+        "浏览",
+        "加购"
+      ],
+      "question": "老板想看访问→商品详情→加购→下单→付款的购买转化漏斗，找出流失最大的环节并画图。请直接用我现在导入的这些电商表来分析。"
+    },
+    {
+      "id": "F201",
+      "level": 2,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "fulfillment_funnel",
+      "chart": "funnel",
+      "question": "看一下2018年上半年下单订单的履约漏斗：下单→审批→发货→签收。按订单去重，各阶段必须在前一阶段之后到达，时间缺失或倒序不算到达，后续阶段只保留已通过前面全部阶段的订单。给各阶段到达订单数和相对下单的累计转化率（0到1），画漏斗图，简洁说明哪个环节流失最多。不要按最终订单状态分组充当履约路径。"
+    },
+    {
+      "id": "R301",
+      "level": 3,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "retention_quarter",
+      "chart": "heatmap",
+      "question": "换个角度看购买留存：按客户第一次已送达订单所在季度分群，画2017年第一至第四季度首购客户在第0、1、2、3季度的留存热力图，返回完整4×4格。真实客户标识去重，首购季度为第0期，后续季度有已送达订单就算留存。数据最新下单日期所在季度及之后视为观察不足，用NULL；可观察但没复购才填0。比例用0到1。用简洁结论说明后续留存情况，不要把首购期当成复购。"
+    },
+    {
+      "id": "O101",
+      "level": 1,
+      "split": "expansion",
+      "mode": "quick",
+      "target": "data_overview",
+      "chart": null,
+      "allowed_routes": [
+        "chat"
+      ],
+      "question": "给我描述一下都缺失了哪些字段，哪些表有缺失，给我先简单介绍一下有哪些表吧。用容易阅读的表格展示，并给我看一点真实数据。"
+    }
+  ]
+}

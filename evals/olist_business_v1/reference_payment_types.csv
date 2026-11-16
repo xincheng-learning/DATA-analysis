@@ -1,0 +1,5 @@
+﻿payment_type,payment_cents,orders,records
+boleto,276993258,19191,19191
+credit_card,1210109488,74304,74586
+debit_card,20842112,1485,1486
+voucher,34301319,3679,5493

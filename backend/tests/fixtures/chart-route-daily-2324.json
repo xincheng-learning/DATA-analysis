@@ -1,0 +1,128 @@
+{
+  "route": "viz",
+  "reason": "按渠道和日期汇总已完成订单的商品金额并绘制趋势图，单次聚合即可，缺口保留为未知。",
+  "analysis_brief": {
+    "goal": "统计2026-10-01至2026-10-14各渠道每日销售额（status=completed，amount为商品金额，人民币，不含运费），绘制按渠道分线、日期可区分的趋势图，10月7日直播渠道保留为缺口不连线，并给出一条由图支持的结论。",
+    "parts": [
+      {
+        "requirement": "按渠道、按日统计2026-10-01至2026-10-14的销售额（amount求和，仅status=completed）",
+        "criterion": {
+          "answer_type": "table",
+          "request_quote": "仅统计status=completed。请画2026年10月1日至14日各渠道的每日销售额趋势",
+          "result_columns": [
+            "sale_date",
+            "channel",
+            "daily_amount"
+          ]
+        }
+      },
+      {
+        "requirement": "绘制各渠道每日销售额趋势图，日期可区分每天",
+        "criterion": {
+          "answer_type": "chart",
+          "request_quote": "请画2026年10月1日至14日各渠道的每日销售额趋势，日期要能区分每天"
+        }
+      },
+      {
+        "requirement": "10月7日直播渠道无数据视为未知，保留缺口不连线",
+        "criterion": {
+          "answer_type": "constraint",
+          "constraint_kind": "output_shape",
+          "request_quote": "10月7日直播渠道没有采集数据，是未知而非零；请保留缺口，不能连线假装观测过",
+          "subject": "10月7日直播渠道缺失值保留为NULL缺口，不补零、不插值连线"
+        }
+      },
+      {
+        "requirement": "给出一条由图支持的结论",
+        "criterion": {
+          "answer_type": "explanation",
+          "request_quote": "给出一条由图支持的结论"
+        }
+      }
+    ],
+    "scope_sources": [
+      {
+        "key": "amount_basis",
+        "text": "amount是该笔订单商品金额，单位人民币元，不含运费",
+        "message_id": null
+      },
+      {
+        "key": "population",
+        "text": "仅统计status=completed",
+        "message_id": null
+      },
+      {
+        "key": "period",
+        "text": "2026年10月1日至14日",
+        "message_id": null
+      },
+      {
+        "key": "missing_policy",
+        "text": "10月7日直播渠道没有采集数据，是未知而非零；请保留缺口，不能连线假装观测过",
+        "message_id": null
+      }
+    ],
+    "calculation_plan": {
+      "source_quotes": [
+        "仅统计status=completed",
+        "请画2026年10月1日至14日各渠道的每日销售额趋势",
+        "amount是该笔订单商品金额，单位人民币元，不含运费"
+      ],
+      "stages": [
+        {
+          "name": "daily_channel_amount",
+          "source": "orders",
+          "select": [
+            {
+              "name": "sale_date",
+              "op": "column",
+              "field": "orders.sale_date"
+            },
+            {
+              "name": "channel",
+              "op": "column",
+              "field": "orders.channel"
+            },
+            {
+              "name": "daily_amount",
+              "op": "sum",
+              "field": "orders.amount"
+            }
+          ],
+          "filters": [
+            {
+              "field": "orders.status",
+              "op": "eq",
+              "value": "completed"
+            },
+            {
+              "field": "orders.sale_date",
+              "op": "ge",
+              "value": "2026-10-01",
+              "cast": "date"
+            },
+            {
+              "field": "orders.sale_date",
+              "op": "lt",
+              "value": "2026-10-15",
+              "cast": "date"
+            }
+          ],
+          "group_by": [
+            "sale_date",
+            "channel"
+          ],
+          "order_by": [
+            {
+              "field": "sale_date"
+            },
+            {
+              "field": "channel"
+            }
+          ]
+        }
+      ],
+      "ordered_rows": true
+    }
+  }
+}

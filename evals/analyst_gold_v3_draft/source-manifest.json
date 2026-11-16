@@ -1,0 +1,79 @@
+{
+  "status": "draft_pending_user_review",
+  "approved_for_training": false,
+  "source": {
+    "profile": "olist_v1",
+    "source": "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce",
+    "license": "CC BY-NC-SA 4.0",
+    "currency": "BRL",
+    "sample": true,
+    "selection": "sha256(datapilot-olist-v1:customer_unique_id); complete selected customer histories",
+    "selected_customers": 5000,
+    "generated_at": "2026-10-29T17:07:49.187723+00:00",
+    "period": [
+      "2016-10-04 09:16:33",
+      "2018-08-30 13:07:46"
+    ],
+    "tables": {
+      "orders": {
+        "rows": 5169,
+        "bytes": 904864,
+        "sha256": "329a51431723cc5e41b3992aea88a29e846ff19da88975be94f2d601c5159fa9",
+        "source_sha256": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf"
+      },
+      "customers": {
+        "rows": 5169,
+        "bytes": 446640,
+        "sha256": "0feef11f3b991d90d410bd9dce8416dd1190d28bb89ebd48f8bf47d3c70eaf33",
+        "source_sha256": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2"
+      },
+      "order_items": {
+        "rows": 5799,
+        "bytes": 772619,
+        "sha256": "2ef3627a93e30a23f3d4fa58b9c39ff0704e52e18b7a6551575e6ebac3f80801",
+        "source_sha256": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279"
+      },
+      "payments": {
+        "rows": 5349,
+        "bytes": 291075,
+        "sha256": "686626f39bd1e79036aa57013170fdbbf9ac8504634b20de6eb90974b8cdbf17",
+        "source_sha256": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0"
+      },
+      "reviews": {
+        "rows": 5173,
+        "bytes": 729487,
+        "sha256": "00c4e5e6d286020488d19eee59105054c1f0f78a45cd94088b9cac76925f8c23",
+        "source_sha256": "012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7"
+      },
+      "products": {
+        "rows": 3883,
+        "bytes": 275152,
+        "sha256": "9eb2524f88a0b6ab451e5313df8cd53f9b4f502b846ace454d66f2f609b38699",
+        "source_sha256": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc"
+      },
+      "sellers": {
+        "rows": 1227,
+        "bytes": 65092,
+        "sha256": "720d3a8abc9014d2639e4d37b3ffec9638aedfbb7ce6f6b2aa4f058f4fc2b61d",
+        "source_sha256": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e"
+      },
+      "category_translation": {
+        "rows": 64,
+        "bytes": 2312,
+        "sha256": "83468fb10a3b2bd4f94f156f97f6ace66e56bddd0c416b48c3a709a8b6827588",
+        "source_sha256": "a81f0d1f27b27e7293f761bc79e3ce8f348ee39c4b3ed3e49bde38f478586278"
+      }
+    },
+    "metrics": {
+      "delivered_orders": 5008,
+      "item_amount": "686136.43",
+      "freight_amount": "112905.81",
+      "payment_amount": "799188.28",
+      "purchasing_customers": 4851,
+      "repeat_customers": 145
+    }
+  },
+  "analysis_cutoff": "2018-08-01, intentionally selected; not an assertion of source month completeness",
+  "training_label_cutoff": "2018-07-01; only labels already observed before cutoff",
+  "do_not_use_for_blind_test": "All candidate examples will be reviewed; new holdout questions must be prepared before calibration."
+}

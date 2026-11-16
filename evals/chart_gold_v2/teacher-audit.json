@@ -1,0 +1,296 @@
+{
+  "scope": "actual static teacher marks; not product/model certification",
+  "font": "Microsoft YaHei",
+  "matplotlib": "3.11.0",
+  "figures": 36,
+  "outcomes": [
+    {
+      "id": "SM01",
+      "passed": true,
+      "checked_observations": 12,
+      "input_rows": 4,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM02",
+      "passed": true,
+      "checked_observations": 6,
+      "input_rows": 6,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM03",
+      "passed": true,
+      "checked_observations": 5,
+      "input_rows": 6,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM04",
+      "passed": true,
+      "checked_observations": 2,
+      "input_rows": 2,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM05",
+      "passed": true,
+      "checked_observations": 2,
+      "input_rows": 2,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM06",
+      "passed": true,
+      "checked_observations": 4,
+      "input_rows": 4,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM07",
+      "passed": true,
+      "checked_observations": 3,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM08",
+      "passed": true,
+      "checked_observations": 6,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM09",
+      "passed": true,
+      "checked_observations": 6,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM10",
+      "passed": true,
+      "checked_observations": 3,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM11",
+      "passed": true,
+      "checked_observations": 6,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM12",
+      "passed": true,
+      "checked_observations": 3,
+      "input_rows": 4,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM13",
+      "passed": true,
+      "checked_observations": 3,
+      "input_rows": 4,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM14",
+      "passed": true,
+      "checked_observations": 5,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM15",
+      "passed": true,
+      "checked_observations": 6,
+      "input_rows": 4,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM16",
+      "passed": true,
+      "checked_observations": 6,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM17",
+      "passed": true,
+      "checked_observations": 5,
+      "input_rows": 3,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM18",
+      "passed": true,
+      "checked_observations": 4,
+      "input_rows": 5,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM19",
+      "passed": true,
+      "checked_observations": 8,
+      "input_rows": 9,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM20",
+      "passed": true,
+      "checked_observations": 10,
+      "input_rows": 10,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM21",
+      "passed": true,
+      "checked_observations": 2,
+      "input_rows": 2,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM22",
+      "passed": true,
+      "checked_observations": 4,
+      "input_rows": 2,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM23",
+      "passed": true,
+      "checked_observations": 3,
+      "input_rows": 4,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "SM24",
+      "passed": true,
+      "checked_observations": 4,
+      "input_rows": 4,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX01",
+      "passed": true,
+      "checked_observations": 1001,
+      "input_rows": 1080,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX02",
+      "passed": true,
+      "checked_observations": 207,
+      "input_rows": 216,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX03",
+      "passed": true,
+      "checked_observations": 80,
+      "input_rows": 80,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX04",
+      "passed": true,
+      "checked_observations": 72,
+      "input_rows": 558,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX05",
+      "passed": true,
+      "checked_observations": 1187,
+      "input_rows": 1200,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX06",
+      "passed": true,
+      "checked_observations": 418,
+      "input_rows": 432,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX07",
+      "passed": true,
+      "checked_observations": 200,
+      "input_rows": 200,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX08",
+      "passed": true,
+      "checked_observations": 104,
+      "input_rows": 80,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX09",
+      "passed": true,
+      "checked_observations": 96,
+      "input_rows": 96,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX10",
+      "passed": true,
+      "checked_observations": 177,
+      "input_rows": 90,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX11",
+      "passed": true,
+      "checked_observations": 48,
+      "input_rows": 48,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    },
+    {
+      "id": "CX12",
+      "passed": true,
+      "checked_observations": 71,
+      "input_rows": 75,
+      "scope": "actual static teacher artists; not a product pass or complete aesthetic certification",
+      "text_outside_canvas": []
+    }
+  ]
+}

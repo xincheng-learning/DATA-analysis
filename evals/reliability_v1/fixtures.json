@@ -1,0 +1,383 @@
+{
+  "variant_1": {
+    "orders": [
+      {
+        "order_id": "o1",
+        "customer_id": "A",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-01-01 00:00:00"
+      },
+      {
+        "order_id": "o2",
+        "customer_id": "A",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-01-31 23:59:59"
+      },
+      {
+        "order_id": "o3",
+        "customer_id": "B",
+        "region": "华北",
+        "status": "completed",
+        "ordered_at": "2026-01-15 12:00:00"
+      },
+      {
+        "order_id": "o4",
+        "customer_id": "C",
+        "region": "华东",
+        "status": "cancelled",
+        "ordered_at": "2026-01-10 00:00:00"
+      },
+      {
+        "order_id": "o5",
+        "customer_id": "D",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-02-01 00:00:00"
+      }
+    ],
+    "lines": [
+      {
+        "line_id": "l1",
+        "order_id": "o1",
+        "amount": 10
+      },
+      {
+        "line_id": "l2",
+        "order_id": "o1",
+        "amount": 10
+      },
+      {
+        "line_id": "l3",
+        "order_id": "o2",
+        "amount": 41
+      },
+      {
+        "line_id": "l4",
+        "order_id": "o3",
+        "amount": 32
+      },
+      {
+        "line_id": "l5",
+        "order_id": "o4",
+        "amount": 999
+      },
+      {
+        "line_id": "l6",
+        "order_id": "o5",
+        "amount": 101
+      }
+    ],
+    "targets": [
+      {
+        "month": "2026-01",
+        "region": "华东",
+        "target": 101
+      },
+      {
+        "month": "2026-02",
+        "region": "华东",
+        "target": 0
+      }
+    ],
+    "refunds": [
+      {
+        "refund_id": "r1",
+        "status": "settled",
+        "amount": 3
+      },
+      {
+        "refund_id": "r2",
+        "status": "pending",
+        "amount": 50
+      },
+      {
+        "refund_id": "r3",
+        "status": "settled",
+        "amount": 2
+      }
+    ],
+    "observations": [
+      {
+        "record_id": 1,
+        "value": 0,
+        "tiny": 1e-12
+      },
+      {
+        "record_id": 2,
+        "value": null,
+        "tiny": 2e-12
+      },
+      {
+        "record_id": 3,
+        "value": 2,
+        "tiny": null
+      },
+      {
+        "record_id": 4,
+        "value": 2,
+        "tiny": 2e-12
+      },
+      {
+        "record_id": 5,
+        "value": 5,
+        "tiny": 5e-12
+      }
+    ]
+  },
+  "variant_2": {
+    "orders": [
+      {
+        "order_id": "o1",
+        "customer_id": "A",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-01-01 00:00:00"
+      },
+      {
+        "order_id": "o2",
+        "customer_id": "A",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-01-31 23:59:59"
+      },
+      {
+        "order_id": "o3",
+        "customer_id": "B",
+        "region": "华北",
+        "status": "completed",
+        "ordered_at": "2026-01-15 12:00:00"
+      },
+      {
+        "order_id": "o4",
+        "customer_id": "C",
+        "region": "华东",
+        "status": "cancelled",
+        "ordered_at": "2026-01-10 00:00:00"
+      },
+      {
+        "order_id": "o5",
+        "customer_id": "D",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-02-01 00:00:00"
+      }
+    ],
+    "lines": [
+      {
+        "line_id": "l1",
+        "order_id": "o1",
+        "amount": 30
+      },
+      {
+        "line_id": "l2",
+        "order_id": "o1",
+        "amount": 30
+      },
+      {
+        "line_id": "l3",
+        "order_id": "o2",
+        "amount": 122
+      },
+      {
+        "line_id": "l4",
+        "order_id": "o3",
+        "amount": 94
+      },
+      {
+        "line_id": "l5",
+        "order_id": "o4",
+        "amount": 2997
+      },
+      {
+        "line_id": "l6",
+        "order_id": "o5",
+        "amount": 302
+      }
+    ],
+    "targets": [
+      {
+        "month": "2026-01",
+        "region": "华东",
+        "target": 302
+      },
+      {
+        "month": "2026-02",
+        "region": "华东",
+        "target": 0
+      }
+    ],
+    "refunds": [
+      {
+        "refund_id": "r1",
+        "status": "settled",
+        "amount": 9
+      },
+      {
+        "refund_id": "r2",
+        "status": "pending",
+        "amount": 150
+      },
+      {
+        "refund_id": "r3",
+        "status": "settled",
+        "amount": 6
+      }
+    ],
+    "observations": [
+      {
+        "record_id": 1,
+        "value": 0,
+        "tiny": 3e-12
+      },
+      {
+        "record_id": 2,
+        "value": null,
+        "tiny": 6e-12
+      },
+      {
+        "record_id": 3,
+        "value": 6,
+        "tiny": null
+      },
+      {
+        "record_id": 4,
+        "value": 6,
+        "tiny": 6e-12
+      },
+      {
+        "record_id": 5,
+        "value": 15,
+        "tiny": 1.5e-11
+      }
+    ]
+  },
+  "variant_3": {
+    "orders": [
+      {
+        "order_id": "o1",
+        "customer_id": "A",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-01-01 00:00:00"
+      },
+      {
+        "order_id": "o2",
+        "customer_id": "A",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-01-31 23:59:59"
+      },
+      {
+        "order_id": "o3",
+        "customer_id": "B",
+        "region": "华北",
+        "status": "completed",
+        "ordered_at": "2026-01-15 12:00:00"
+      },
+      {
+        "order_id": "o4",
+        "customer_id": "C",
+        "region": "华东",
+        "status": "cancelled",
+        "ordered_at": "2026-01-10 00:00:00"
+      },
+      {
+        "order_id": "o5",
+        "customer_id": "D",
+        "region": "华东",
+        "status": "completed",
+        "ordered_at": "2026-02-01 00:00:00"
+      }
+    ],
+    "lines": [
+      {
+        "line_id": "l1",
+        "order_id": "o1",
+        "amount": 70
+      },
+      {
+        "line_id": "l2",
+        "order_id": "o1",
+        "amount": 70
+      },
+      {
+        "line_id": "l3",
+        "order_id": "o2",
+        "amount": 283
+      },
+      {
+        "line_id": "l4",
+        "order_id": "o3",
+        "amount": 216
+      },
+      {
+        "line_id": "l5",
+        "order_id": "o4",
+        "amount": 6993
+      },
+      {
+        "line_id": "l6",
+        "order_id": "o5",
+        "amount": 703
+      }
+    ],
+    "targets": [
+      {
+        "month": "2026-01",
+        "region": "华东",
+        "target": 703
+      },
+      {
+        "month": "2026-02",
+        "region": "华东",
+        "target": 0
+      }
+    ],
+    "refunds": [
+      {
+        "refund_id": "r1",
+        "status": "settled",
+        "amount": 21
+      },
+      {
+        "refund_id": "r2",
+        "status": "pending",
+        "amount": 350
+      },
+      {
+        "refund_id": "r3",
+        "status": "settled",
+        "amount": 14
+      }
+    ],
+    "observations": [
+      {
+        "record_id": 1,
+        "value": 0,
+        "tiny": 7e-12
+      },
+      {
+        "record_id": 2,
+        "value": null,
+        "tiny": 1.4e-11
+      },
+      {
+        "record_id": 3,
+        "value": 14,
+        "tiny": null
+      },
+      {
+        "record_id": 4,
+        "value": 14,
+        "tiny": 1.4e-11
+      },
+      {
+        "record_id": 5,
+        "value": 35,
+        "tiny": 3.4999999999999995e-11
+      }
+    ]
+  }
+}

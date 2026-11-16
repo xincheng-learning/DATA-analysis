@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "status": "frozen_reference_not_agent_score",
+  "cases": 8,
+  "scripted_messages": 20,
+  "profiles": 3,
+  "facts_cross_checked": 21,
+  "actual_agent_run": false,
+  "live_model_called": false,
+  "api_spend_cny": 0,
+  "scope": "8 analyst-led workflow scenarios; partly reused development data, not blind or cross-industry evaluation"
+}

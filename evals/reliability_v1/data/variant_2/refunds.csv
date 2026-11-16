@@ -1,0 +1,4 @@
+refund_id,status,amount
+r1,settled,9
+r2,pending,150
+r3,settled,6

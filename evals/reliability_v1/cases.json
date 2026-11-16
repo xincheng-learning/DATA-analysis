@@ -1,0 +1,689 @@
+{
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "RG001",
+      "family": "join_target",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "join_target",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "join_target",
+      "turns": [
+        {
+          "question": "列出一月各地区商品金额和目标。输出region、amount、target，缺目标保留NULL。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG002",
+      "family": "order_grain",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "order_grain",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "order_grain",
+      "turns": [
+        {
+          "question": "计算一月已完成的订单数，输出order_count；一笔订单多明细仍只计一次。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG003",
+      "family": "order_denominator",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "order_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "order_denominator",
+      "turns": [
+        {
+          "question": "计算一月每笔已完成订单的平均商品金额，输出average_amount。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG004",
+      "family": "missing_target",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "missing_target",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "missing_target",
+      "turns": [
+        {
+          "question": "列出一月华北目标target；缺失保留NULL，仍返回一行。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG005",
+      "family": "zero_denominator",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "zero_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "zero_denominator",
+      "turns": [
+        {
+          "question": "二月华东目标为0时达成率为NULL。只返回attainment_pct一列一行。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG006",
+      "family": "refund_status",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "refund_status",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "refund_status",
+      "turns": [
+        {
+          "question": "仅计算已结算退款总额，输出refund_amount。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG007",
+      "family": "repeat_denominator",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "repeat_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "repeat_denominator",
+      "turns": [
+        {
+          "question": "计算一月复购客户占比百分数，输出repeat_pct；分母为该月有已完成订单的客户。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG008",
+      "family": "month_endpoint",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "month_endpoint",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "month_endpoint",
+      "turns": [
+        {
+          "question": "一月已完成订单商品金额合计amount，包含1月31日全天，不含2月1日。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG009",
+      "family": "null_mean",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "null_mean",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "null_mean",
+      "turns": [
+        {
+          "question": "observations.value的均值mean；NULL不当0，0参与，不删除原记录。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG010",
+      "family": "duplicate_observation",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "duplicate_observation",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "duplicate_observation",
+      "turns": [
+        {
+          "question": "按record_id顺序返回每条value，重复值和NULL都保留。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG011",
+      "family": "legitimate_empty",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "legitimate_empty",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "legitimate_empty",
+      "turns": [
+        {
+          "question": "列出西区已完成订单order_id；无匹配时返回空表。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG012",
+      "family": "tiny_sample_statistics",
+      "profile": "variant_1",
+      "split": "development",
+      "direction": "tiny_sample_statistics",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "tiny_sample_statistics",
+      "turns": [
+        {
+          "question": "用隔离Python计算observations.tiny非空样本数n、均值mean、样本标准差std（ddof=1），只输出一行三列，保留非零小数，不舍入。",
+          "allowed_routes": [
+            "python"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG013",
+      "family": "join_target",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "join_target",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "join_target",
+      "turns": [
+        {
+          "question": "列出一月各地区商品金额和目标。输出region、amount、target，缺目标保留NULL。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG014",
+      "family": "order_grain",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "order_grain",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "order_grain",
+      "turns": [
+        {
+          "question": "计算一月已完成的订单数，输出order_count；一笔订单多明细仍只计一次。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG015",
+      "family": "order_denominator",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "order_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "order_denominator",
+      "turns": [
+        {
+          "question": "计算一月每笔已完成订单的平均商品金额，输出average_amount。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG016",
+      "family": "missing_target",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "missing_target",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "missing_target",
+      "turns": [
+        {
+          "question": "列出一月华北目标target；缺失保留NULL，仍返回一行。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG017",
+      "family": "zero_denominator",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "zero_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "zero_denominator",
+      "turns": [
+        {
+          "question": "二月华东目标为0时达成率为NULL。只返回attainment_pct一列一行。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG018",
+      "family": "refund_status",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "refund_status",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "refund_status",
+      "turns": [
+        {
+          "question": "仅计算已结算退款总额，输出refund_amount。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG019",
+      "family": "repeat_denominator",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "repeat_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "repeat_denominator",
+      "turns": [
+        {
+          "question": "计算一月复购客户占比百分数，输出repeat_pct；分母为该月有已完成订单的客户。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG020",
+      "family": "month_endpoint",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "month_endpoint",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "month_endpoint",
+      "turns": [
+        {
+          "question": "一月已完成订单商品金额合计amount，包含1月31日全天，不含2月1日。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG021",
+      "family": "null_mean",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "null_mean",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "null_mean",
+      "turns": [
+        {
+          "question": "observations.value的均值mean；NULL不当0，0参与，不删除原记录。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG022",
+      "family": "duplicate_observation",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "duplicate_observation",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "duplicate_observation",
+      "turns": [
+        {
+          "question": "按record_id顺序返回每条value，重复值和NULL都保留。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG023",
+      "family": "legitimate_empty",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "legitimate_empty",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "legitimate_empty",
+      "turns": [
+        {
+          "question": "列出西区已完成订单order_id；无匹配时返回空表。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG024",
+      "family": "tiny_sample_statistics",
+      "profile": "variant_2",
+      "split": "development",
+      "direction": "tiny_sample_statistics",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "tiny_sample_statistics",
+      "turns": [
+        {
+          "question": "用隔离Python计算observations.tiny非空样本数n、均值mean、样本标准差std（ddof=1），只输出一行三列，保留非零小数，不舍入。",
+          "allowed_routes": [
+            "python"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG025",
+      "family": "join_target",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "join_target",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "join_target",
+      "turns": [
+        {
+          "question": "列出一月各地区商品金额和目标。输出region、amount、target，缺目标保留NULL。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG026",
+      "family": "order_grain",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "order_grain",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "order_grain",
+      "turns": [
+        {
+          "question": "计算一月已完成的订单数，输出order_count；一笔订单多明细仍只计一次。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG027",
+      "family": "order_denominator",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "order_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "order_denominator",
+      "turns": [
+        {
+          "question": "计算一月每笔已完成订单的平均商品金额，输出average_amount。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG028",
+      "family": "missing_target",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "missing_target",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "missing_target",
+      "turns": [
+        {
+          "question": "列出一月华北目标target；缺失保留NULL，仍返回一行。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG029",
+      "family": "zero_denominator",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "zero_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "zero_denominator",
+      "turns": [
+        {
+          "question": "二月华东目标为0时达成率为NULL。只返回attainment_pct一列一行。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG030",
+      "family": "refund_status",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "refund_status",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "refund_status",
+      "turns": [
+        {
+          "question": "仅计算已结算退款总额，输出refund_amount。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG031",
+      "family": "repeat_denominator",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "repeat_denominator",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "repeat_denominator",
+      "turns": [
+        {
+          "question": "计算一月复购客户占比百分数，输出repeat_pct；分母为该月有已完成订单的客户。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG032",
+      "family": "month_endpoint",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "month_endpoint",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "month_endpoint",
+      "turns": [
+        {
+          "question": "一月已完成订单商品金额合计amount，包含1月31日全天，不含2月1日。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG033",
+      "family": "null_mean",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "null_mean",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "null_mean",
+      "turns": [
+        {
+          "question": "observations.value的均值mean；NULL不当0，0参与，不删除原记录。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG034",
+      "family": "duplicate_observation",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "duplicate_observation",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "duplicate_observation",
+      "turns": [
+        {
+          "question": "按record_id顺序返回每条value，重复值和NULL都保留。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG035",
+      "family": "legitimate_empty",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "legitimate_empty",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "legitimate_empty",
+      "turns": [
+        {
+          "question": "列出西区已完成订单order_id；无匹配时返回空表。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RG036",
+      "family": "tiny_sample_statistics",
+      "profile": "variant_3",
+      "split": "development",
+      "direction": "tiny_sample_statistics",
+      "business_rules": "合成数据；orders一行一笔订单，lines一行一条明细，amount是该条明细金额。只按completed计算；一月为2026-01-01含至2026-02-01不含。targets按month+region唯一；缺失目标保持NULL，目标为0的达成率保持NULL。退款仅settled。复购率分母为同月有已完成订单的去重客户。observations中0是有效观测，NULL是未知，重复值是不同观测。保留完整数值精度，不清洗原表。",
+      "mode": "auto",
+      "route_scored": true,
+      "failure_trap": "tiny_sample_statistics",
+      "turns": [
+        {
+          "question": "用隔离Python计算observations.tiny非空样本数n、均值mean、样本标准差std（ddof=1），只输出一行三列，保留非零小数，不舍入。",
+          "allowed_routes": [
+            "python"
+          ]
+        }
+      ]
+    }
+  ]
+}

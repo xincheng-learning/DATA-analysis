@@ -1,0 +1,293 @@
+{
+  "real_model_called": false,
+  "checks": [
+    {
+      "case": "RG001",
+      "family": "join_target",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG002",
+      "family": "order_grain",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG003",
+      "family": "order_denominator",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG004",
+      "family": "missing_target",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG005",
+      "family": "zero_denominator",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG006",
+      "family": "refund_status",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG007",
+      "family": "repeat_denominator",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG008",
+      "family": "month_endpoint",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG009",
+      "family": "null_mean",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG010",
+      "family": "duplicate_observation",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG011",
+      "family": "legitimate_empty",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG012",
+      "family": "tiny_sample_statistics",
+      "profile": "variant_1",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG013",
+      "family": "join_target",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG014",
+      "family": "order_grain",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG015",
+      "family": "order_denominator",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG016",
+      "family": "missing_target",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG017",
+      "family": "zero_denominator",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG018",
+      "family": "refund_status",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG019",
+      "family": "repeat_denominator",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG020",
+      "family": "month_endpoint",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG021",
+      "family": "null_mean",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG022",
+      "family": "duplicate_observation",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG023",
+      "family": "legitimate_empty",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG024",
+      "family": "tiny_sample_statistics",
+      "profile": "variant_2",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG025",
+      "family": "join_target",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG026",
+      "family": "order_grain",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG027",
+      "family": "order_denominator",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG028",
+      "family": "missing_target",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG029",
+      "family": "zero_denominator",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG030",
+      "family": "refund_status",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG031",
+      "family": "repeat_denominator",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG032",
+      "family": "month_endpoint",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG033",
+      "family": "null_mean",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG034",
+      "family": "duplicate_observation",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG035",
+      "family": "legitimate_empty",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    },
+    {
+      "case": "RG036",
+      "family": "tiny_sample_statistics",
+      "profile": "variant_3",
+      "teacher_matches_sql": true,
+      "wrong_sql_executed": true,
+      "wrong_answer_rejected": true
+    }
+  ]
+}

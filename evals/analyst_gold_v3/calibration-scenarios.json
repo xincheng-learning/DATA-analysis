@@ -1,0 +1,11 @@
+{
+  "kind": "calibration_regression_not_blind_test",
+  "cases": [
+    {"label":"monthly","dataset":"olist","question":"按已送达订单、下单月、BRL商品金额不含运费，比较2018年6月与7月的商品金额、去重订单数和每单商品金额。先给判断和对应数字，解释量价变化构成，并制作清晰的对比图。请用一份两行月度结果回答，不做其他独立调查。","gold_scenarios":["AG304","AG306"],"expected":{"june_amount":42481.28,"july_amount":50588.49,"june_orders":287,"july_orders":359}},
+    {"label":"followup","dataset":"olist","question":"沿用刚才确认的全部口径，改看五月到六月，同样只返回两行月度数据，解释量价变化，金额、订单和每单金额三个指标都要保留。","gold_scenarios":["AG305"],"expected":{"may_amount":51181.69,"june_amount":42481.28,"may_orders":364,"june_orders":287}},
+    {"label":"quality","dataset":"olist","question":"先做一次orders数据体检：把缺失和时间顺序分开说明，按原表字段解释分析影响，给出清洗建议。只预览，不执行，不能猜填时间，也不能把重叠的时间异常相加当不同订单。","gold_scenarios":["AG302","AG303","AG317"],"expected":{"carrier_before_purchase":14,"carrier_before_approval":82,"carrier_after_delivery":1}},
+    {"label":"reconcile","dataset":"olist","question":"按已送达订单逐单核对：差额=支付金额减商品金额减运费。精确到BRL分，只筛绝对差额严格大于0.01的订单，列出完整订单ID与差额，区分重点清单差额合计与全部订单净差，不要把差额原因猜成超收。","gold_scenarios":["AG310","AG311"],"expected":{"orders":13,"material_difference":146.09,"net_difference":146.04}},
+    {"label":"transfer","dataset":"transfer","question":"这是明确的合成回归数据：sales.amount_brl是商品金额不含运费，订单粒度为order_id，币种BRL。只看delivered，比较2024年2月和3月的商品金额、去重订单数、每单商品金额，并解释量价分解和画图。只用一份两行的月度结果。","gold_scenarios":["AG304","AG306"],"expected":{"feb_amount":120,"mar_amount":150,"feb_orders":3,"mar_orders":5}},
+    {"label":"missing-cost","dataset":"transfer","question":"继续刚才的同一范围，那两个期间的利润及利润变化可以算吗？如果不能，明确缺什么，不能拿商品金额当利润。","gold_scenarios":["AG318"],"expected":{"must_not_invent_profit":true}}
+  ]
+}

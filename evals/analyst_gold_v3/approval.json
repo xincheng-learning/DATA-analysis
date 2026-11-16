@@ -1,0 +1,13 @@
+{
+  "version": "analyst_gold_v3",
+  "status": "approved_for_prompt_and_workflow_calibration",
+  "approved_at": "2026-11-11",
+  "approval_basis": "小城：可以的，没问题，现在开始针对这个黄金集来调整数据分析agent 的输出，并优化一些界面，让其聚焦于数据分析方面的优势",
+  "source": "evals/analyst_gold_v3_draft/cases.json",
+  "source_sha256": "4a935708a1fbb003c0db9f126d0df0ccfd2358e89ad270d3abe8565cb50ab384",
+  "approved_case_ids": ["AG301", "AG302", "AG303", "AG304", "AG305", "AG306", "AG307", "AG308", "AG309", "AG310", "AG311", "AG312", "AG313", "AG314", "AG315", "AG316", "AG317", "AG318"],
+  "use": ["analysis_method", "answer_style", "tool_workflow", "interface_presentation"],
+  "parameter_training_authorized": false,
+  "independent_blind_test": false,
+  "original_draft_preserved": true
+}

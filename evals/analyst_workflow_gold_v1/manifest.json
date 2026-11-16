@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "sources": {
+    "evals/gold_v1/fixtures.json": "24b691d5af7c536335390ad36d6d2c327baae5e7f2c24bd0e3425e935a2e667a",
+    "evals/analyst_workflow_dataset.py": "8c52defc251722201494a6122dd155281a553a7e04c2e89f598d7c3b301830b9",
+    "scripts/build_analyst_workflow_gold.py": "475fbd58fe77c6fe2c11614d80513866e2b2ca16ae4740a40bf6bce487558296",
+    "evals/gold_dataset.py": "2cae642c385000ab1458bfd3fa51b974c4363af7f586a9d54e17e4a6804aaf1c"
+  },
+  "files": {
+    "cases.json": "debfc43467f1aa09fb1cb9d3a573b3498f61e5563f0522bac5646d9efd22d31e",
+    "answers.json": "df2f7bb6b496ee2aed9fd215c8dbb07640d479dfc7b9440b64d265826fa4f802",
+    "fixtures.json": "c2e39fa0cbddab15de12cfa56f60aae51549c66e3fd6839272397905f4b5961f",
+    "data/commerce/orders.csv": "0ec3b72a2adb16b59d20ba538f73a099b647cf767a9c64fda6f235ffd2727d71",
+    "data/commerce/items.csv": "090e927e9ab82e0b1c04e91ec027240de7500aeab5781314587cb62dcb33868f",
+    "data/commerce/refunds.csv": "02964e90949dfce004efd83bbde21acd0192259ff491a5703b088c1ac29a51aa",
+    "data/commerce/targets.csv": "ecae0f8435427604b5ae8916fbde5b63383dbd2cdef72e5e33d1fddd79594382",
+    "data/dirty/orders.csv": "f7b34afc4297b9263b7d151b0bae88d8d08efb81773645b0399fe13c523ae0dd",
+    "data/presentation/daily_sales.csv": "6a363ea42660921b0db71f9091b3852129c358fea953f0e3e999a425c54e94fb",
+    "仅题目.md": "e0dd32d7a6a09167182e7e00e664ea446aacdb53b9be4d442cbcaca919583d2f",
+    "标准答案.md": "46b2d668cd4b5291cb7585d486e0b6ac7cf86513f9ab44f64cb773303aa3515d",
+    "验收规则.md": "6139b83ce2caa475049a00109531895c66d182bb6aa6c4746df0c54b9ae62c5a",
+    "审阅记录模板.csv": "5450a0a5ab916c5811c261e93d3255c55bd60901ef8dbd86c2bded7d309fa469",
+    "reference-check.json": "8eb27b813e8be63c7a7869b4ff853190982303a39a24d5e7813cc7ab5415183a"
+  }
+}

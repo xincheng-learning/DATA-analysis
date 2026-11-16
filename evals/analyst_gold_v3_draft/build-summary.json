@@ -1,0 +1,12 @@
+{
+  "status": "draft_pending_user_review",
+  "approved_for_training": false,
+  "cases": 18,
+  "turns": 54,
+  "chart_groups": 18,
+  "reference_crosschecks": 57,
+  "asset_checks": 219,
+  "content_sha256": "4a935708a1fbb003c0db9f126d0df0ccfd2358e89ad270d3abe8565cb50ab384",
+  "output": "output/analyst-gold-v3-review-2026-11-11",
+  "new_model_cost_CNY": 0
+}

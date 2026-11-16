@@ -1,0 +1,78 @@
+{
+  "RG004:1": {
+    "drop_columns": [
+      "month",
+      "region"
+    ],
+    "note": "审阅SQL与实际单行：范围固定为2026-01华北，month/region仅显示题目已指定范围；评分仅投影target，原NULL与原输出不改。"
+  },
+  "RG016:1": {
+    "drop_columns": [
+      "month",
+      "region"
+    ],
+    "note": "审阅SQL与实际单行：范围固定为2026-01华北，month/region仅显示题目已指定范围；评分仅投影target，原NULL与原输出不改。"
+  },
+  "RG028:1": {
+    "drop_columns": [
+      "month",
+      "region"
+    ],
+    "note": "审阅SQL与实际单行：范围固定为2026-01华北，month/region仅显示题目已指定范围；评分仅投影target，原NULL与原输出不改。"
+  },
+  "RG008:1": {
+    "column_map": {
+      "item_amount_sum": "amount"
+    },
+    "note": "审阅SQL：唯一订单表关联原始明细，按completed及自然月半开区间筛选后SUM(l.amount)；item_amount_sum为题目商品金额amount的语义别名，未改变明细粒度或原值。"
+  },
+  "RG020:1": {
+    "column_map": {
+      "item_amount_sum": "amount"
+    },
+    "note": "审阅SQL：唯一订单表关联原始明细，按completed及自然月半开区间筛选后SUM(l.amount)；item_amount_sum为题目商品金额amount的语义别名，未改变明细粒度或原值。"
+  },
+  "RG032:1": {
+    "column_map": {
+      "item_amount_sum": "amount"
+    },
+    "drop_columns": [
+      "month"
+    ],
+    "note": "审阅SQL按唯一订单关联原始明细并SUM(l.amount)，时间为2026-01半开区间；额外month恒为2026-01，评分去除该范围标识并映射金额别名，原数值639及完整输出不改。"
+  },
+  "RG009:1": {
+    "column_map": {
+      "mean_value": "mean"
+    },
+    "drop_columns": [
+      "non_null_count",
+      "null_count"
+    ],
+    "note": "AVG(value)直接保留0、忽略NULL；mean_value为mean别名。两个额外列仅说明有效/缺失样本数，不替换均值，评分投影删除辅助列；原输出保留。"
+  },
+  "RG021:1": {
+    "column_map": {
+      "mean_value": "mean"
+    },
+    "note": "SQL为AVG(value)，无补零和筛掉0；mean_value为mean语义别名，原值6.75不改。"
+  },
+  "RG010:1": {
+    "drop_columns": [
+      "record_id"
+    ],
+    "note": "实际SQL按record_id排序逐条返回record_id/value，保留5条观测、重复值和NULL；题目未禁止附带观测标识。评分仅投影value，仍严格核对原顺序和重复数，不改原输出。"
+  },
+  "RG022:1": {
+    "drop_columns": [
+      "record_id"
+    ],
+    "note": "实际SQL按record_id排序逐条返回record_id/value，保留5条观测、重复值和NULL；题目未禁止附带观测标识。评分仅投影value，仍严格核对原顺序和重复数，不改原输出。"
+  },
+  "RG034:1": {
+    "drop_columns": [
+      "record_id"
+    ],
+    "note": "实际SQL按record_id排序逐条返回record_id/value，保留5条观测、重复值和NULL；题目未禁止附带观测标识。评分仅投影value，仍严格核对原顺序和重复数，不改原输出。"
+  }
+}

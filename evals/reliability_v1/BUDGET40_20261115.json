@@ -1,0 +1,182 @@
+{
+  "version": "2026-11-15-budget40",
+  "base_commit": "c866285",
+  "created_utc": "2026-11-15T10:33:15.095878+00:00",
+  "claim": "Development-set numeric results and conditional gate replay; overall reliability gate NOT passed. Do not combine runs.",
+  "cost": {
+    "starting_upper_micro_cny": 29466982,
+    "new_upper_micro_cny": 3299436,
+    "cumulative_upper_micro_cny": 32766418,
+    "limit_micro_cny": 40000000,
+    "historical_requests": 2253,
+    "unknown_requests": 0,
+    "historical_upper_bound_charges_preserved": true
+  },
+  "model": "deepseek-flash",
+  "runs": [
+    {
+      "name": "budget40-full-20261115",
+      "cases": 36,
+      "strict_output_matches": 28,
+      "reviewed_numeric_matches": 34,
+      "output_conformance_deviations": [
+        "RG008:1",
+        "RG010:1",
+        "RG020:1",
+        "RG022:1",
+        "RG032:1",
+        "RG034:1"
+      ],
+      "failures": [
+        {
+          "key": "RG005:1",
+          "direction": "zero_denominator",
+          "reason": "计算计划经一次纠错仍未通过核对，未执行查询：声明计算计划字段不存在或不唯一：month"
+        },
+        {
+          "key": "RG018:1",
+          "direction": "refund_status",
+          "reason": "结果列与黄金标准不对应"
+        }
+      ],
+      "product_reported_complete": 34,
+      "independent_full_requirement_certification": false,
+      "request_count": 74,
+      "cost_upper_cny": 1.55277,
+      "evidence_sha256": {
+        "score.json": "d167fe95801a49875aa75024812e618f9915132f2934a72f995f9e66e1ad27a2",
+        "score-before-review.json": "4a1effe7c73ef7dc0d6094b9fd4a2a1eb4c23a628dcc0c7bb80fba9ea79a028e",
+        "reviews.json": "3a0dcd75493d031f65bb033ba888f383307c3ab2644485d673beb409fcb08a15",
+        "configuration.json": "8efbdd914160c52a5a9eb5e1bea6db4b05f697a83115a7775166e2dc9701d00e"
+      }
+    },
+    {
+      "name": "budget40-final-20261115",
+      "cases": 36,
+      "strict_output_matches": 28,
+      "reviewed_numeric_matches": 34,
+      "output_conformance_deviations": [
+        "RG008:1",
+        "RG010:1",
+        "RG020:1",
+        "RG022:1",
+        "RG032:1",
+        "RG034:1"
+      ],
+      "failures": [
+        {
+          "key": "RG029:1",
+          "direction": "zero_denominator",
+          "reason": "计算计划经一次纠错仍未通过核对，未执行查询：声明计算计划字段不存在或不唯一：month"
+        },
+        {
+          "key": "RG030:1",
+          "direction": "refund_status",
+          "reason": "结果列与黄金标准不对应"
+        }
+      ],
+      "product_reported_complete": 34,
+      "independent_full_requirement_certification": false,
+      "request_count": 75,
+      "cost_upper_cny": 1.57903,
+      "evidence_sha256": {
+        "score.json": "cd83c57edd7ae3b8fffdee2c010fafab3e117f17b5c77b73e7da8902cabb4490",
+        "score-before-review.json": "a61ed7bde68ae33d53563e346a88e1b41c4f57b094f3d17e0665c75b63a01d13",
+        "reviews.json": "3a0dcd75493d031f65bb033ba888f383307c3ab2644485d673beb409fcb08a15",
+        "configuration.json": "ab115d6274e1e279ce7f9818c2fadad3e146a91c34331585e315debb20591393"
+      }
+    }
+  ],
+  "source_integrity": {
+    "first_run_both_explicit_constraint_receipts": 8,
+    "final_run_input_integrity_and_precision_facts": 34,
+    "scope": "Execution facts for completed results; not independent certification of every original textual requirement."
+  },
+  "saved_model_plan_sql_replay": {
+    "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+    "raw_execution_success": 72,
+    "cases": 36,
+    "product_gate_passed": false,
+    "product_blocked_wrong": 36,
+    "product_wrong_not_blocked": 0,
+    "product_blocked_correct": 1
+  },
+  "replay_false_positive_cases": [
+    "RG029"
+  ],
+  "replay_evidence_sha256": "294d8d007e8b1b40bf54863b078f460bda663b3b499cc962e9a5c60f14e1df3a",
+  "candidate_backend_sha256": {
+    "backend/app/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "backend/app/agent/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "backend/app/agent/graph.py": "7597d1b43d838c797a9f80e6c302610e7e4ed85b602b123e752a212e8743fead",
+    "backend/app/agent/investigation.py": "9411be249a89523fa748e911feeaab3e5bc40760acf0320c5a98f761318dfe48",
+    "backend/app/agent/nodes.py": "852ff1c1e1d1eb509759c1b4542f625123647c8137f07a7a3bceb759af186a1d",
+    "backend/app/agent/router.py": "ca24e415082424391e146d7307a6354184a79c7b2a1529114218ed86cd3a4c3e",
+    "backend/app/agent/state.py": "acd789faa5bfbc07aa4d5f6919d3e14d396c7359fa4ca41cba23699b64956194",
+    "backend/app/agent/validator.py": "b4313929ae24363ced26ddaa8a3031df46419d056924c0e73748cf9b356771f2",
+    "backend/app/agent/workflow.py": "11c9280079eebe7bf49bc728b7592a6dd82aad36125a74d0ace13aeeac928c49",
+    "backend/app/analysis_pipeline.py": "013d488b1251de379e3eef56c97304cc775a9189c751c830a9ee24f4042d473f",
+    "backend/app/analysis_report.py": "f93bbcf88128a9882ae2e95c740ee54fd4161b44c02eea67d419c6d9c414c2e2",
+    "backend/app/answer_acceptance.py": "9931acb47a989d01ff9bc1d77a5537cd9bdeb7e618c3c82b7f917af4b01bc7af",
+    "backend/app/answer_quality.py": "058422450a2daf74a0e1fd5afcff3d5a7b012e0b967b123bd26bdf55d31b30fb",
+    "backend/app/attachments.py": "0ac3a8cf2f5907332dfe111fcec8feae53c3cbce7b64dff31c41a298cdee6ab0",
+    "backend/app/auth.py": "abaa3df01597b4c537ececc3245433843276d8964d62bd60fddcc439c86bfa13",
+    "backend/app/boards.py": "1d8323c10fc31ef3d985afcd708d0012d2a6cfe29ba37063db720920266250c3",
+    "backend/app/calculation_contract.py": "a8c5fdfa8e09ad316edf50626f718a7e62b70d2bc2d6a1a107113f43ecb1247c",
+    "backend/app/chart_appearance.py": "80eef066b0099c4ec5acfaeb3d72216e3684ab51ed8c39d9a23c6d937f793686",
+    "backend/app/chat_storage.py": "bce845a0401d87c38bbe6fe119247c3235cba411de62a4125131fc8c217a908c",
+    "backend/app/checks.py": "0e3935e6b79009591304f04ecaad85da75c579e0f3b64d824c6f22f1420d1a74",
+    "backend/app/clarification.py": "2f272a65c628aea719776f6b1fd8f4001d02877ecd0ca28a15cb0114dae6be4f",
+    "backend/app/cleaning_assistant.py": "1c2072a254afe21ccb06c384d575c5187a9f642977cda640c679de8914737ae5",
+    "backend/app/commerce.py": "0da2eca55c2453c9064f11c81740c1173094816fff2a03adb22547f96195347a",
+    "backend/app/config.py": "7627b1de9968fd60f67764a4be44fa75f310fbc0a5fc74b462c6c78ef97cf768",
+    "backend/app/context_memory.py": "f1c6aabee058e0df81a25ee9140df0ae3f5a70380c5a53f47c9212789e7913a9",
+    "backend/app/data_guide.py": "c29f446004497846e24deeb59e0b88239e6611e33bdaf6205361dcf12d5104b2",
+    "backend/app/database.py": "9ff84f2f6ef39fb132593fef8b210c91b30232a71c485d0e76d61949689a9e69",
+    "backend/app/execution.py": "96cb90a2d28e839a928365dc940d6c42834e415cb83b3b58a773d219ea377b60",
+    "backend/app/folder_picker.py": "56cfaa6b95edffd7524bb2f1e52b6c2c5de2a15b777d38ce30a650343e2dbdc8",
+    "backend/app/images.py": "502c65142f5f4318cc65cd6708f8cffed891be309dcd0b7936b27b6fa696dcc1",
+    "backend/app/insights.py": "7646af47474a84fbdbffdade316fa659251720f6f7dce5559440cc07bc27119b",
+    "backend/app/llm.py": "2b28a67603f72bc7e09582990173c2b05c4816aeba6944d09eb532fb32b28b39",
+    "backend/app/main.py": "f7b3fa588c9aed6d6cd3fb19678dcac75277714fc96e1f5454e4c868052a42a2",
+    "backend/app/metrics.py": "e37bb529a34063edd80f2c5bf4ea9239522a68df9b0e19201d5cbf990fef1dab",
+    "backend/app/model_settings.py": "47a0c02c83e9d3883fd54b327c5d9550e7b29cec4a4401b20ccde063f4a6ba09",
+    "backend/app/privacy.py": "9dc89e3a5dc27bf1255fc2fe0af6fd0413f795a33c7508d1480807c51511c224",
+    "backend/app/report_presentation.py": "cbce5f029bf5052b6c493bfabc0097dc0669d69dc2fb7ee6e6033061e9e5948b",
+    "backend/app/schemas.py": "410f6d6296b04c21e0e1411032079a1b6f562d4277818a4a634001b0b0e6ea9b",
+    "backend/app/session.py": "0d11cbfadcd435aeb7f1368d3b557903007114e382c5b58098fc364ed67dd25f",
+    "backend/app/sql_proposals.py": "561e396dc55eaeeb0ae3beeda993f9b402775a705688fa28b24f8e59fb343a53",
+    "backend/app/superset.py": "9ad67f6a49bedcc8680921882327515996310459dac9ea29af47d4f5f671cbfc",
+    "backend/app/superset_routes.py": "641afc1064067649a8533a0a131c0a808ed7b8918ff51e57b8600ced9eea4916",
+    "backend/app/tools/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "backend/app/tools/data_workbench.py": "e1e6d3a675177c0b23e4911e2623a116c3e20f724d166bea7a1299c11a2f684c",
+    "backend/app/tools/dataset_manager.py": "b067ca877b292a8e4426c475c43c4097aca28e35be25cb44e0cccc6a90fc3de6",
+    "backend/app/tools/file_storage.py": "82ceadf36664672ec887fe5c506fea3c18628b955c4606618ef8c1672a441ac3",
+    "backend/app/tools/ingest.py": "07c43621c78ed795e2bd16cd1b684809246d585c0ebd4e757b66812edc46f755",
+    "backend/app/tools/join_validation.py": "c6a3861c33e3a3488a19df2577674ee19b9c130518779446ed91d772f84613cd",
+    "backend/app/tools/numeric_precision.py": "c84d26a48bf8696dee8af924fc6bb4f54c245e8083459377c044cf4156c79a16",
+    "backend/app/tools/python_tool.py": "233d25554700a48535626ae1cc75b537face5ec39091042b273ff0866982a981",
+    "backend/app/tools/query_results.py": "5059bdfb133930ebc0316ba1b9c05cb2851e4f5d0dad9af5b2d53f0a663480ab",
+    "backend/app/tools/relationships.py": "198e6d6b81d8001d1cc4b7dfa6ddc4e882382c304f9949af19c4c6d1a620114e",
+    "backend/app/tools/sql.py": "082baa48e90805a424e7a927af664eb79e1d370dafe51b42abf2c313605f4fce",
+    "backend/app/tools/sql_sanitizer.py": "4aa377fd26cb1c0bf95710f846ce7088267d8010c9505e9d2a5aa51a938d0420",
+    "backend/app/tools/tableau.py": "62149865f73f90c2b46ea1bf39e41229827f2e07b5901c2871b571885a78b56c",
+    "backend/app/tools/viz.py": "d9ee44830530ea354ee4eabee10d986f16ffeb5bdcfddc688827dd2c4bc33c6e",
+    "backend/app/usage.py": "de8791a2c05af39caa2e3cb6ad11056439bc444aecebb71ccbba6cc413f8db8c",
+    "scripts/run_gold_eval.py": "54a8a73ca295cd0b61287b1ed7a9fbe25812d497752001c1fe68b6e4c24e1800",
+    "scripts/score_gold_eval.py": "0fecd8019183a88491c4b69768475a41345d6517a1df3ec23a72c9b1804f1e16",
+    "evals/live_budget.py": "c383f454ae82cf2be6ee0714b67628ad598869e2623920d3b5a29a298e9000b4",
+    "evals/gold_scoring.py": "22695fbd55f91d9ea621bdcc481274354c7090d611737d37ae831cf9d24b1458",
+    "evals/gold_dataset.py": "2cae642c385000ab1458bfd3fa51b974c4363af7f586a9d54e17e4a6804aaf1c",
+    "evals/reliability_dataset.py": "9faf4096569758056d82e24cb7736d6e04fd0dbe517ac73a3eaf6fc171bad1a1",
+    "docker/sandbox.Dockerfile": "9a198a2c9caa5ed8bd74683513b2fd4e2325e428d49a9bb64f11e1adadf1e0fd"
+  },
+  "limitations": [
+    "public development cases already used for calibration; no blind test",
+    "same model may misunderstand both plan and code",
+    "unplanned and unsupported operations not certified",
+    "not independent statistical-method or narrative certification",
+    "no third-party review"
+  ],
+  "raw_private_records_in_git": false
+}

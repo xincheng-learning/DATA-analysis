@@ -1,0 +1,11 @@
+# Frozen semantic gold hashes must survive Windows/Linux checkouts.
+evals/reliability_dataset.py text eol=lf
+evals/reliability_v1/** text eol=lf
+evals/chart24_reference.py text eol=lf
+evals/chart24_scoring.py text eol=lf
+evals/chart24_v1/** text eol=lf
+evals/tableau_reference_v1/families.json text eol=lf
+evals/chart_gold_v2.py text eol=lf
+evals/chart_gold_render.py text eol=lf
+scripts/build_chart_gold.py text eol=lf
+evals/chart_gold_v2/** text eol=lf

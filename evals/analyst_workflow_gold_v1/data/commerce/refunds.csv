@@ -1,0 +1,8 @@
+refund_id,order_id,amount,status
+R01,O01,30,settled
+R02,O01,20,settled
+R03,O07,50,settled
+R04,O08,25,pending
+R05,O12,45,settled
+R06,O15,60,settled
+R07,O18,20,rejected

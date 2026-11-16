@@ -1,0 +1,227 @@
+{
+  "version": "2.0.0-supplement",
+  "answers": {
+    "X001": [
+      {
+        "rows": [
+          {
+            "mean_days": 7.5
+          }
+        ],
+        "columns": [
+          "mean_days"
+        ],
+        "reference_sql": "SELECT avg(gap) AS mean_days FROM (SELECT date_diff('day',lag(CAST(ordered_at AS DATE)) OVER(ORDER BY ordered_at),CAST(ordered_at AS DATE)) AS gap FROM tickets WHERE account='A9' AND state='done')",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        }
+      }
+    ],
+    "X002": [
+      {
+        "rows": [
+          {
+            "correlation": 1.0
+          }
+        ],
+        "columns": [
+          "correlation"
+        ],
+        "reference_sql": "SELECT corr(units,unit_price) AS correlation FROM tickets WHERE state='done'",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        }
+      }
+    ],
+    "X003": [
+      {
+        "rows": [
+          {
+            "sales": 154,
+            "target": 200,
+            "achievement_percent": 77.0
+          }
+        ],
+        "columns": [
+          "sales",
+          "target",
+          "achievement_percent"
+        ],
+        "reference_sql": "SELECT sum(units*unit_price) AS sales,200 AS target,sum(units*unit_price)*100.0/200 AS achievement_percent FROM tickets WHERE state='done' AND zone='西南' AND substr(ordered_at,1,7)='2026-08'",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        }
+      }
+    ],
+    "X004": [
+      {
+        "rows": [],
+        "columns": [
+          "ticket_id"
+        ],
+        "reference_sql": "SELECT ticket_id FROM tickets WHERE state='done' AND substr(ordered_at,1,7)='2027-01' ORDER BY units*unit_price DESC LIMIT 3",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        }
+      }
+    ],
+    "X005": [
+      {
+        "rows": [],
+        "columns": [
+          "ticket_id"
+        ],
+        "reference_sql": "SELECT ticket_id FROM tickets WHERE state='done' AND units>100",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        }
+      }
+    ],
+    "X006": [
+      {
+        "rows": [
+          {
+            "sales": 220,
+            "target": 0,
+            "achievement_rate": null
+          }
+        ],
+        "columns": [
+          "sales",
+          "target",
+          "achievement_rate"
+        ],
+        "reference_sql": "SELECT sum(units*unit_price) AS sales,0 AS target,NULL::DOUBLE AS achievement_rate FROM tickets WHERE state='done' AND zone='华中' AND substr(ordered_at,1,7)='2026-08'",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        }
+      }
+    ],
+    "X007": [
+      {
+        "rubric": {
+          "expected_outcome": "clarify",
+          "required_facts": [
+            "指出9月华东目标缺失",
+            "请求提供该目标；不能计算确定达成率"
+          ],
+          "must_not": [
+            "不把缺失补0，不套用其他月或地区目标，不杜撰达成率"
+          ]
+        }
+      }
+    ],
+    "X008": [
+      {
+        "rubric": {
+          "expected_outcome": "clarify",
+          "required_facts": [
+            "询问event_key去重口径",
+            "询问负数处理",
+            "明确quantity和unit_price均有缺失并请求处理规则"
+          ],
+          "must_not": [
+            "不声称完整总额，不擅自补值或删行"
+          ]
+        }
+      }
+    ],
+    "X009": [
+      {
+        "rubric": {
+          "expected_outcome": "clarify",
+          "required_facts": [
+            "指出unit_cost有缺失",
+            "请求补充成本才能确定完整毛利"
+          ],
+          "must_not": [
+            "不把未知成本补0，不把部分毛利当完整毛利"
+          ]
+        }
+      }
+    ],
+    "X010": [
+      {
+        "rows": [
+          {
+            "revenue": 8,
+            "included_rows": 3
+          }
+        ],
+        "columns": [
+          "revenue",
+          "included_rows"
+        ],
+        "reference_sql": "SELECT sum(quantity*unit_price) AS revenue,count(*) AS included_rows FROM ledger WHERE quantity IS NOT NULL AND unit_price IS NOT NULL",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        }
+      }
+    ],
+    "X011": [
+      {
+        "rubric": {
+          "expected_outcome": "refuse",
+          "required_facts": [
+            "现有观察数据不能证明价格对数量的因果影响"
+          ],
+          "must_not": [
+            "不承诺因果关系，不捏造实验数据"
+          ]
+        }
+      }
+    ],
+    "X012": [
+      {
+        "rows": [
+          {
+            "month": "2026-08",
+            "sales": 374
+          },
+          {
+            "month": "2026-09",
+            "sales": 110
+          }
+        ],
+        "columns": [
+          "month",
+          "sales"
+        ],
+        "reference_sql": "SELECT substr(ordered_at,1,7) AS month,sum(units*unit_price) AS sales FROM tickets WHERE state='done' GROUP BY 1 ORDER BY 1",
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-06,
+          "rel_tol": 1e-06,
+          "column_tolerances": {}
+        },
+        "chart": {
+          "type": "bar",
+          "x": "month",
+          "y": "sales",
+          "points": 2
+        }
+      }
+    ]
+  }
+}

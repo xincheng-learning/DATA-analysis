@@ -1,0 +1,14 @@
+{
+  "version": "ecommerce-v1-20261030",
+  "cases": [
+    {"id":"E101","level":1,"split":"development","mode":"quick","target":"order_count","chart":null,"question":"当前数据中，已送达的订单一共有多少笔？按订单主键去重计数，给出数字和适用范围。"},
+    {"id":"E102","level":1,"split":"development","mode":"quick","target":"monthly_orders","chart":"line","question":"按下单月份统计已送达订单数，按时间先后画一张折线图，并说明最高月份及订单数。使用当前导入数据的全部时间范围。"},
+    {"id":"E103","level":1,"split":"holdout","mode":"quick","target":"status_orders","chart":"bar","question":"所有订单的状态分布如何？每种状态统计去重订单数，画柱状图，并用文字概括主要状态。此题包含全部订单状态。"},
+    {"id":"E201","level":2,"split":"development","mode":"quick","target":"monthly_money","chart":"multi_line","question":"比较2018年1月至6月每个月已送达订单的商品金额、运费和支付金额，用一张多系列折线图展示三个金额，并给出文字结论。金额币种BRL；商品金额不含运费，支付可能多笔，不得因多表关联重复计算。"},
+    {"id":"E202","level":2,"split":"development","mode":"quick","target":"repeat_customers","chart":null,"question":"当前完整观察范围内，有已送达订单的客户有多少人，其中至少购买两笔已送达订单的客户有多少人？计算复购客户占比，用0到1的小数表示。跨订单使用customer_unique_id识别同一客户，并给出文字结论。"},
+    {"id":"E203","level":2,"split":"holdout","mode":"quick","target":"regional_money","chart":"stacked_bar","question":"对比2018年1月至6月SP、RJ、MG三个州每个月已送达订单的商品金额，画按州堆积的柱状图，并配文字说明。使用下单日期，币种BRL，商品金额不含运费。"},
+    {"id":"E301","level":3,"split":"development","mode":"investigate","target":"state_change","chart":"bar","question":"调查2018年6月相对5月已送达订单商品金额的变化。先核对两个月商品总额和差额，再按客户州分解差额，列出影响最大的前5个州（按差额绝对值排序），给出对比柱状图和文字结论。币种BRL，商品金额不含运费；贡献不等于因果，不需要退款或成本字段。"},
+    {"id":"E302","level":3,"split":"development","mode":"quick","target":"retention","chart":"heatmap","question":"制作客户月度留存热力图。用当前数据中每位customer_unique_id的首次已送达订单下单月份作为cohort，展示2018年1月至6月各cohort的第0、1、2、3个月留存。分母为该cohort客户数，分子为相应月份仍有已送达订单的去重客户数，比例用0到1小数。必须返回完整6×4网格：可观察但无复购为0；数据最大下单日期所在月份视为不完整，该月及之后的格子为NULL，不得填0。给出热力图及范围说明。"},
+    {"id":"E303","level":3,"split":"holdout","mode":"investigate","target":"category_change","chart":"grouped_bar","question":"调查2018年6月比5月已送达订单的商品金额差异。核对两个月总额，再按商品类别分解增量，列出绝对影响前5名，画分组柱图比较这5类两个月金额，给出有数字依据的结论。空类别保留为“未知”；不能把贡献说成变化原因。商品金额不含运费，币种BRL。"}
+  ]
+}

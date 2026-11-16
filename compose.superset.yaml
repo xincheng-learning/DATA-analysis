@@ -1,0 +1,76 @@
+name: datapilot-superset
+
+x-superset: &superset
+  image: datapilot-superset:6.1.0
+  build:
+    context: .
+    dockerfile: docker/superset/Dockerfile
+  environment:
+    PYTHONPATH: /app/datapilot
+    OPENBLAS_NUM_THREADS: 1
+    OMP_NUM_THREADS: 1
+  secrets:
+    - superset_secret
+    - metadata_password
+    - admin_password
+    - reader_password
+    - mcp_secret
+    - guest_secret
+  depends_on:
+    database:
+      condition: service_healthy
+  restart: "no"
+  cpus: 1
+  pids_limit: 128
+
+services:
+  database:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_USER: datapilot_admin
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets: [postgres_password]
+    ports: ["127.0.0.1:55433:5432"]
+    volumes: ["superset_database:/var/lib/postgresql/data"]
+    command: ["postgres", "-c", "shared_buffers=32MB", "-c", "max_connections=30", "-c", "work_mem=4MB", "-c", "max_parallel_workers_per_gather=0"]
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "datapilot_admin", "-d", "postgres"]
+      interval: 3s
+      retries: 20
+    restart: "no"
+    mem_limit: 256m
+    cpus: 0.5
+
+  web:
+    <<: *superset
+    command: ["/app/.venv/bin/gunicorn", "--bind=0.0.0.0:8088", "--workers=1", "--threads=2", "--timeout=120", "superset.app:create_app()"]
+    ports: ["127.0.0.1:8088:8088"]
+    mem_limit: 768m
+
+  mcp:
+    <<: *superset
+    command: ["/app/.venv/bin/superset", "mcp", "run", "--host", "0.0.0.0", "--port", "5008"]
+    ports: ["127.0.0.1:5008:5008"]
+    mem_limit: 768m
+    healthcheck:
+      disable: true
+
+secrets:
+  postgres_password:
+    file: ${DATAPILOT_SUPERSET_ROOT:-./.local/superset}/secrets/postgres_password
+  metadata_password:
+    file: ${DATAPILOT_SUPERSET_ROOT:-./.local/superset}/secrets/metadata_password
+  superset_secret:
+    file: ${DATAPILOT_SUPERSET_ROOT:-./.local/superset}/secrets/superset_secret
+  admin_password:
+    file: ${DATAPILOT_SUPERSET_ROOT:-./.local/superset}/secrets/admin_password
+  reader_password:
+    file: ${DATAPILOT_SUPERSET_ROOT:-./.local/superset}/secrets/reader_password
+  mcp_secret:
+    file: ${DATAPILOT_SUPERSET_ROOT:-./.local/superset}/secrets/mcp_secret
+  guest_secret:
+    file: ${DATAPILOT_SUPERSET_ROOT:-./.local/superset}/secrets/guest_secret
+
+volumes:
+  superset_database:

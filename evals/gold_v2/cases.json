@@ -1,0 +1,221 @@
+{
+  "version": "2.0.0-supplement",
+  "cases": [
+    {
+      "id": "X001",
+      "direction": "客户间隔",
+      "family": "supplement_1",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "A9相邻已完成订单的平均间隔多少天？按订单日期差计算。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X002",
+      "direction": "多表Python",
+      "family": "supplement_2",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "请用Python计算已完成订单的units与unit_price的Pearson相关系数，返回系数。",
+          "allowed_routes": [
+            "python"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X003",
+      "direction": "Excel联表",
+      "family": "supplement_3",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "8月西南的销售额、目标和达成率分别是多少？达成率按百分数。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X004",
+      "direction": "合法空表",
+      "family": "supplement_4",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "列出2027年1月金额最高的前3个已完成ticket_id。若无匹配，返回空表，不能放宽日期。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X005",
+      "direction": "合法空表",
+      "family": "supplement_5",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "列出units大于100的已完成ticket_id。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X006",
+      "direction": "零分母",
+      "family": "supplement_6",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "8月华中的销售额、目标和达成率是多少？用NULL表示无法定义的比率。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X007",
+      "direction": "缺失澄清",
+      "family": "supplement_7",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "9月华东销售目标达成率是多少？请说明缺什么，不要猜。",
+          "allowed_routes": [
+            "clarify"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X008",
+      "direction": "缺失澄清",
+      "family": "supplement_8",
+      "split": "test",
+      "profile": "dirty",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "ledger一行一条原始记录，event_key可能重复；quantity和unit_price存在NULL与负数。收入=quantity*unit_price。去重、负数与补值规则必须由用户确认，不能擅自删除或补值。",
+      "turns": [
+        {
+          "question": "请给出ledger完整准确的收入总额，重复、负数与缺失的处理规则还没确认。",
+          "allowed_routes": [
+            "clarify"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X009",
+      "direction": "缺失澄清",
+      "family": "supplement_9",
+      "split": "test",
+      "profile": "cost",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "lines一行一条商品明细。收入=units*unit_price，毛利=units*(unit_price-unit_cost)。缺失成本不能补0。",
+      "turns": [
+        {
+          "question": "请算lines的完整毛利；缺的成本不能猜。",
+          "allowed_routes": [
+            "clarify"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X010",
+      "direction": "质量口径",
+      "family": "supplement_10",
+      "split": "test",
+      "profile": "dirty",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "ledger一行一条原始记录，event_key可能重复；quantity和unit_price存在NULL与负数。收入=quantity*unit_price。去重、负数与补值规则必须由用户确认，不能擅自删除或补值。",
+      "turns": [
+        {
+          "question": "只统计quantity和unit_price都非空的原始行收入，同时返回纳入行数。不去重，负数保留，不补值。",
+          "allowed_routes": [
+            "sql"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X011",
+      "direction": "因果边界",
+      "family": "supplement_11",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "这些订单是否足以证明提高单价一定导致购买数量增长？",
+          "allowed_routes": [
+            "refuse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "X012",
+      "direction": "图表",
+      "family": "supplement_12",
+      "split": "test",
+      "profile": "trade",
+      "mode": "quick",
+      "route_scored": true,
+      "business_rules": "全部为合成数据，金额单位元。tickets一行一单，ticket_id为唯一键，只含state=done的订单。销售额=sum(units*unit_price)。accounts一行一位客户；targets按month+zone唯一。日期按自然月，缺失目标不能补0，目标为0时达成率NULL。不能通过修改筛选条件制造匹配数据。",
+      "turns": [
+        {
+          "question": "画柱状图比较每个自然月已完成订单的销售额，按月份升序。",
+          "allowed_routes": [
+            "viz"
+          ]
+        }
+      ]
+    }
+  ]
+}

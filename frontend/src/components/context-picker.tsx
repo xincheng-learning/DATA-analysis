@@ -1,0 +1,21 @@
+"use client";
+import {useEffect,useState} from 'react';
+import {Dialog} from '@base-ui/react/dialog';
+import {MessageSquare,ChartNoAxesCombined,X} from 'lucide-react';
+import {getSession,localRequest,type ContextReference,type ConversationReference,type Message,type SessionListItem} from '@/lib/api';
+import {chartTitle} from '@/lib/chart';
+import {record} from '@/lib/analysis';
+
+export function ContextPicker({mode,currentSessionId,onPick,onClose}:{mode:'conversation'|'charts';currentSessionId:string|null;onPick:(value:ContextReference|ConversationReference)=>void;onClose:()=>void}) {
+  const [sessions,setSessions]=useState<SessionListItem[]>([]),[sid,setSid]=useState(mode==='charts'?currentSessionId||'':''),[title,setTitle]=useState(''),[messages,setMessages]=useState<Message[]>([]),[selected,setSelected]=useState<number[]>([]),[error,setError]=useState(''),[loading,setLoading]=useState(mode==='charts'&&!!currentSessionId);
+  useEffect(()=>{let active=true;if(mode==='conversation')localRequest('/sessions').then((rows:SessionListItem[])=>{if(active)setSessions(rows.filter(row=>row.session_id!==currentSessionId));}).catch(reason=>{if(active)setError(reason.message);});return()=>{active=false;};},[mode,currentSessionId]);
+  useEffect(()=>{if(mode!=='charts'||!sid)return;let active=true;getSession(sid).then(detail=>{if(!active)return;setTitle(detail.title||'未命名聊天');setMessages(detail.messages.filter(message=>typeof message.id==='number'&&message.role==='assistant'&&Array.isArray(record(message.metadata.chart_spec).data)&&((record(message.metadata.chart_spec).data as unknown[]).length>0)));}).catch(reason=>{if(active)setError(reason.message);}).finally(()=>{if(active)setLoading(false);});return()=>{active=false;};},[sid,mode]);
+  const label=(message:Message)=>mode==='charts'?chartTitle(record(message.metadata.chart_spec)):message.role==='assistant'?'助手回复':'你的问题';
+  return <Dialog.Root open onOpenChange={open=>{if(!open)onClose();}}><Dialog.Portal><Dialog.Backdrop className="panel-modal-backdrop"/><Dialog.Popup className="panel-picker context-picker">
+    <div className="panel-modal-heading">{mode==='charts'?<ChartNoAxesCombined size={18}/>:<MessageSquare size={18}/>}<Dialog.Title>{mode==='charts'?'添加当前聊天的图表':'添加其他聊天的上下文'}</Dialog.Title><button className="icon-button" aria-label="关闭上下文选择" onClick={onClose}><X size={16}/></button></div>
+    <Dialog.Description className="panel-description">{mode==='conversation'?'选择一个聊天即可。较短聊天直接引用原文，长聊天发送时生成或复用压缩摘要，只带入目标、结论、口径与待办，不重新查询原始数据。':'选择最多5张已分析图表作为只读参考，保留已有数据与范围。'}</Dialog.Description>
+    {mode==='conversation'&&<select className="context-session-select" aria-label="选择其他聊天" value={sid} onChange={event=>setSid(event.target.value)}><option value="">选择一个聊天…</option>{sessions.map(session=><option key={session.session_id} value={session.session_id}>{session.title||'未命名聊天'}</option>)}</select>}
+    {mode==='conversation'?<div className="context-summary-hint"><MessageSquare size={20}/><div><strong>一份可追溯的聊天记忆</strong><p>保留关键数字、业务口径与未完成问题。原聊天完整保留；短聊天无需摘要调用；长聊天已完成的摘要部分可复用。</p></div></div>:<div className="context-message-list">{loading?<p role="status">正在读取…</p>:messages.map(message=><label className="context-message-choice" key={message.id}><input type="checkbox" checked={selected.includes(Number(message.id))} disabled={selected.length>=5&&!selected.includes(Number(message.id))} onChange={event=>setSelected(previous=>event.target.checked?[...previous,Number(message.id)]:previous.filter(id=>id!==message.id))}/><span><strong>{label(message)}</strong><details><summary>{message.content.slice(0,160)||'已生成图表'}</summary><p>{message.content}</p></details></span></label>)}{sid&&!loading&&!messages.length&&<p>当前聊天还没有已保存的图表。</p>}</div>}
+    {error&&<p role="alert" className="panel-error">{error}</p>}<div className="context-picker-footer"><span>{mode==='conversation'?'短聊天直接引用 · 长聊天压缩并复用':`已选 ${selected.length} / 5`}</span><button className="panel-action" disabled={(mode==='conversation'?!sid:!selected.length)||loading||!!error} onClick={()=>{onPick(mode==='conversation'?{session_id:sid,title:sessions.find(session=>session.session_id===sid)?.title||'未命名聊天'}:{session_id:sid,title,message_ids:selected,titles:messages.filter(message=>selected.includes(Number(message.id))).map(label)});onClose();}}>添加到问题</button></div>
+  </Dialog.Popup></Dialog.Portal></Dialog.Root>;
+}

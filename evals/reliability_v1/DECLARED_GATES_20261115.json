@@ -1,0 +1,1151 @@
+{
+  "version": "2026-11-15-declared-gates",
+  "created_utc": "2026-11-15T01:54:23.130604+00:00",
+  "base_commit": "173b026",
+  "candidate_sources": {
+    "backend/app/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "backend/app/agent/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "backend/app/agent/graph.py": "7597d1b43d838c797a9f80e6c302610e7e4ed85b602b123e752a212e8743fead",
+    "backend/app/agent/investigation.py": "9411be249a89523fa748e911feeaab3e5bc40760acf0320c5a98f761318dfe48",
+    "backend/app/agent/nodes.py": "e5668c520e42fa1fa87b39a68b30696805667b78372bb679f2a2ab2564793788",
+    "backend/app/agent/router.py": "16892576df3843dfc61445995dafd404090daa84e1478b390b95e8247b90d900",
+    "backend/app/agent/state.py": "acd789faa5bfbc07aa4d5f6919d3e14d396c7359fa4ca41cba23699b64956194",
+    "backend/app/agent/validator.py": "b4313929ae24363ced26ddaa8a3031df46419d056924c0e73748cf9b356771f2",
+    "backend/app/agent/workflow.py": "11c9280079eebe7bf49bc728b7592a6dd82aad36125a74d0ace13aeeac928c49",
+    "backend/app/analysis_pipeline.py": "013d488b1251de379e3eef56c97304cc775a9189c751c830a9ee24f4042d473f",
+    "backend/app/analysis_report.py": "f93bbcf88128a9882ae2e95c740ee54fd4161b44c02eea67d419c6d9c414c2e2",
+    "backend/app/answer_acceptance.py": "9931acb47a989d01ff9bc1d77a5537cd9bdeb7e618c3c82b7f917af4b01bc7af",
+    "backend/app/answer_quality.py": "058422450a2daf74a0e1fd5afcff3d5a7b012e0b967b123bd26bdf55d31b30fb",
+    "backend/app/attachments.py": "0ac3a8cf2f5907332dfe111fcec8feae53c3cbce7b64dff31c41a298cdee6ab0",
+    "backend/app/auth.py": "abaa3df01597b4c537ececc3245433843276d8964d62bd60fddcc439c86bfa13",
+    "backend/app/boards.py": "1d8323c10fc31ef3d985afcd708d0012d2a6cfe29ba37063db720920266250c3",
+    "backend/app/calculation_contract.py": "65a13f9340d56055544523b89f9608ac2e161493aac63a356b3be673d7c7ab7f",
+    "backend/app/chart_appearance.py": "80eef066b0099c4ec5acfaeb3d72216e3684ab51ed8c39d9a23c6d937f793686",
+    "backend/app/chat_storage.py": "bce845a0401d87c38bbe6fe119247c3235cba411de62a4125131fc8c217a908c",
+    "backend/app/checks.py": "0e3935e6b79009591304f04ecaad85da75c579e0f3b64d824c6f22f1420d1a74",
+    "backend/app/clarification.py": "2f272a65c628aea719776f6b1fd8f4001d02877ecd0ca28a15cb0114dae6be4f",
+    "backend/app/cleaning_assistant.py": "1c2072a254afe21ccb06c384d575c5187a9f642977cda640c679de8914737ae5",
+    "backend/app/commerce.py": "0da2eca55c2453c9064f11c81740c1173094816fff2a03adb22547f96195347a",
+    "backend/app/config.py": "7627b1de9968fd60f67764a4be44fa75f310fbc0a5fc74b462c6c78ef97cf768",
+    "backend/app/context_memory.py": "f1c6aabee058e0df81a25ee9140df0ae3f5a70380c5a53f47c9212789e7913a9",
+    "backend/app/data_guide.py": "c29f446004497846e24deeb59e0b88239e6611e33bdaf6205361dcf12d5104b2",
+    "backend/app/database.py": "9ff84f2f6ef39fb132593fef8b210c91b30232a71c485d0e76d61949689a9e69",
+    "backend/app/execution.py": "96cb90a2d28e839a928365dc940d6c42834e415cb83b3b58a773d219ea377b60",
+    "backend/app/folder_picker.py": "56cfaa6b95edffd7524bb2f1e52b6c2c5de2a15b777d38ce30a650343e2dbdc8",
+    "backend/app/images.py": "502c65142f5f4318cc65cd6708f8cffed891be309dcd0b7936b27b6fa696dcc1",
+    "backend/app/insights.py": "7646af47474a84fbdbffdade316fa659251720f6f7dce5559440cc07bc27119b",
+    "backend/app/llm.py": "2b28a67603f72bc7e09582990173c2b05c4816aeba6944d09eb532fb32b28b39",
+    "backend/app/main.py": "f7b3fa588c9aed6d6cd3fb19678dcac75277714fc96e1f5454e4c868052a42a2",
+    "backend/app/metrics.py": "e37bb529a34063edd80f2c5bf4ea9239522a68df9b0e19201d5cbf990fef1dab",
+    "backend/app/model_settings.py": "47a0c02c83e9d3883fd54b327c5d9550e7b29cec4a4401b20ccde063f4a6ba09",
+    "backend/app/privacy.py": "9dc89e3a5dc27bf1255fc2fe0af6fd0413f795a33c7508d1480807c51511c224",
+    "backend/app/report_presentation.py": "cbce5f029bf5052b6c493bfabc0097dc0669d69dc2fb7ee6e6033061e9e5948b",
+    "backend/app/schemas.py": "410f6d6296b04c21e0e1411032079a1b6f562d4277818a4a634001b0b0e6ea9b",
+    "backend/app/session.py": "0d11cbfadcd435aeb7f1368d3b557903007114e382c5b58098fc364ed67dd25f",
+    "backend/app/sql_proposals.py": "561e396dc55eaeeb0ae3beeda993f9b402775a705688fa28b24f8e59fb343a53",
+    "backend/app/superset.py": "9ad67f6a49bedcc8680921882327515996310459dac9ea29af47d4f5f671cbfc",
+    "backend/app/superset_routes.py": "641afc1064067649a8533a0a131c0a808ed7b8918ff51e57b8600ced9eea4916",
+    "backend/app/tools/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "backend/app/tools/data_workbench.py": "e1e6d3a675177c0b23e4911e2623a116c3e20f724d166bea7a1299c11a2f684c",
+    "backend/app/tools/dataset_manager.py": "b067ca877b292a8e4426c475c43c4097aca28e35be25cb44e0cccc6a90fc3de6",
+    "backend/app/tools/file_storage.py": "82ceadf36664672ec887fe5c506fea3c18628b955c4606618ef8c1672a441ac3",
+    "backend/app/tools/ingest.py": "07c43621c78ed795e2bd16cd1b684809246d585c0ebd4e757b66812edc46f755",
+    "backend/app/tools/join_validation.py": "c6a3861c33e3a3488a19df2577674ee19b9c130518779446ed91d772f84613cd",
+    "backend/app/tools/numeric_precision.py": "c84d26a48bf8696dee8af924fc6bb4f54c245e8083459377c044cf4156c79a16",
+    "backend/app/tools/python_tool.py": "233d25554700a48535626ae1cc75b537face5ec39091042b273ff0866982a981",
+    "backend/app/tools/query_results.py": "5059bdfb133930ebc0316ba1b9c05cb2851e4f5d0dad9af5b2d53f0a663480ab",
+    "backend/app/tools/relationships.py": "198e6d6b81d8001d1cc4b7dfa6ddc4e882382c304f9949af19c4c6d1a620114e",
+    "backend/app/tools/sql.py": "082baa48e90805a424e7a927af664eb79e1d370dafe51b42abf2c313605f4fce",
+    "backend/app/tools/sql_sanitizer.py": "4aa377fd26cb1c0bf95710f846ce7088267d8010c9505e9d2a5aa51a938d0420",
+    "backend/app/tools/tableau.py": "62149865f73f90c2b46ea1bf39e41229827f2e07b5901c2871b571885a78b56c",
+    "backend/app/tools/viz.py": "d9ee44830530ea354ee4eabee10d986f16ffeb5bdcfddc688827dd2c4bc33c6e",
+    "backend/app/usage.py": "de8791a2c05af39caa2e3cb6ad11056439bc444aecebb71ccbba6cc413f8db8c"
+  },
+  "claim": "Conditional agreement with a declared plan; not proof that the plan matches arbitrary user intent. Universal gate NOT passed.",
+  "cost": {
+    "start_upper_cny": 24.98322,
+    "new_upper_cny": 4.483762,
+    "total_upper_cny": 29.466982,
+    "limit_cny": 30,
+    "unknown_requests": 0
+  },
+  "runs": [
+    {
+      "name": "calculation-gates-20261115-first",
+      "scored_scope": "development numeric equivalence; NOT blind; product coverage not independent completeness",
+      "raw_outcomes": {
+        "fail": 5,
+        "not_run": 30,
+        "pass": 1
+      },
+      "reviewed_outcomes": {
+        "fail": 5,
+        "not_run": 30,
+        "pass": 1
+      },
+      "delivery_coverage": {
+        "partial": 4,
+        "complete": 2
+      },
+      "declared_plan_tasks": 6,
+      "calculation_checked_tasks": 2,
+      "reviews": {},
+      "request_ids": [
+        1872,
+        1873,
+        1874,
+        1875,
+        1876,
+        1877,
+        1878,
+        1879,
+        1880,
+        1881,
+        1882,
+        1883,
+        1884,
+        1885,
+        1886,
+        1887,
+        1888,
+        1889,
+        1890,
+        1891,
+        1892,
+        1893,
+        1894
+      ],
+      "cost_upper_cny": 0.505476,
+      "source_snapshot_sha256": "315f9c6a06d4e843424fefe30abc3f19f9263e616556d8a97aaf231faa4aa931",
+      "gold_manifest_sha256": "88c7a7b13d162dccb34afdb9f29a63fa291584df4f86286866cd57c3ef08d652",
+      "record_sha256": "a6c76ccfbf7b5401d8020d8de7ffc6ac54d205d72550703ca22b9e36a372de01",
+      "failures": [
+        {
+          "key": "RG001:1",
+          "outcome": "fail",
+          "reason": "ValueError: 声明计算计划字段不存在或不唯一：order_id",
+          "route_ok": true,
+          "direction": "join_target",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "evidence": "cases/RG001.json#/turns/0",
+          "request_ids": [
+            1872,
+            1873,
+            1874,
+            1875,
+            1876
+          ]
+        },
+        {
+          "key": "RG004:1",
+          "outcome": "fail",
+          "reason": "模型输出达到生成 Token 上限，SQL 尚未完整返回。本次已停止，未执行残缺 SQL，也不会按相同额度重复请求；可提高生成上限或拆分问题后另行尝试。",
+          "route_ok": true,
+          "direction": "missing_target",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "evidence": "cases/RG004.json#/turns/0",
+          "request_ids": [
+            1877,
+            1878,
+            1879,
+            1880
+          ]
+        },
+        {
+          "key": "RG007:1",
+          "outcome": "fail",
+          "reason": "ValueError: 声明计算计划字段不存在或不唯一：repeat_customers",
+          "route_ok": true,
+          "direction": "repeat_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "evidence": "cases/RG007.json#/turns/0",
+          "request_ids": [
+            1881,
+            1882,
+            1883,
+            1884,
+            1885
+          ]
+        },
+        {
+          "key": "RG008:1",
+          "outcome": "fail",
+          "reason": "ValueError: 声明计算计划字段不存在或不唯一：order_id",
+          "route_ok": true,
+          "direction": "month_endpoint",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "evidence": "cases/RG008.json#/turns/0",
+          "request_ids": [
+            1886,
+            1887,
+            1888,
+            1889,
+            1890
+          ]
+        },
+        {
+          "key": "RG009:1",
+          "outcome": "fail",
+          "reason": "结果列与黄金标准不对应",
+          "route_ok": true,
+          "direction": "null_mean",
+          "status": "ran",
+          "delivery_coverage": "complete",
+          "evidence": "cases/RG009.json#/turns/0",
+          "request_ids": [
+            1891,
+            1892
+          ]
+        }
+      ],
+      "evidence_directory": "evals/runs/gold-v1/calculation-gates-20261115-first"
+    },
+    {
+      "name": "calculation-gates-20261115-revised",
+      "scored_scope": "development numeric equivalence; NOT blind; product coverage not independent completeness",
+      "raw_outcomes": {
+        "pass": 3,
+        "not_run": 30,
+        "fail": 3
+      },
+      "reviewed_outcomes": {
+        "pass": 5,
+        "not_run": 30,
+        "fail": 1
+      },
+      "delivery_coverage": {
+        "complete": 5,
+        "partial": 1
+      },
+      "declared_plan_tasks": 6,
+      "calculation_checked_tasks": 5,
+      "reviews": {
+        "RG008:1": {
+          "column_map": {
+            "amount_total": "amount"
+          },
+          "note": "已审阅SQL/声明计划的来源、筛选和聚合，amount_total与教师amount语义一致，无数值转换；仅数值评分映射，原字段名偏差保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG009:1": {
+          "column_map": {
+            "mean_value": "mean"
+          },
+          "note": "已审阅SQL/声明计划的来源、筛选和聚合，mean_value与教师mean语义一致，无数值转换；仅数值评分映射，原字段名偏差保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        }
+      },
+      "request_ids": [
+        1895,
+        1896,
+        1897,
+        1898,
+        1899,
+        1900,
+        1901,
+        1902,
+        1903,
+        1904,
+        1905,
+        1906
+      ],
+      "cost_upper_cny": 0.24554,
+      "source_snapshot_sha256": "de2f784ea9848387ea3b2038ca3f0315fe57e162a798d25b92d4bc5c875b5e8b",
+      "gold_manifest_sha256": "88c7a7b13d162dccb34afdb9f29a63fa291584df4f86286866cd57c3ef08d652",
+      "record_sha256": "7d34d4ddd02de6d4634f838c44491e15fdae11102c55e4669b7a746b19a10e83",
+      "failures": [
+        {
+          "key": "RG007:1",
+          "outcome": "fail",
+          "reason": "声明计算计划字段不存在或不唯一：repeat_customers",
+          "route_ok": true,
+          "direction": "repeat_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG007.json#/turns/0",
+          "request_ids": [
+            1899,
+            1900
+          ]
+        }
+      ],
+      "evidence_directory": "evals/runs/gold-v1/calculation-gates-20261115-revised"
+    },
+    {
+      "name": "calculation-gates-20261115-full",
+      "scored_scope": "development numeric equivalence; NOT blind; product coverage not independent completeness",
+      "raw_outcomes": {
+        "fail": 13,
+        "pass": 23
+      },
+      "reviewed_outcomes": {
+        "fail": 6,
+        "pass": 30
+      },
+      "delivery_coverage": {
+        "partial": 6,
+        "complete": 30
+      },
+      "declared_plan_tasks": 34,
+      "calculation_checked_tasks": 30,
+      "reviews": {
+        "RG008:1": {
+          "column_map": {
+            "item_amount_total": "amount"
+          },
+          "note": "已审阅SQL/声明计划的来源、筛选和聚合，item_amount_total与教师amount语义一致，无数值转换；仅数值评分映射，原字段名偏差保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG010:1": {
+          "drop_columns": [
+            "record_id"
+          ],
+          "note": "已审阅SQL及完整行：record_id仅辅助标识与排序，未筛选或聚合，保留全部value、NULL和重复；只对数值投影移除辅助列。额外列仍记为交付形状偏差。",
+          "output_conformance": "extra helper column; numeric equivalence only"
+        },
+        "RG020:1": {
+          "column_map": {
+            "item_amount_total": "amount"
+          },
+          "note": "已审阅SQL/声明计划的来源、筛选和聚合，item_amount_total与教师amount语义一致，无数值转换；仅数值评分映射，原字段名偏差保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG022:1": {
+          "drop_columns": [
+            "record_id"
+          ],
+          "note": "已审阅SQL及完整行：record_id仅辅助标识与排序，未筛选或聚合，保留全部value、NULL和重复；只对数值投影移除辅助列。额外列仍记为交付形状偏差。",
+          "output_conformance": "extra helper column; numeric equivalence only"
+        },
+        "RG032:1": {
+          "column_map": {
+            "item_amount_total": "amount"
+          },
+          "note": "已审阅SQL/声明计划的来源、筛选和聚合，item_amount_total与教师amount语义一致，无数值转换；仅数值评分映射，原字段名偏差保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG033:1": {
+          "column_map": {
+            "mean_value": "mean"
+          },
+          "note": "已审阅SQL/声明计划的来源、筛选和聚合，mean_value与教师mean语义一致，无数值转换；仅数值评分映射，原字段名偏差保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG034:1": {
+          "drop_columns": [
+            "record_id"
+          ],
+          "note": "已审阅SQL及完整行：record_id仅辅助标识与排序，未筛选或聚合，保留全部value、NULL和重复；只对数值投影移除辅助列。额外列仍记为交付形状偏差。",
+          "output_conformance": "extra helper column; numeric equivalence only"
+        }
+      },
+      "request_ids": [
+        1907,
+        1908,
+        1909,
+        1910,
+        1911,
+        1912,
+        1913,
+        1914,
+        1915,
+        1916,
+        1917,
+        1918,
+        1919,
+        1920,
+        1921,
+        1922,
+        1923,
+        1924,
+        1925,
+        1926,
+        1927,
+        1928,
+        1929,
+        1930,
+        1931,
+        1932,
+        1933,
+        1934,
+        1935,
+        1936,
+        1937,
+        1938,
+        1939,
+        1940,
+        1941,
+        1942,
+        1943,
+        1944,
+        1945,
+        1946,
+        1947,
+        1948,
+        1949,
+        1950,
+        1951,
+        1952,
+        1953,
+        1954,
+        1955,
+        1956,
+        1957,
+        1958,
+        1959,
+        1960,
+        1961,
+        1962,
+        1963,
+        1964,
+        1965,
+        1966,
+        1967,
+        1968,
+        1969,
+        1970,
+        1971,
+        1972,
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1978
+      ],
+      "cost_upper_cny": 1.536514,
+      "source_snapshot_sha256": "1059dbb0aaa9086aad35be73577aa2e1c0f85ccfa542c7f9537f675d31dec8e4",
+      "gold_manifest_sha256": "88c7a7b13d162dccb34afdb9f29a63fa291584df4f86286866cd57c3ef08d652",
+      "record_sha256": "55e035fac19af255ec7c8f0d4e9d0d492d74b143abb5b8b463cd2711c8860bdf",
+      "failures": [
+        {
+          "key": "RG001:1",
+          "outcome": "fail",
+          "reason": "模型输出达到生成 Token 上限，SQL 尚未完整返回。本次已停止，未执行残缺 SQL，也不会按相同额度重复请求；可提高生成上限或拆分问题后另行尝试。",
+          "route_ok": true,
+          "direction": "join_target",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG001.json#/turns/0",
+          "request_ids": [
+            1907,
+            1908,
+            1909,
+            1910
+          ]
+        },
+        {
+          "key": "RG005:1",
+          "outcome": "fail",
+          "reason": "声明计算计划引用了未知字段：lines.amount",
+          "route_ok": true,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG005.json#/turns/0",
+          "request_ids": [
+            1917,
+            1918
+          ]
+        },
+        {
+          "key": "RG012:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "tiny_sample_statistics",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG012.json#/turns/0",
+          "request_ids": [
+            1931
+          ]
+        },
+        {
+          "key": "RG017:1",
+          "outcome": "fail",
+          "reason": "声明计算计划引用了未知字段：lines.amount",
+          "route_ok": true,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG017.json#/turns/0",
+          "request_ids": [
+            1940,
+            1941
+          ]
+        },
+        {
+          "key": "RG024:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "tiny_sample_statistics",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG024.json#/turns/0",
+          "request_ids": [
+            1954
+          ]
+        },
+        {
+          "key": "RG029:1",
+          "outcome": "fail",
+          "reason": "声明计算计划引用了未知字段：actual.actual_amount",
+          "route_ok": true,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG029.json#/turns/0",
+          "request_ids": [
+            1963,
+            1964
+          ]
+        }
+      ],
+      "evidence_directory": "evals/runs/gold-v1/calculation-gates-20261115-full"
+    },
+    {
+      "name": "calculation-gates-20261115-final",
+      "scored_scope": "development numeric equivalence; NOT blind; product coverage not independent completeness",
+      "raw_outcomes": {
+        "fail": 14,
+        "pass": 22
+      },
+      "reviewed_outcomes": {
+        "fail": 7,
+        "pass": 29
+      },
+      "delivery_coverage": {
+        "partial": 8,
+        "complete": 28
+      },
+      "declared_plan_tasks": 30,
+      "calculation_checked_tasks": 29,
+      "reviews": {
+        "RG008:1": {
+          "column_map": {
+            "item_amount_sum": "amount"
+          },
+          "note": "已审阅原SQL的来源、筛选、聚合与完整结果，item_amount_sum对应教师amount；不转换数值，仅用于数值等价评分，用户指定别名未遵守仍保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG010:1": {
+          "drop_columns": [
+            "record_id"
+          ],
+          "note": "已审阅原SQL和完整结果：record_id仅为行标识及排序辅助，未改变value的NULL、0、重复或顺序；数值评分只投影value，额外列的输出偏差保留。",
+          "output_conformance": "extra helper column; numeric equivalence only"
+        },
+        "RG020:1": {
+          "column_map": {
+            "item_amount_total": "amount"
+          },
+          "note": "已审阅原SQL的来源、筛选、聚合与完整结果，item_amount_total对应教师amount；不转换数值，仅用于数值等价评分，用户指定别名未遵守仍保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG021:1": {
+          "column_map": {
+            "mean_value": "mean"
+          },
+          "note": "已审阅原SQL的来源、筛选、聚合与完整结果，mean_value对应教师mean；不转换数值，仅用于数值等价评分，用户指定别名未遵守仍保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG032:1": {
+          "column_map": {
+            "item_amount_total": "amount"
+          },
+          "note": "已审阅原SQL的来源、筛选、聚合与完整结果，item_amount_total对应教师amount；不转换数值，仅用于数值等价评分，用户指定别名未遵守仍保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG033:1": {
+          "column_map": {
+            "mean_value": "mean"
+          },
+          "note": "已审阅原SQL的来源、筛选、聚合与完整结果，mean_value对应教师mean；不转换数值，仅用于数值等价评分，用户指定别名未遵守仍保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG034:1": {
+          "drop_columns": [
+            "record_id"
+          ],
+          "note": "已审阅原SQL和完整结果：record_id仅为行标识及排序辅助，未改变value的NULL、0、重复或顺序；数值评分只投影value，额外列的输出偏差保留。",
+          "output_conformance": "extra helper column; numeric equivalence only"
+        }
+      },
+      "request_ids": [
+        1979,
+        1980,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026,
+        2027,
+        2028,
+        2029,
+        2030,
+        2031,
+        2032,
+        2033,
+        2034,
+        2035,
+        2036,
+        2037,
+        2038,
+        2039,
+        2040,
+        2041,
+        2042,
+        2043,
+        2044,
+        2045,
+        2046,
+        2047
+      ],
+      "cost_upper_cny": 1.468536,
+      "source_snapshot_sha256": "53a7a74085b1c26e4bf39cf5638ce7922dd6e2b07af77876b74572816fcd435a",
+      "gold_manifest_sha256": "88c7a7b13d162dccb34afdb9f29a63fa291584df4f86286866cd57c3ef08d652",
+      "record_sha256": "6141dedcfd1e9fcb0e17e04682caec4733de4eb1bda93a3a22d4942324be504c",
+      "failures": [
+        {
+          "key": "RG001:1",
+          "outcome": "fail",
+          "reason": "BinderException: Binder Error: column \"region\" must appear in the GROUP BY clause or must be part of an aggregate function.\nEither add it to the GROUP BY list, or use \"ANY_VALUE(region)\" if the exact value of \"region\" is not important.\nLINE 1: ...ers\".\"region\"),\"jan_target\" AS (SELECT \"targets\".\"region\" AS \"region\",MAX(\"tar...\n                                                  ^",
+          "route_ok": true,
+          "direction": "join_target",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG001.json#/turns/0",
+          "request_ids": [
+            1979,
+            1980,
+            1981,
+            1982,
+            1983
+          ]
+        },
+        {
+          "key": "RG005:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG005.json#/turns/0",
+          "request_ids": [
+            1990
+          ]
+        },
+        {
+          "key": "RG012:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "tiny_sample_statistics",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG012.json#/turns/0",
+          "request_ids": [
+            2003
+          ]
+        },
+        {
+          "key": "RG017:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG017.json#/turns/0",
+          "request_ids": [
+            2012
+          ]
+        },
+        {
+          "key": "RG022:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "duplicate_observation",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG022.json#/turns/0",
+          "request_ids": [
+            2021
+          ]
+        },
+        {
+          "key": "RG024:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "tiny_sample_statistics",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG024.json#/turns/0",
+          "request_ids": [
+            2024
+          ]
+        },
+        {
+          "key": "RG029:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG029.json#/turns/0",
+          "request_ids": [
+            2033
+          ]
+        }
+      ],
+      "evidence_directory": "evals/runs/gold-v1/calculation-gates-20261115-final"
+    },
+    {
+      "name": "calculation-gates-20261115-protocol",
+      "scored_scope": "development numeric equivalence; NOT blind; product coverage not independent completeness",
+      "raw_outcomes": {
+        "pass": 5,
+        "not_run": 26,
+        "fail": 5
+      },
+      "reviewed_outcomes": {
+        "pass": 7,
+        "not_run": 26,
+        "fail": 3
+      },
+      "delivery_coverage": {
+        "complete": 7,
+        "partial": 3
+      },
+      "declared_plan_tasks": 8,
+      "calculation_checked_tasks": 7,
+      "reviews": {
+        "RG008:1": {
+          "column_map": {
+            "amount_sum": "amount"
+          },
+          "note": "已审阅原SQL的来源、筛选、聚合与完整结果，amount_sum对应教师amount；不转换数值，仅用于数值等价评分，用户指定别名未遵守仍保留。",
+          "output_conformance": "requested alias mismatch; numeric equivalence only"
+        },
+        "RG022:1": {
+          "drop_columns": [
+            "record_id"
+          ],
+          "note": "已审阅原SQL和完整结果：record_id仅为行标识及排序辅助，未改变value的NULL、0、重复或顺序；数值评分只投影value，额外列的输出偏差保留。",
+          "output_conformance": "extra helper column; numeric equivalence only"
+        }
+      },
+      "request_ids": [
+        2048,
+        2049,
+        2050,
+        2051,
+        2052,
+        2053,
+        2054,
+        2055,
+        2056,
+        2057,
+        2058,
+        2059,
+        2060,
+        2061,
+        2062,
+        2063,
+        2064,
+        2065,
+        2066
+      ],
+      "cost_upper_cny": 0.412016,
+      "source_snapshot_sha256": "d04fba777a511a4588afdfacc1c15987bfad9cbc5ed6ac932f66663e8c833ff6",
+      "gold_manifest_sha256": "88c7a7b13d162dccb34afdb9f29a63fa291584df4f86286866cd57c3ef08d652",
+      "record_sha256": "c2f8f119312dcc793e521674dc834b37a25984011364c8df3505b59f94154d9a",
+      "failures": [
+        {
+          "key": "RG005:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG005.json#/turns/0",
+          "request_ids": [
+            2051
+          ]
+        },
+        {
+          "key": "RG017:1",
+          "outcome": "fail",
+          "reason": "模型未提供完整、可核对的分析目标，本次未执行查询或更改数据。已有结果保留，不会自动补发模型请求。",
+          "route_ok": false,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": false,
+          "evidence": "cases/RG017.json#/turns/0",
+          "request_ids": [
+            2058
+          ]
+        },
+        {
+          "key": "RG029:1",
+          "outcome": "fail",
+          "reason": "计算计划经一次纠错仍未通过核对，未执行查询：模型返回的计算计划格式无效。",
+          "route_ok": false,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG029.json#/turns/0",
+          "request_ids": [
+            2063,
+            2064
+          ]
+        }
+      ],
+      "evidence_directory": "evals/runs/gold-v1/calculation-gates-20261115-protocol"
+    },
+    {
+      "name": "calculation-gates-20261115-scalar",
+      "scored_scope": "development numeric equivalence; NOT blind; product coverage not independent completeness",
+      "raw_outcomes": {
+        "pass": 3,
+        "not_run": 32,
+        "fail": 1
+      },
+      "reviewed_outcomes": {
+        "pass": 3,
+        "not_run": 32,
+        "fail": 1
+      },
+      "delivery_coverage": {
+        "complete": 3,
+        "partial": 1
+      },
+      "declared_plan_tasks": 4,
+      "calculation_checked_tasks": 3,
+      "reviews": {},
+      "request_ids": [
+        2067,
+        2068,
+        2069,
+        2070,
+        2071,
+        2072,
+        2073,
+        2074,
+        2075,
+        2076,
+        2077,
+        2078
+      ],
+      "cost_upper_cny": 0.264474,
+      "source_snapshot_sha256": "6be314b293d5e91f8c477c40ff6c517f3f149330f35e6b26baeb389ba8c4a339",
+      "gold_manifest_sha256": "88c7a7b13d162dccb34afdb9f29a63fa291584df4f86286866cd57c3ef08d652",
+      "record_sha256": "578b8971e26d02cef4a83d9802cdfdaec2e4ecdbc4b4cf75be1c8fb37387c2fb",
+      "failures": [
+        {
+          "key": "RG029:1",
+          "outcome": "fail",
+          "reason": "实际输出列与声明计算计划不一致；要求列为month,region,actual_amount。",
+          "route_ok": true,
+          "direction": "zero_denominator",
+          "status": "ran",
+          "delivery_coverage": "partial",
+          "calculation_checked": false,
+          "declared_plan": true,
+          "evidence": "cases/RG029.json#/turns/0",
+          "request_ids": [
+            2074,
+            2075,
+            2076,
+            2077,
+            2078
+          ]
+        }
+      ],
+      "evidence_directory": "evals/runs/gold-v1/calculation-gates-20261115-scalar"
+    },
+    {
+      "name": "calculation-gates-20261115-output",
+      "scored_scope": "development numeric equivalence; NOT blind; product coverage not independent completeness",
+      "raw_outcomes": {
+        "not_run": 35,
+        "pass": 1
+      },
+      "reviewed_outcomes": {
+        "not_run": 35,
+        "pass": 1
+      },
+      "delivery_coverage": {
+        "complete": 1
+      },
+      "declared_plan_tasks": 1,
+      "calculation_checked_tasks": 1,
+      "reviews": {},
+      "request_ids": [
+        2079,
+        2080
+      ],
+      "cost_upper_cny": 0.051206,
+      "source_snapshot_sha256": "03fa08e88269a99e96677d5865b03ec1572d140dde04ff8f560c27586ce70825",
+      "gold_manifest_sha256": "88c7a7b13d162dccb34afdb9f29a63fa291584df4f86286866cd57c3ef08d652",
+      "record_sha256": "c434dc19453f1621f1afeba40faaede868c0ad1ce29960744c195b5442ad7c06",
+      "failures": [],
+      "evidence_directory": "evals/runs/gold-v1/calculation-gates-20261115-output"
+    }
+  ],
+  "gate_replays": {
+    "declared-delivery": {
+      "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+      "plan_source": "authored fixture contracts; NOT model generated",
+      "product_gate_passed": true,
+      "raw_execution_success": 72,
+      "cases": 36,
+      "evaluator_rejected_wrong": 36,
+      "product_blocked_wrong": 36,
+      "product_wrong_not_blocked": 0,
+      "product_blocked_correct": 0,
+      "wrong_marked_answered": 0,
+      "wrong_insufficient_coverage": 0,
+      "wrong_unblocked_with_scope_notice": 0,
+      "escaped_wrong_cases": [],
+      "blocked_correct_cases": [],
+      "record_sha256": "bda87ba39897edc72e7d56ff0a174275c20d52313f6aaae0eeaba3c3eafcdcef"
+    },
+    "no-plan-release": {
+      "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+      "plan_source": "none",
+      "product_gate_passed": false,
+      "raw_execution_success": 72,
+      "cases": 36,
+      "evaluator_rejected_wrong": 36,
+      "product_blocked_wrong": 3,
+      "product_wrong_not_blocked": 33,
+      "product_blocked_correct": 0,
+      "wrong_marked_answered": 33,
+      "wrong_insufficient_coverage": 0,
+      "wrong_unblocked_with_scope_notice": 33,
+      "escaped_wrong_cases": [
+        "RG002",
+        "RG003",
+        "RG004",
+        "RG005",
+        "RG006",
+        "RG007",
+        "RG008",
+        "RG009",
+        "RG010",
+        "RG011",
+        "RG012",
+        "RG014",
+        "RG015",
+        "RG016",
+        "RG017",
+        "RG018",
+        "RG019",
+        "RG020",
+        "RG021",
+        "RG022",
+        "RG023",
+        "RG024",
+        "RG026",
+        "RG027",
+        "RG028",
+        "RG029",
+        "RG030",
+        "RG031",
+        "RG032",
+        "RG033",
+        "RG034",
+        "RG035",
+        "RG036"
+      ],
+      "blocked_correct_cases": [],
+      "record_sha256": "1837ca4a8f0693b584a29c5efaa432ec5c03dcdc1da8a256d6379eed4c95681b"
+    },
+    "model-full-delivery": {
+      "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+      "plan_source": "saved application briefs, reviewed aliases only; provenance requires audited live run: evals\\runs\\gold-v1\\calculation-gates-20261115-final",
+      "product_gate_passed": false,
+      "raw_execution_success": 72,
+      "cases": 36,
+      "evaluator_rejected_wrong": 36,
+      "product_blocked_wrong": 30,
+      "product_wrong_not_blocked": 6,
+      "product_blocked_correct": 1,
+      "wrong_marked_answered": 6,
+      "wrong_insufficient_coverage": 0,
+      "wrong_unblocked_with_scope_notice": 6,
+      "escaped_wrong_cases": [
+        "RG005",
+        "RG012",
+        "RG017",
+        "RG022",
+        "RG024",
+        "RG029"
+      ],
+      "blocked_correct_cases": [
+        "RG001"
+      ],
+      "record_sha256": "d862279383a4abe68b804ff87e0eed1281805dead1051ca5c2ad10ab0ea7383a"
+    },
+    "model-protocol-delivery": {
+      "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+      "plan_source": "saved application briefs, reviewed aliases only; provenance requires audited live run: evals\\runs\\gold-v1\\calculation-gates-20261115-protocol",
+      "product_gate_passed": false,
+      "raw_execution_success": 20,
+      "cases": 10,
+      "evaluator_rejected_wrong": 10,
+      "product_blocked_wrong": 8,
+      "product_wrong_not_blocked": 2,
+      "product_blocked_correct": 1,
+      "wrong_marked_answered": 2,
+      "wrong_insufficient_coverage": 0,
+      "wrong_unblocked_with_scope_notice": 2,
+      "escaped_wrong_cases": [
+        "RG005",
+        "RG017"
+      ],
+      "blocked_correct_cases": [
+        "RG029"
+      ],
+      "record_sha256": "acea4a7b63434bcdfb8fa8e5b1efaedb7f0e19c05159330bbd3dc8acccfcbd2c"
+    },
+    "model-scalar-delivery": {
+      "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+      "plan_source": "saved application briefs, reviewed aliases only; provenance requires audited live run: evals\\runs\\gold-v1\\calculation-gates-20261115-scalar",
+      "product_gate_passed": false,
+      "raw_execution_success": 8,
+      "cases": 4,
+      "evaluator_rejected_wrong": 4,
+      "product_blocked_wrong": 4,
+      "product_wrong_not_blocked": 0,
+      "product_blocked_correct": 1,
+      "wrong_marked_answered": 0,
+      "wrong_insufficient_coverage": 0,
+      "wrong_unblocked_with_scope_notice": 0,
+      "escaped_wrong_cases": [],
+      "blocked_correct_cases": [
+        "RG029"
+      ],
+      "record_sha256": "809933292facbc67c7de52af0ef0873ae996f97f59f8bbfbe6d3e330f07ad65a"
+    },
+    "model-output-replay": {
+      "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+      "plan_source": "saved application briefs, reviewed aliases only; provenance requires audited live run: evals\\runs\\gold-v1\\calculation-gates-20261115-output",
+      "product_gate_passed": true,
+      "raw_execution_success": 2,
+      "cases": 1,
+      "evaluator_rejected_wrong": 1,
+      "product_blocked_wrong": 1,
+      "product_wrong_not_blocked": 0,
+      "product_blocked_correct": 0,
+      "wrong_marked_answered": 0,
+      "wrong_insufficient_coverage": 0,
+      "wrong_unblocked_with_scope_notice": 0,
+      "escaped_wrong_cases": [],
+      "blocked_correct_cases": [],
+      "record_sha256": "3417f7ed74d2003a5f72b52f2ed818ef20020f3bd3ed134dbb25f45b0c5ae6b5"
+    }
+  },
+  "not_checked": [
+    "final candidate full 36 live rerun",
+    "new blind set",
+    "browser and 24 charts",
+    "large datasets and cross-provider live matrix",
+    "independent statistical applicability certification"
+  ],
+  "evidence_policy": "Raw live responses and request audits stay local and git-ignored. Published hashes and summaries are not third-party reproduction.",
+  "engineering": {
+    "backend_passed": 829,
+    "backend_skipped": 2,
+    "dependency_warnings": 4,
+    "log": "output/calculation-gates-20261115/backend-verified.log",
+    "review": "primary executor; no subagents or third-party review"
+  }
+}

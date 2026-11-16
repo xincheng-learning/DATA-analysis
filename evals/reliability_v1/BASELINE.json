@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-15",
+  "gold_version": "1.0.0",
+  "scope": "original synthetic development calibration, not blind evaluation",
+  "teacher": {
+    "cases": 36,
+    "families": 12,
+    "variants_per_family": 3,
+    "wrong_sql_runnable": 36,
+    "wrong_answers_rejected_by_scorer": 36
+  },
+  "controlled_product_gates": {
+    "mode": "controlled SQL; real import, DuckDB and production gates; no live model or browser",
+    "product_gate_passed": false,
+    "raw_execution_success": 72,
+    "cases": 36,
+    "evaluator_rejected_wrong": 36,
+    "product_blocked_wrong": 3,
+    "product_wrong_not_blocked": 33,
+    "product_blocked_correct": 0,
+    "wrong_marked_answered": 33,
+    "wrong_insufficient_coverage": 0,
+    "wrong_unblocked_with_scope_notice": 33
+  },
+  "real_model_full_development": {
+    "run": "semantic-gold-20261115-full-development",
+    "metrics": {
+      "cases": 36,
+      "turns": 36,
+      "outcomes": {
+        "pass": 32,
+        "fail": 4
+      },
+      "grade_scope": "numeric/table/chart or explicitly reviewed rubric; report coverage is separate and not independent method certification",
+      "delivery_coverage": {
+        "complete": 3,
+        "partial": 33
+      },
+      "passed_with_partial_delivery": 29,
+      "environment_not_run": 0,
+      "routes_correct": 32,
+      "route_denominator": 36,
+      "chains_passed": 0,
+      "chains_total": 0,
+      "sql_turns": 29,
+      "first_execution_ok": 29,
+      "final_execution_ok": 29,
+      "http_requests": 97,
+      "input_tokens": 664833,
+      "output_tokens": 54523,
+      "cost_upper_cny": 1.76585,
+      "total_accounted_upper_cny": 24.835726,
+      "p50_seconds": 9.641,
+      "p95_seconds": 18.016
+    },
+    "raw_scoring_outcomes": {
+      "pass": 21,
+      "fail": 15
+    },
+    "audited_equivalences": 11,
+    "failed_cases": [
+      "RG006:1",
+      "RG007:1",
+      "RG018:1",
+      "RG030:1"
+    ],
+    "configuration_sha256": "88071e0d8b1da38de4c199bd40520e1dfb25c2850f17f4f21ccf79a25cafb9d8",
+    "score_sha256": "668931fa451a14475cb7f5b5062511b59efc3acf9b533acc62449793a48d9426"
+  },
+  "targeted_followups": {
+    "precision": {
+      "cases": 36,
+      "turns": 36,
+      "outcomes": {
+        "not_run": 35,
+        "pass": 1
+      },
+      "environment_not_run": 0,
+      "routes_correct": 1,
+      "route_denominator": 1,
+      "chains_passed": 0,
+      "chains_total": 0,
+      "sql_turns": 0,
+      "first_execution_ok": 0,
+      "final_execution_ok": 0,
+      "http_requests": 3,
+      "input_tokens": 19577,
+      "output_tokens": 1634,
+      "cost_upper_cny": 0.052226,
+      "total_accounted_upper_cny": 23.069876,
+      "p50_seconds": 12.282,
+      "p95_seconds": 12.282
+    },
+    "refund": {
+      "cases": 36,
+      "turns": 36,
+      "outcomes": {
+        "not_run": 33,
+        "pass": 3
+      },
+      "grade_scope": "numeric/table/chart or explicitly reviewed rubric; report coverage is separate and not independent method certification",
+      "delivery_coverage": {
+        "partial": 3
+      },
+      "passed_with_partial_delivery": 3,
+      "environment_not_run": 0,
+      "routes_correct": 3,
+      "route_denominator": 3,
+      "chains_passed": 0,
+      "chains_total": 0,
+      "sql_turns": 3,
+      "first_execution_ok": 3,
+      "final_execution_ok": 3,
+      "http_requests": 9,
+      "input_tokens": 58503,
+      "output_tokens": 3811,
+      "cost_upper_cny": 0.147494,
+      "total_accounted_upper_cny": 24.98322,
+      "p50_seconds": 8.828,
+      "p95_seconds": 10.485
+    },
+    "warning": "Different candidate versions and subsets; never merge into a fresh 35/36 whole-pack score."
+  },
+  "engineering": {
+    "backend_passed": 802,
+    "backend_skipped": 2,
+    "original_gold_unchanged": true
+  },
+  "budget": {
+    "before_cny": 22.594698,
+    "cumulative_cny": 24.98322,
+    "this_phase_cny": 2.388522,
+    "remaining_cny": 5.01678
+  },
+  "not_claimed": [
+    "all known wrong answers blocked by product",
+    "independent verification of all methods",
+    "blind or cross-domain generalization",
+    "all 24 charts visually accepted",
+    "new browser end-to-end acceptance",
+    "final-candidate full-pack rerun"
+  ],
+  "evidence_policy": "Raw outputs and request audits remain in local ignored runs; this summary is not third-party independently reproduced evidence.",
+  "tested_runtime": {
+    "python": "3.11.15",
+    "dependencies": {
+      "langchain-openai": "0.2.14",
+      "openai": "1.109.1",
+      "httpx": "0.28.1",
+      "duckdb": "1.1.3",
+      "pandas": "2.2.3",
+      "langgraph": "0.2.60"
+    },
+    "multi_version_matrix": false
+  }
+}

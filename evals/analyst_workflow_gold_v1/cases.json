@@ -1,0 +1,383 @@
+{
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "A01",
+      "title": "月度经营简报与渠道追问",
+      "profile": "commerce",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "四张合成表：orders一行一笔订单；items一行一条商品明细，quantity为件数、unit_price为成交单价，金额单位人民币元；refunds一行一笔退款事件，amount为退款金额；targets一行一个自然月×地区的销售目标。关联键分别为order_id和月份×地区。order_date为本地下单日期，无时区换算；refunds没有结算日期，只能归属到原订单期间，不能回答现金退款发生月份。数据覆盖2026年1—4月，含取消单；未提供成本、税费和经营费用。所有订单的商品明细已完整提供。订单取消状态为canceled，已完成为completed。",
+        "briefing": "经营负责人要复核2026年2月表现。销售额是否含运费、是否扣退款尚未确认。允许先只读了解数据，正式金额计算须先给出建议、理由和影响并由分析师确认。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "整理2月份经营简报：销售额、订单数、客单价和每日走势，给我可核对的表和图。",
+          "expected_fact_ids": []
+        },
+        {
+          "id": "T2",
+          "kind": "decision",
+          "message": "确认：只看已完成订单；销售额按商品成交金额，不含运费，退款单列；订单去重，客单价用销售额除订单数。按下单自然月，未知不补零。请继续。",
+          "expected_fact_ids": [
+            "feb_overview",
+            "feb_daily"
+          ]
+        },
+        {
+          "id": "T3",
+          "kind": "followup",
+          "message": "只看线上渠道，其他条件不变，更新这份简报。",
+          "expected_fact_ids": [
+            "feb_online"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "首轮给建议及理由，不默认选定关键口径或提前正式计算；只读准备可以做。",
+        "确认后覆盖指标和逐日图；沿用确认，不再重复追问。",
+        "线上追问重算；旧图保留原条件且不混入新结论。"
+      ],
+      "expected_fact_ids": [
+        "feb_overview",
+        "feb_daily",
+        "feb_online"
+      ],
+      "applicability": {
+        "business_decision": true,
+        "cleaning": false
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    },
+    {
+      "id": "A02",
+      "title": "经营环比与贡献拆解",
+      "profile": "commerce",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "四张合成表：orders一行一笔订单；items一行一条商品明细，quantity为件数、unit_price为成交单价，金额单位人民币元；refunds一行一笔退款事件，amount为退款金额；targets一行一个自然月×地区的销售目标。关联键分别为order_id和月份×地区。order_date为本地下单日期，无时区换算；refunds没有结算日期，只能归属到原订单期间，不能回答现金退款发生月份。数据覆盖2026年1—4月，含取消单；未提供成本、税费和经营费用。所有订单的商品明细已完整提供。订单取消状态为canceled，已完成为completed。",
+        "briefing": "本任务已确认：只统计completed订单，销售额为quantity×unit_price合计，不含运费；退款单列，仅扣settled退款，归属于原订单日期，不是退款现金发生期。订单按order_id计数，客单价为商品销售额/已完成订单数。自然月含月首至次月月首之前；未知保持未知，不擅自填零或改原表。原始商品明细完整，订单无退款记录表示该范围内无已结退款。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "比较2026年2月与1月销售额，差了多少、变化百分比是多少？从订单量和客单价解释数字变化，先不猜经营原因。",
+          "expected_fact_ids": [
+            "month_compare",
+            "volume_aov"
+          ]
+        },
+        {
+          "id": "T2",
+          "kind": "followup",
+          "message": "再按渠道拆开两月销售变化，哪些增加、哪些减少？它们与整体差额能否对上？",
+          "expected_fact_ids": [
+            "channel_changes"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "不能因题目问变化就预设下降原因。",
+        "量价分解说明方法，渠道贡献正负相加须等于总差额。",
+        "基期、现期和分母一致；算术贡献不当经营因果，不要求相同解释措辞。"
+      ],
+      "expected_fact_ids": [
+        "month_compare",
+        "volume_aov",
+        "channel_changes"
+      ],
+      "applicability": {
+        "business_decision": false,
+        "cleaning": false
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    },
+    {
+      "id": "A03",
+      "title": "地区目标复盘",
+      "profile": "commerce",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "四张合成表：orders一行一笔订单；items一行一条商品明细，quantity为件数、unit_price为成交单价，金额单位人民币元；refunds一行一笔退款事件，amount为退款金额；targets一行一个自然月×地区的销售目标。关联键分别为order_id和月份×地区。order_date为本地下单日期，无时区换算；refunds没有结算日期，只能归属到原订单期间，不能回答现金退款发生月份。数据覆盖2026年1—4月，含取消单；未提供成本、税费和经营费用。所有订单的商品明细已完整提供。订单取消状态为canceled，已完成为completed。",
+        "briefing": "本任务已确认：只统计completed订单，销售额为quantity×unit_price合计，不含运费；退款单列，仅扣settled退款，归属于原订单日期，不是退款现金发生期。订单按order_id计数，客单价为商品销售额/已完成订单数。自然月含月首至次月月首之前；未知保持未知，不擅自填零或改原表。原始商品明细完整，订单无退款记录表示该范围内无已结退款。 目标表缺行表示未提供目标，不能补零；目标为0时不定义完成率。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "整理2026年4月各地区销售额、目标、实际减目标的差额和完成率，按销售额排名作图，方便开会跟进。",
+          "expected_fact_ids": [
+            "apr_targets"
+          ]
+        },
+        {
+          "id": "T2",
+          "kind": "followup",
+          "message": "哪些地区可以判断目标完成情况，哪些不能？给出对应依据，保留未能判断的地区。",
+          "expected_fact_ids": [
+            "apr_targets"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "目标按月地区仅取一次，不能随订单明细倍增。",
+        "缺目标和目标零分开；缺目标的差额与比率未知，零目标的比率不定义，不能写0%。",
+        "地区实际销售、排序、图表与表格一致；无需编造跟进优先级的唯一建议。"
+      ],
+      "expected_fact_ids": [
+        "apr_targets"
+      ],
+      "applicability": {
+        "business_decision": false,
+        "cleaning": false
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    },
+    {
+      "id": "A04",
+      "title": "季度客户复购与渠道归属",
+      "profile": "commerce",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "四张合成表：orders一行一笔订单；items一行一条商品明细，quantity为件数、unit_price为成交单价，金额单位人民币元；refunds一行一笔退款事件，amount为退款金额；targets一行一个自然月×地区的销售目标。关联键分别为order_id和月份×地区。order_date为本地下单日期，无时区换算；refunds没有结算日期，只能归属到原订单期间，不能回答现金退款发生月份。数据覆盖2026年1—4月，含取消单；未提供成本、税费和经营费用。所有订单的商品明细已完整提供。订单取消状态为canceled，已完成为completed。",
+        "briefing": "本任务已确认：只统计completed订单，销售额为quantity×unit_price合计，不含运费；退款单列，仅扣settled退款，归属于原订单日期，不是退款现金发生期。订单按order_id计数，客单价为商品销售额/已完成订单数。自然月含月首至次月月首之前；未知保持未知，不擅自填零或改原表。原始商品明细完整，订单无退款记录表示该范围内无已结退款。 本题复购指2026年1—3月内至少2笔已完成订单。购买客户只含该期间有已完成订单者。首轮按订单渠道各自独立去重；同一客户可进入不同渠道，因此渠道人数不要求可相加。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "复盘一季度购买客户和复购客户：整体有多少、复购率是多少？各渠道分别怎样？说明渠道人数能不能相加。",
+          "expected_fact_ids": [
+            "quarter_repeat",
+            "channel_repeat"
+          ]
+        },
+        {
+          "id": "T2",
+          "kind": "followup",
+          "message": "现在每位客户只归属一个渠道，按该客户在当前导入数据中首笔已完成订单的渠道归属。重算渠道复购，其他条件不变。",
+          "expected_fact_ids": [
+            "acquisition_repeat"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "复购先按客户订单数计算，不能用明细数当订单数。",
+        "首轮独立渠道与次轮首购归属是两套范围，均有明确分母。",
+        "只能称导入数据内首购，不能扩大为客户终身首次购买。"
+      ],
+      "expected_fact_ids": [
+        "quarter_repeat",
+        "channel_repeat",
+        "acquisition_repeat"
+      ],
+      "applicability": {
+        "business_decision": false,
+        "cleaning": false
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    },
+    {
+      "id": "A05",
+      "title": "退款对账与净利润边界",
+      "profile": "commerce",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "四张合成表：orders一行一笔订单；items一行一条商品明细，quantity为件数、unit_price为成交单价，金额单位人民币元；refunds一行一笔退款事件，amount为退款金额；targets一行一个自然月×地区的销售目标。关联键分别为order_id和月份×地区。order_date为本地下单日期，无时区换算；refunds没有结算日期，只能归属到原订单期间，不能回答现金退款发生月份。数据覆盖2026年1—4月，含取消单；未提供成本、税费和经营费用。所有订单的商品明细已完整提供。订单取消状态为canceled，已完成为completed。",
+        "briefing": "本任务已确认：只统计completed订单，销售额为quantity×unit_price合计，不含运费；退款单列，仅扣settled退款，归属于原订单日期，不是退款现金发生期。订单按order_id计数，客单价为商品销售额/已完成订单数。自然月含月首至次月月首之前；未知保持未知，不擅自填零或改原表。原始商品明细完整，订单无退款记录表示该范围内无已结退款。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "给我2026年2月商品销售、已结退款和退款后金额，顺便判断净利润能否算；资料不足的部分列清楚，其他部分继续。",
+          "expected_fact_ids": [
+            "feb_finance"
+          ]
+        },
+        {
+          "id": "T2",
+          "kind": "followup",
+          "message": "成本和费用暂时补不了，先沿用上述口径，按地区列出这三项金额，不再等待利润资料。",
+          "expected_fact_ids": [
+            "feb_region_finance"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "一单多退款先汇总再关联，排除pending和rejected。",
+        "没有成本费用，只能给退款后商品金额，不能称净利润。",
+        "可算部分应交付；缺利润资料不应导致整项拒绝或反复追问。"
+      ],
+      "expected_fact_ids": [
+        "feb_finance",
+        "feb_region_finance"
+      ],
+      "applicability": {
+        "business_decision": false,
+        "cleaning": false
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    },
+    {
+      "id": "A06",
+      "title": "新增脏数据的分析准备与清洗影响",
+      "profile": "dirty",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "新增批次orders一行一笔订单，order_id唯一。order_date是未经修复的日期文本；status为订单状态文本；amount是整笔商品金额，单位人民币元。原批次可能存在状态空格、不可解析日期及未知金额；0是有效金额。没有额外资料可恢复未知值，不可推断该批次覆盖业务全量。",
+        "briefing": "本轮只分析这个新增批次2026年2月已完成订单，金额只用已知值；日期无法解析的订单暂不能归入任何月份。状态必须精确为completed才纳入，除非分析师授权统一空格。当前没有任何清洗授权；不删除行、不猜日期、不填金额。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "先判断这批订单能否支持2月份销售分析，有哪些影响结果的问题？不要修改数据。给我处理建议和影响。",
+          "expected_fact_ids": [
+            "dirty_quality"
+          ]
+        },
+        {
+          "id": "T2",
+          "kind": "decision",
+          "message": "同意把状态两端空格作为待处理方案，其他内容保持原样；先只预览，不应用。按可识别二月且状态精确匹配的同一口径，对照处理前后的金额与样本；未知不要补零。",
+          "expected_fact_ids": [
+            "dirty_before",
+            "dirty_after"
+          ]
+        },
+        {
+          "id": "T3",
+          "kind": "apply",
+          "message": "确认应用刚才预览的状态去空格方案，别改日期或金额。复核实际新版本并保留原数据。",
+          "expected_fact_ids": [
+            "dirty_after"
+          ]
+        },
+        {
+          "id": "T4",
+          "kind": "undo",
+          "message": "撤销刚才的清洗，回到原批次版本，告诉我哪些数字和图需要重新计算。",
+          "expected_fact_ids": [
+            "dirty_before"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "首轮自动查相关数据，说明有限范围，不能因局部异常全盘拒绝。",
+        "预览不能切换当前版本；前后同一口径，只因状态空格处理改变样本。",
+        "若原计划不支持试算，允许明确未核验且不给虚构差额；这仅通过诚实边界项，完整清洗影响能力仍未通过。",
+        "应用须有实际版本和复核证据；撤销恢复原版本，旧清洗结果保持历史身份。"
+      ],
+      "expected_fact_ids": [
+        "dirty_quality",
+        "dirty_before",
+        "dirty_after"
+      ],
+      "applicability": {
+        "business_decision": true,
+        "cleaning": true
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    },
+    {
+      "id": "A07",
+      "title": "会议中的连续条件变更",
+      "profile": "commerce",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "四张合成表：orders一行一笔订单；items一行一条商品明细，quantity为件数、unit_price为成交单价，金额单位人民币元；refunds一行一笔退款事件，amount为退款金额；targets一行一个自然月×地区的销售目标。关联键分别为order_id和月份×地区。order_date为本地下单日期，无时区换算；refunds没有结算日期，只能归属到原订单期间，不能回答现金退款发生月份。数据覆盖2026年1—4月，含取消单；未提供成本、税费和经营费用。所有订单的商品明细已完整提供。订单取消状态为canceled，已完成为completed。",
+        "briefing": "本任务已确认：只统计completed订单，销售额为quantity×unit_price合计，不含运费；退款单列，仅扣settled退款，归属于原订单日期，不是退款现金发生期。订单按order_id计数，客单价为商品销售额/已完成订单数。自然月含月首至次月月首之前；未知保持未知，不擅自填零或改原表。原始商品明细完整，订单无退款记录表示该范围内无已结退款。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "先列2026年2月各地区商品销售额，给我比较图。",
+          "expected_fact_ids": [
+            "feb_regions"
+          ]
+        },
+        {
+          "id": "T2",
+          "kind": "followup",
+          "message": "改看1月，其他条件不变。",
+          "expected_fact_ids": [
+            "jan_regions"
+          ]
+        },
+        {
+          "id": "T3",
+          "kind": "followup",
+          "message": "仍看1月，改成扣掉已结退款后的金额，更新表和图。",
+          "expected_fact_ids": [
+            "jan_region_finance"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "每轮结果的月份、指标和数据版本有据可查。",
+        "不能沿用前一轮数字或图冒充新条件的结果。",
+        "历史结果保留并标适用条件；本题不人工制造系统故障，环境故障另记未完成，不能算成功。"
+      ],
+      "expected_fact_ids": [
+        "feb_regions",
+        "jan_regions",
+        "jan_region_finance"
+      ],
+      "applicability": {
+        "business_decision": false,
+        "cleaning": false
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    },
+    {
+      "id": "A08",
+      "title": "不完整日报的图表与导出交付",
+      "profile": "presentation",
+      "split": "workflow_regression_not_blind",
+      "public_input": {
+        "data_dictionary": "daily_sales一行一天×地区×渠道，amount为该单元已汇总商品金额，单位人民币元。报告窗口为2026-02-01至2026-02-05（含首尾）。这是未齐全的日报摘录，空单元和没有记录都不能视为0，只有显式0代表已记录的零销售。online为线上，store为门店；渠道互斥。没有更细的订单可补齐缺口。",
+        "briefing": "需要2026年2月1—5日日报材料。只汇报摘录内已知金额，始终标明数据不完整，不能称业务全量销售额；不修改原数据。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "kind": "request",
+          "message": "整理这五天销售日报：每天已知金额和地区表现都要有表和图。缺失保留，长地区名称可读，坐标注明日期和元，方便我核对。",
+          "expected_fact_ids": [
+            "daily_known",
+            "region_known"
+          ]
+        },
+        {
+          "id": "T2",
+          "kind": "followup",
+          "message": "现在只看线上，其他条件不变。更新逐日图，并导出与这张图同范围的五天明细，未知不要写成0。",
+          "expected_fact_ids": [
+            "online_daily"
+          ]
+        }
+      ],
+      "required_evidence": [
+        "缺记录、未知金额和显式0分开；2月3日不是零销售日。",
+        "日期粒度可辨、单位明确、长标签能读；允许合理图型与换行。",
+        "CSV须实际下载并核对完整五行及未知值；提供链接文字不等于导出通过。",
+        "第二轮线上表、图、导出与条件一致，原全渠道结果保持历史身份。"
+      ],
+      "expected_fact_ids": [
+        "daily_known",
+        "region_known",
+        "online_daily"
+      ],
+      "applicability": {
+        "business_decision": false,
+        "cleaning": false
+      },
+      "pass_rule": "所有适用验收项有实际证据；无关键错误。待人工判断不能计为通过；不要求固定路由、SQL、列别名或非必要的图型。"
+    }
+  ]
+}

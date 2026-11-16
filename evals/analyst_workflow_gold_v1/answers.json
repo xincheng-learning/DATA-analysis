@@ -1,0 +1,601 @@
+{
+  "version": "1.0.0",
+  "answers": {
+    "feb_overview": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "sales": 590.0,
+          "orders": 4,
+          "aov": 147.5
+        }
+      ],
+      "columns": [
+        "sales",
+        "orders",
+        "aov"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT SUM(amount) sales,COUNT(*) orders,AVG(amount) aov FROM c WHERE order_date LIKE '2026-02%'",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "feb_online": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "sales": 390.0,
+          "orders": 2,
+          "aov": 195.0
+        }
+      ],
+      "columns": [
+        "sales",
+        "orders",
+        "aov"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT SUM(amount) sales,COUNT(*) orders,AVG(amount) aov FROM c WHERE order_date LIKE '2026-02%' AND channel='online'",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "feb_daily": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "date": "2026-02-01",
+          "sales": 140.0
+        },
+        {
+          "date": "2026-02-05",
+          "sales": 100.0
+        },
+        {
+          "date": "2026-02-10",
+          "sales": 250.0
+        },
+        {
+          "date": "2026-02-28",
+          "sales": 100.0
+        }
+      ],
+      "columns": [
+        "date",
+        "sales"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT order_date date,SUM(amount) sales FROM c WHERE order_date LIKE '2026-02%' GROUP BY order_date",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "month_compare": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "jan_sales": 715.0,
+          "feb_sales": 590.0,
+          "delta": -125.0,
+          "change_pct": -17.482517482517483
+        }
+      ],
+      "columns": [
+        "jan_sales",
+        "feb_sales",
+        "delta",
+        "change_pct"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT SUM(amount) FILTER(WHERE order_date LIKE '2026-01%') jan_sales,SUM(amount) FILTER(WHERE order_date LIKE '2026-02%') feb_sales,feb_sales-jan_sales delta,delta/jan_sales*100 change_pct FROM c",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "volume_aov": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "jan_orders": 4,
+          "feb_orders": 4,
+          "jan_aov": 178.75,
+          "feb_aov": 147.5,
+          "volume_effect": 0.0,
+          "aov_effect": -125.0
+        }
+      ],
+      "columns": [
+        "jan_orders",
+        "feb_orders",
+        "jan_aov",
+        "feb_aov",
+        "volume_effect",
+        "aov_effect"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT COUNT(*) FILTER(WHERE order_date LIKE '2026-01%') jan_orders,COUNT(*) FILTER(WHERE order_date LIKE '2026-02%') feb_orders,AVG(amount) FILTER(WHERE order_date LIKE '2026-01%') jan_aov,AVG(amount) FILTER(WHERE order_date LIKE '2026-02%') feb_aov,(feb_orders-jan_orders)*jan_aov volume_effect,feb_orders*(feb_aov-jan_aov) aov_effect FROM c",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "channel_changes": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "channel": "online",
+          "jan_sales": 475.0,
+          "feb_sales": 390.0,
+          "delta": -85.0
+        },
+        {
+          "channel": "store",
+          "jan_sales": 240.0,
+          "feb_sales": 200.0,
+          "delta": -40.0
+        }
+      ],
+      "columns": [
+        "channel",
+        "jan_sales",
+        "feb_sales",
+        "delta"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT channel,SUM(amount) FILTER(WHERE order_date LIKE '2026-01%') jan_sales,SUM(amount) FILTER(WHERE order_date LIKE '2026-02%') feb_sales,feb_sales-jan_sales delta FROM c WHERE order_date<'2026-03-01' GROUP BY channel",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "jan_regions": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "region": "华东",
+          "sales": 250.0
+        },
+        {
+          "region": "华北",
+          "sales": 225.0
+        },
+        {
+          "region": "华南",
+          "sales": 240.0
+        }
+      ],
+      "columns": [
+        "region",
+        "sales"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT region,SUM(amount) sales FROM c WHERE order_date LIKE '2026-01%' GROUP BY region",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "jan_region_finance": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "region": "华东",
+          "sales": 250.0,
+          "refund": 50.0,
+          "net_sales": 200.0
+        },
+        {
+          "region": "华北",
+          "sales": 225.0,
+          "refund": 0.0,
+          "net_sales": 225.0
+        },
+        {
+          "region": "华南",
+          "sales": 240.0,
+          "refund": 0.0,
+          "net_sales": 240.0
+        }
+      ],
+      "columns": [
+        "region",
+        "sales",
+        "refund",
+        "net_sales"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT region,SUM(amount) sales,SUM(refund) refund,SUM(amount)-SUM(refund) net_sales FROM c WHERE order_date LIKE '2026-01%' GROUP BY region",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "feb_regions": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "region": "华东",
+          "sales": 240.0
+        },
+        {
+          "region": "华北",
+          "sales": 250.0
+        },
+        {
+          "region": "华南",
+          "sales": 100.0
+        }
+      ],
+      "columns": [
+        "region",
+        "sales"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT region,SUM(amount) sales FROM c WHERE order_date LIKE '2026-02%' GROUP BY region",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "feb_region_finance": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "region": "华东",
+          "sales": 240.0,
+          "refund": 0.0,
+          "net_sales": 240.0
+        },
+        {
+          "region": "华北",
+          "sales": 250.0,
+          "refund": 0.0,
+          "net_sales": 250.0
+        },
+        {
+          "region": "华南",
+          "sales": 100.0,
+          "refund": 50.0,
+          "net_sales": 50.0
+        }
+      ],
+      "columns": [
+        "region",
+        "sales",
+        "refund",
+        "net_sales"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT region,SUM(amount) sales,SUM(refund) refund,SUM(amount)-SUM(refund) net_sales FROM c WHERE order_date LIKE '2026-02%' GROUP BY region",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "feb_finance": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "sales": 590.0,
+          "refund": 50.0,
+          "net_sales": 540.0
+        }
+      ],
+      "columns": [
+        "sales",
+        "refund",
+        "net_sales"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT SUM(amount) sales,SUM(refund) refund,SUM(amount)-SUM(refund) net_sales FROM c WHERE order_date LIKE '2026-02%'",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "apr_targets": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "region": "华东",
+          "sales": 200.0,
+          "target": 0,
+          "difference": 200.0,
+          "attainment_pct": null
+        },
+        {
+          "region": "华北",
+          "sales": 430.0,
+          "target": null,
+          "difference": null,
+          "attainment_pct": null
+        }
+      ],
+      "columns": [
+        "region",
+        "sales",
+        "target",
+        "difference",
+        "attainment_pct"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT c.region,SUM(amount) sales,t.target,sales-t.target difference,sales/NULLIF(t.target,0)*100 attainment_pct FROM c LEFT JOIN targets t ON t.region=c.region AND t.month='2026-04' WHERE order_date LIKE '2026-04%' GROUP BY c.region,t.target",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "quarter_repeat": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "buyers": 7,
+          "repeat_buyers": 3,
+          "repeat_pct": 42.857142857142854
+        }
+      ],
+      "columns": [
+        "buyers",
+        "repeat_buyers",
+        "repeat_pct"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT COUNT(*) buyers,COUNT(*) FILTER(WHERE n>=2) repeat_buyers,repeat_buyers*100.0/buyers repeat_pct FROM (SELECT customer_id,COUNT(*) n FROM c WHERE order_date<'2026-04-01' GROUP BY customer_id)",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "channel_repeat": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "channel": "online",
+          "buyers": 5,
+          "repeat_buyers": 1,
+          "repeat_pct": 20.0
+        },
+        {
+          "channel": "store",
+          "buyers": 3,
+          "repeat_buyers": 2,
+          "repeat_pct": 66.66666666666666
+        }
+      ],
+      "columns": [
+        "channel",
+        "buyers",
+        "repeat_buyers",
+        "repeat_pct"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') SELECT channel,COUNT(*) buyers,COUNT(*) FILTER(WHERE n>=2) repeat_buyers,repeat_buyers*100.0/buyers repeat_pct FROM (SELECT channel,customer_id,COUNT(*) n FROM c WHERE order_date<'2026-04-01' GROUP BY channel,customer_id) GROUP BY channel",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "acquisition_repeat": {
+      "profile": "commerce",
+      "rows": [
+        {
+          "channel": "online",
+          "buyers": 4,
+          "repeat_buyers": 1,
+          "repeat_pct": 25.0
+        },
+        {
+          "channel": "store",
+          "buyers": 3,
+          "repeat_buyers": 2,
+          "repeat_pct": 66.66666666666666
+        }
+      ],
+      "columns": [
+        "channel",
+        "buyers",
+        "repeat_buyers",
+        "repeat_pct"
+      ],
+      "reference_sql": "WITH line_totals AS (SELECT order_id,SUM(quantity*unit_price) amount FROM items GROUP BY order_id),\n        refund_totals AS (SELECT order_id,SUM(amount) refund FROM refunds WHERE status='settled' GROUP BY order_id),\n        c AS (SELECT o.*,l.amount,COALESCE(r.refund,0) refund FROM orders o JOIN line_totals l USING(order_id)\n        LEFT JOIN refund_totals r USING(order_id) WHERE o.status='completed') , first_channel AS (SELECT customer_id,FIRST(channel ORDER BY order_date,order_id) channel FROM c GROUP BY customer_id) SELECT f.channel,COUNT(*) buyers,COUNT(*) FILTER(WHERE n>=2) repeat_buyers,repeat_buyers*100.0/buyers repeat_pct FROM (SELECT customer_id,COUNT(*) n FROM c WHERE order_date<'2026-04-01' GROUP BY customer_id) q JOIN first_channel f USING(customer_id) GROUP BY f.channel",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "dirty_quality": {
+      "profile": "dirty",
+      "rows": [
+        {
+          "rows": 7,
+          "invalid_dates": 1,
+          "status_whitespace": 1,
+          "missing_amount": 1
+        }
+      ],
+      "columns": [
+        "rows",
+        "invalid_dates",
+        "status_whitespace",
+        "missing_amount"
+      ],
+      "reference_sql": "SELECT COUNT(*) \"rows\",COUNT(*) FILTER(WHERE TRY_CAST(order_date AS DATE) IS NULL) invalid_dates,COUNT(*) FILTER(WHERE status<>TRIM(status)) status_whitespace,COUNT(*) FILTER(WHERE amount IS NULL) missing_amount FROM orders",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "dirty_before": {
+      "profile": "dirty",
+      "rows": [
+        {
+          "orders": 3,
+          "known_amount": 100,
+          "missing_amount": 1
+        }
+      ],
+      "columns": [
+        "orders",
+        "known_amount",
+        "missing_amount"
+      ],
+      "reference_sql": "SELECT COUNT(*) orders,SUM(amount) known_amount,COUNT(*) FILTER(WHERE amount IS NULL) missing_amount FROM orders WHERE status='completed' AND TRY_CAST(order_date AS DATE)>=DATE '2026-02-01' AND TRY_CAST(order_date AS DATE)<DATE '2026-03-01'",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "dirty_after": {
+      "profile": "dirty",
+      "rows": [
+        {
+          "orders": 4,
+          "known_amount": 150,
+          "missing_amount": 1
+        }
+      ],
+      "columns": [
+        "orders",
+        "known_amount",
+        "missing_amount"
+      ],
+      "reference_sql": "SELECT COUNT(*) orders,SUM(amount) known_amount,COUNT(*) FILTER(WHERE amount IS NULL) missing_amount FROM orders WHERE TRIM(status)='completed' AND TRY_CAST(order_date AS DATE)>=DATE '2026-02-01' AND TRY_CAST(order_date AS DATE)<DATE '2026-03-01'",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "daily_known": {
+      "profile": "presentation",
+      "rows": [
+        {
+          "date": "2026-02-01",
+          "known_amount": 160,
+          "unknown_cells": 0,
+          "recorded_cells": 2
+        },
+        {
+          "date": "2026-02-02",
+          "known_amount": 80,
+          "unknown_cells": 1,
+          "recorded_cells": 2
+        },
+        {
+          "date": "2026-02-03",
+          "known_amount": null,
+          "unknown_cells": 0,
+          "recorded_cells": 0
+        },
+        {
+          "date": "2026-02-04",
+          "known_amount": 40,
+          "unknown_cells": 0,
+          "recorded_cells": 2
+        },
+        {
+          "date": "2026-02-05",
+          "known_amount": 120,
+          "unknown_cells": 1,
+          "recorded_cells": 2
+        }
+      ],
+      "columns": [
+        "date",
+        "known_amount",
+        "unknown_cells",
+        "recorded_cells"
+      ],
+      "reference_sql": "WITH days AS (SELECT CAST(d AS VARCHAR) date FROM generate_series(DATE '2026-02-01',DATE '2026-02-05',INTERVAL 1 DAY) t(d)),s AS (SELECT * FROM daily_sales) SELECT SUBSTR(days.date,1,10) date,SUM(s.amount) known_amount,COUNT(*) FILTER(WHERE s.sale_date IS NOT NULL AND s.amount IS NULL) unknown_cells,COUNT(s.sale_date) recorded_cells FROM days LEFT JOIN s ON s.sale_date=SUBSTR(days.date,1,10) GROUP BY days.date",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "online_daily": {
+      "profile": "presentation",
+      "rows": [
+        {
+          "date": "2026-02-01",
+          "known_amount": 100,
+          "unknown_cells": 0,
+          "recorded_cells": 1
+        },
+        {
+          "date": "2026-02-02",
+          "known_amount": null,
+          "unknown_cells": 1,
+          "recorded_cells": 1
+        },
+        {
+          "date": "2026-02-03",
+          "known_amount": null,
+          "unknown_cells": 0,
+          "recorded_cells": 0
+        },
+        {
+          "date": "2026-02-04",
+          "known_amount": 0,
+          "unknown_cells": 0,
+          "recorded_cells": 1
+        },
+        {
+          "date": "2026-02-05",
+          "known_amount": 120,
+          "unknown_cells": 0,
+          "recorded_cells": 1
+        }
+      ],
+      "columns": [
+        "date",
+        "known_amount",
+        "unknown_cells",
+        "recorded_cells"
+      ],
+      "reference_sql": "WITH days AS (SELECT CAST(d AS VARCHAR) date FROM generate_series(DATE '2026-02-01',DATE '2026-02-05',INTERVAL 1 DAY) t(d)),s AS (SELECT * FROM daily_sales WHERE channel='online') SELECT SUBSTR(days.date,1,10) date,SUM(s.amount) known_amount,COUNT(*) FILTER(WHERE s.sale_date IS NOT NULL AND s.amount IS NULL) unknown_cells,COUNT(s.sale_date) recorded_cells FROM days LEFT JOIN s ON s.sale_date=SUBSTR(days.date,1,10) GROUP BY days.date",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    },
+    "region_known": {
+      "profile": "presentation",
+      "rows": [
+        {
+          "region": "华东地区—直营网点及线上业务联合经营组",
+          "known_amount": 220,
+          "unknown_cells": 1,
+          "recorded_cells": 4
+        },
+        {
+          "region": "华北地区—直营网点及线上业务联合经营组",
+          "known_amount": 180,
+          "unknown_cells": 1,
+          "recorded_cells": 4
+        }
+      ],
+      "columns": [
+        "region",
+        "known_amount",
+        "unknown_cells",
+        "recorded_cells"
+      ],
+      "reference_sql": "SELECT region,SUM(amount) known_amount,COUNT(*) FILTER(WHERE amount IS NULL) unknown_cells,COUNT(*) recorded_cells FROM daily_sales GROUP BY region",
+      "comparison": {
+        "ordered": false,
+        "abs_tol": 1e-06,
+        "rel_tol": 1e-08
+      }
+    }
+  }
+}

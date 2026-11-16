@@ -1,0 +1,56 @@
+{
+  "X01-T1": [
+    {
+      "energy_kwh": 30
+    }
+  ],
+  "X01-T2": [
+    {
+      "energy_kwh": 22
+    }
+  ],
+  "X02-T1": [
+    {
+      "meter_id": "A",
+      "total": null
+    },
+    {
+      "meter_id": "B",
+      "total": null
+    },
+    {
+      "meter_id": "C",
+      "total": null
+    },
+    {
+      "meter_id": "D",
+      "total": 0
+    },
+    {
+      "meter_id": "E",
+      "total": 5
+    }
+  ],
+  "X02-T2": [
+    {
+      "meter_id": "A",
+      "total": 0
+    },
+    {
+      "meter_id": "B",
+      "total": null
+    },
+    {
+      "meter_id": "C",
+      "total": null
+    },
+    {
+      "meter_id": "D",
+      "total": 0
+    },
+    {
+      "meter_id": "E",
+      "total": 5
+    }
+  ]
+}

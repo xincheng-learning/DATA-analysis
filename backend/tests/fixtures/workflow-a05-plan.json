@@ -1,0 +1,236 @@
+{
+  "source": "first-20261116 A05 T1; public synthetic input and actual model plan, no credentials",
+  "question": "四张合成表：orders一行一笔订单；items一行一条商品明细，quantity为件数、unit_price为成交单价，金额单位人民币元；refunds一行一笔退款事件，amount为退款金额；targets一行一个自然月×地区的销售目标。关联键分别为order_id和月份×地区。order_date为本地下单日期，无时区换算；refunds没有结算日期，只能归属到原订单期间，不能回答现金退款发生月份。数据覆盖2026年1—4月，含取消单；未提供成本、税费和经营费用。所有订单的商品明细已完整提供。订单取消状态为canceled，已完成为completed。\n\n业务背景：本任务已确认：只统计completed订单，销售额为quantity×unit_price合计，不含运费；退款单列，仅扣settled退款，归属于原订单日期，不是退款现金发生期。订单按order_id计数，客单价为商品销售额/已完成订单数。自然月含月首至次月月首之前；未知保持未知，不擅自填零或改原表。原始商品明细完整，订单无退款记录表示该范围内无已结退款。\n\n当前问题：给我2026年2月商品销售、已结退款和退款后金额，顺便判断净利润能否算；资料不足的部分列清楚，其他部分继续。",
+  "brief": {
+    "requirements": [
+      "2026年2月商品销售额（quantity×unit_price合计，不含运费，仅completed订单）",
+      "2026年2月归属原订单期间的已结退款额（仅settled）",
+      "2026年2月退款后金额（商品销售额减已结退款额）",
+      "判断净利润能否计算并列出资料不足部分"
+    ],
+    "acceptance": [
+      {
+        "requirement_index": 0,
+        "request_quote": "给我2026年2月商品销售、已结退款和退款后金额",
+        "intent_gap": "",
+        "answer_type": "value",
+        "scope_key": "",
+        "method_topic": "",
+        "constraint_kind": "",
+        "subject": "",
+        "metric_ids": [],
+        "result_columns": [
+          "商品销售额"
+        ],
+        "target_status": "explicit",
+        "id": "R1",
+        "requirement": "2026年2月商品销售额（quantity×unit_price合计，不含运费，仅completed订单）"
+      },
+      {
+        "requirement_index": 1,
+        "request_quote": "给我2026年2月商品销售、已结退款和退款后金额",
+        "intent_gap": "",
+        "answer_type": "value",
+        "scope_key": "",
+        "method_topic": "",
+        "constraint_kind": "",
+        "subject": "",
+        "metric_ids": [],
+        "result_columns": [
+          "已结退款额"
+        ],
+        "target_status": "explicit",
+        "id": "R2",
+        "requirement": "2026年2月归属原订单期间的已结退款额（仅settled）"
+      },
+      {
+        "requirement_index": 2,
+        "request_quote": "给我2026年2月商品销售、已结退款和退款后金额",
+        "intent_gap": "",
+        "answer_type": "value",
+        "scope_key": "",
+        "method_topic": "",
+        "constraint_kind": "",
+        "subject": "",
+        "metric_ids": [],
+        "result_columns": [
+          "退款后金额"
+        ],
+        "target_status": "explicit",
+        "id": "R3",
+        "requirement": "2026年2月退款后金额（商品销售额减已结退款额）"
+      },
+      {
+        "requirement_index": 3,
+        "request_quote": "顺便判断净利润能否算；资料不足的部分列清楚，其他部分继续",
+        "intent_gap": "",
+        "answer_type": "feasibility",
+        "scope_key": "",
+        "method_topic": "",
+        "constraint_kind": "",
+        "subject": "净利润计算可行性：缺少成本、税费和经营费用数据，无法计算净利润",
+        "metric_ids": [],
+        "result_columns": [],
+        "target_status": "explicit",
+        "id": "R4",
+        "requirement": "判断净利润能否计算并列出资料不足部分"
+      }
+    ],
+    "calculation_plan": {
+      "source_quotes": [
+        "只统计completed订单，销售额为quantity×unit_price合计，不含运费",
+        "退款单列，仅扣settled退款，归属于原订单日期",
+        "自然月含月首至次月月首之前"
+      ],
+      "stages": [
+        {
+          "name": "feb_sales",
+          "source": "items",
+          "select": [
+            {
+              "name": "商品销售额",
+              "op": "sum",
+              "field": "items.quantity",
+              "numerator": "",
+              "denominator": "",
+              "multiplier": 1.0,
+              "condition": null
+            }
+          ],
+          "filters": [
+            {
+              "field": "orders.status",
+              "op": "eq",
+              "value": "completed",
+              "cast": ""
+            },
+            {
+              "field": "orders.order_date",
+              "op": "ge",
+              "value": "2026-02-01",
+              "cast": "date"
+            },
+            {
+              "field": "orders.order_date",
+              "op": "lt",
+              "value": "2026-03-01",
+              "cast": "date"
+            }
+          ],
+          "joins": [
+            {
+              "table": "orders",
+              "kind": "inner",
+              "left_keys": [
+                "order_id"
+              ],
+              "right_keys": [
+                "order_id"
+              ]
+            }
+          ],
+          "group_by": [],
+          "order_by": []
+        },
+        {
+          "name": "feb_refunds",
+          "source": "refunds",
+          "select": [
+            {
+              "name": "已结退款额",
+              "op": "sum",
+              "field": "refunds.amount",
+              "numerator": "",
+              "denominator": "",
+              "multiplier": 1,
+              "condition": null
+            }
+          ],
+          "filters": [
+            {
+              "field": "refunds.status",
+              "op": "eq",
+              "value": "settled",
+              "cast": ""
+            },
+            {
+              "field": "orders.order_date",
+              "op": "ge",
+              "value": "2026-02-01",
+              "cast": "date"
+            },
+            {
+              "field": "orders.order_date",
+              "op": "lt",
+              "value": "2026-03-01",
+              "cast": "date"
+            }
+          ],
+          "joins": [
+            {
+              "table": "orders",
+              "kind": "inner",
+              "left_keys": [
+                "order_id"
+              ],
+              "right_keys": [
+                "order_id"
+              ]
+            }
+          ],
+          "group_by": [],
+          "order_by": []
+        },
+        {
+          "name": "feb_result",
+          "source": "feb_sales",
+          "select": [
+            {
+              "name": "商品销售额",
+              "op": "column",
+              "field": "商品销售额",
+              "numerator": "",
+              "denominator": "",
+              "multiplier": 1,
+              "condition": null
+            },
+            {
+              "name": "已结退款额",
+              "op": "column",
+              "field": "已结退款额",
+              "numerator": "",
+              "denominator": "",
+              "multiplier": 1,
+              "condition": null
+            },
+            {
+              "name": "退款后金额",
+              "op": "subtract",
+              "field": "",
+              "numerator": "商品销售额",
+              "denominator": "已结退款额",
+              "multiplier": 1,
+              "condition": null
+            }
+          ],
+          "filters": [],
+          "joins": [
+            {
+              "table": "feb_refunds",
+              "kind": "cross",
+              "left_keys": [],
+              "right_keys": []
+            }
+          ],
+          "group_by": [],
+          "order_by": []
+        }
+      ],
+      "row_count": 1,
+      "ordered_rows": false,
+      "ordered_columns": false
+    }
+  },
+  "correct_sql": "WITH feb_sales AS (\n  SELECT SUM(i.quantity * i.unit_price) AS sales_amount\n  FROM items i\n  JOIN orders o ON o.order_id = i.order_id\n  WHERE o.status = 'completed'\n    AND CAST(o.order_date AS DATE) >= DATE '2026-02-01'\n    AND CAST(o.order_date AS DATE) < DATE '2026-03-01'\n),\nfeb_refunds AS (\n  SELECT SUM(r.amount) AS refund_amount\n  FROM refunds r\n  JOIN orders o ON o.order_id = r.order_id\n  WHERE r.status = 'settled'\n    AND CAST(o.order_date AS DATE) >= DATE '2026-02-01'\n    AND CAST(o.order_date AS DATE) < DATE '2026-03-01'\n)\nSELECT\n  s.sales_amount AS \"商品销售额\",\n  r.refund_amount AS \"已结退款额\",\n  s.sales_amount - r.refund_amount AS \"退款后金额\"\nFROM feb_sales s\nCROSS JOIN feb_refunds r;",
+  "wrong_sql": "WITH feb_sales AS (\n    SELECT SUM(i.quantity * 1.0) AS item_amount\n    FROM items i\n    JOIN orders o\n      ON o.order_id = i.order_id\n    WHERE o.status = 'completed'\n      AND CAST(o.order_date AS DATE) >= DATE '2026-02-01'\n      AND CAST(o.order_date AS DATE) < DATE '2026-03-01'\n),\nfeb_refunds AS (\n    SELECT SUM(r.amount) AS settled_refund_amount\n    FROM refunds r\n    JOIN orders o\n      ON o.order_id = r.order_id\n    WHERE r.status = 'settled'\n      AND CAST(o.order_date AS DATE) >= DATE '2026-02-01'\n      AND CAST(o.order_date AS DATE) < DATE '2026-03-01'\n)\nSELECT\n    s.item_amount AS \"商品销售额\",\n    f.settled_refund_amount AS \"已结退款额\",\n    s.item_amount - f.settled_refund_amount AS \"退款后金额\"\nFROM feb_sales s\nCROSS JOIN feb_refunds f;"
+}

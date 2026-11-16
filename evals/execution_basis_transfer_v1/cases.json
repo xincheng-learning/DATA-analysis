@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "split": "post_change_authored_not_blind",
+  "cases": [
+    {
+      "id": "X01",
+      "title": "车间运行能耗与筛选接续",
+      "profile": "energy",
+      "public_input": {
+        "data_dictionary": "runs一行一次运行，run_id唯一，workshop为车间，power单位kW、hours单位小时，数据无缺失且覆盖完整。",
+        "briefing": "已确认能耗按power×hours逐笔求和，单位kWh；零小时真实有效，不删除，不含其他能源。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "message": "计算全部运行的总能耗，给出可核对的结果。"
+        },
+        {
+          "id": "T2",
+          "message": "仅看A车间，其他口径不变，重算总能耗。"
+        }
+      ]
+    },
+    {
+      "id": "X02",
+      "title": "仪表读数完整性与分析师变更规则",
+      "profile": "observations",
+      "public_input": {
+        "data_dictionary": "meters是一行一台登记仪表；readings一行一次读数，用meter_id关联，value为本次用量，单位立方米。空白为未知，0为真实0。登记表完整，事件来源是否覆盖所有读数尚未确认。",
+        "briefing": "已确认：一台仪表只要已有读数中有任何未知值，总量就未知；无记录也未知，不可自行补0。"
+      },
+      "turns": [
+        {
+          "id": "T1",
+          "message": "列出每台登记仪表的本次总用量，保留全部仪表和未知状态。"
+        },
+        {
+          "id": "T2",
+          "message": "现在确认：本次来源完整，无读数记录表示本期没有用量，总量应为0；有读数但值未知或部分未知时仍保持未知。请按此规则更新每台仪表总用量。"
+        }
+      ]
+    }
+  ]
+}

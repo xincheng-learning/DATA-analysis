@@ -1,0 +1,574 @@
+{
+  "version": "1.0.0",
+  "profiles": {
+    "commerce": {
+      "orders": [
+        {
+          "order_id": "O01",
+          "order_date": "2026-01-01",
+          "customer_id": "C01",
+          "region": "华东",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 8,
+          "promised_days": 3,
+          "delivered_days": 2
+        },
+        {
+          "order_id": "O02",
+          "order_date": "2026-01-02",
+          "customer_id": "C02",
+          "region": "华南",
+          "channel": "store",
+          "status": "completed",
+          "shipping_fee": 0,
+          "promised_days": 3,
+          "delivered_days": 4
+        },
+        {
+          "order_id": "O03",
+          "order_date": "2026-01-03",
+          "customer_id": "C01",
+          "region": "华东",
+          "channel": "online",
+          "status": "canceled",
+          "shipping_fee": 8,
+          "promised_days": 3,
+          "delivered_days": null
+        },
+        {
+          "order_id": "O04",
+          "order_date": "2026-01-20",
+          "customer_id": "C03",
+          "region": "华北",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 10,
+          "promised_days": 5,
+          "delivered_days": 5
+        },
+        {
+          "order_id": "O05",
+          "order_date": "2026-01-31",
+          "customer_id": "C04",
+          "region": "华南",
+          "channel": "store",
+          "status": "completed",
+          "shipping_fee": 0,
+          "promised_days": 2,
+          "delivered_days": 1
+        },
+        {
+          "order_id": "O06",
+          "order_date": "2026-02-01",
+          "customer_id": "C01",
+          "region": "华东",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 8,
+          "promised_days": 3,
+          "delivered_days": 4
+        },
+        {
+          "order_id": "O07",
+          "order_date": "2026-02-05",
+          "customer_id": "C02",
+          "region": "华南",
+          "channel": "store",
+          "status": "completed",
+          "shipping_fee": 0,
+          "promised_days": 3,
+          "delivered_days": 2
+        },
+        {
+          "order_id": "O08",
+          "order_date": "2026-02-10",
+          "customer_id": "C05",
+          "region": "华北",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 10,
+          "promised_days": 4,
+          "delivered_days": 7
+        },
+        {
+          "order_id": "O09",
+          "order_date": "2026-02-20",
+          "customer_id": "C03",
+          "region": "华北",
+          "channel": "online",
+          "status": "canceled",
+          "shipping_fee": 10,
+          "promised_days": 3,
+          "delivered_days": null
+        },
+        {
+          "order_id": "O10",
+          "order_date": "2026-02-28",
+          "customer_id": "C06",
+          "region": "华东",
+          "channel": "store",
+          "status": "completed",
+          "shipping_fee": 0,
+          "promised_days": 2,
+          "delivered_days": 2
+        },
+        {
+          "order_id": "O11",
+          "order_date": "2026-03-01",
+          "customer_id": "C01",
+          "region": "华东",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 8,
+          "promised_days": 3,
+          "delivered_days": 2
+        },
+        {
+          "order_id": "O12",
+          "order_date": "2026-03-07",
+          "customer_id": "C04",
+          "region": "华南",
+          "channel": "store",
+          "status": "completed",
+          "shipping_fee": 0,
+          "promised_days": 3,
+          "delivered_days": 5
+        },
+        {
+          "order_id": "O13",
+          "order_date": "2026-03-15",
+          "customer_id": "C07",
+          "region": "华北",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 10,
+          "promised_days": 4,
+          "delivered_days": 4
+        },
+        {
+          "order_id": "O14",
+          "order_date": "2026-03-31",
+          "customer_id": "C02",
+          "region": "华南",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 8,
+          "promised_days": 3,
+          "delivered_days": 2
+        },
+        {
+          "order_id": "O15",
+          "order_date": "2026-04-01",
+          "customer_id": "C03",
+          "region": "华北",
+          "channel": "online",
+          "status": "completed",
+          "shipping_fee": 10,
+          "promised_days": 3,
+          "delivered_days": 4
+        },
+        {
+          "order_id": "O16",
+          "order_date": "2026-04-10",
+          "customer_id": "C05",
+          "region": "华北",
+          "channel": "store",
+          "status": "completed",
+          "shipping_fee": 0,
+          "promised_days": 2,
+          "delivered_days": 2
+        },
+        {
+          "order_id": "O17",
+          "order_date": "2026-04-20",
+          "customer_id": "C08",
+          "region": "华东",
+          "channel": "online",
+          "status": "canceled",
+          "shipping_fee": 8,
+          "promised_days": 3,
+          "delivered_days": null
+        },
+        {
+          "order_id": "O18",
+          "order_date": "2026-04-30",
+          "customer_id": "C06",
+          "region": "华东",
+          "channel": "store",
+          "status": "completed",
+          "shipping_fee": 0,
+          "promised_days": 2,
+          "delivered_days": 1
+        }
+      ],
+      "items": [
+        {
+          "line_id": "L01",
+          "order_id": "O01",
+          "product_id": "A",
+          "quantity": 2,
+          "unit_price": 100
+        },
+        {
+          "line_id": "L02",
+          "order_id": "O01",
+          "product_id": "B",
+          "quantity": 1,
+          "unit_price": 50
+        },
+        {
+          "line_id": "L03",
+          "order_id": "O02",
+          "product_id": "B",
+          "quantity": 3,
+          "unit_price": 50
+        },
+        {
+          "line_id": "L04",
+          "order_id": "O03",
+          "product_id": "C",
+          "quantity": 2,
+          "unit_price": 200
+        },
+        {
+          "line_id": "L05",
+          "order_id": "O04",
+          "product_id": "C",
+          "quantity": 1,
+          "unit_price": 200
+        },
+        {
+          "line_id": "L06",
+          "order_id": "O04",
+          "product_id": "D",
+          "quantity": 1,
+          "unit_price": 25
+        },
+        {
+          "line_id": "L07",
+          "order_id": "O05",
+          "product_id": "A",
+          "quantity": 1,
+          "unit_price": 90
+        },
+        {
+          "line_id": "L08",
+          "order_id": "O06",
+          "product_id": "A",
+          "quantity": 1,
+          "unit_price": 100
+        },
+        {
+          "line_id": "L09",
+          "order_id": "O06",
+          "product_id": "B",
+          "quantity": 1,
+          "unit_price": 40
+        },
+        {
+          "line_id": "L10",
+          "order_id": "O07",
+          "product_id": "B",
+          "quantity": 2,
+          "unit_price": 50
+        },
+        {
+          "line_id": "L11",
+          "order_id": "O08",
+          "product_id": "C",
+          "quantity": 1,
+          "unit_price": 200
+        },
+        {
+          "line_id": "L12",
+          "order_id": "O08",
+          "product_id": "D",
+          "quantity": 2,
+          "unit_price": 25
+        },
+        {
+          "line_id": "L13",
+          "order_id": "O09",
+          "product_id": "C",
+          "quantity": 2,
+          "unit_price": 180
+        },
+        {
+          "line_id": "L14",
+          "order_id": "O10",
+          "product_id": "A",
+          "quantity": 1,
+          "unit_price": 100
+        },
+        {
+          "line_id": "L15",
+          "order_id": "O11",
+          "product_id": "A",
+          "quantity": 2,
+          "unit_price": 100
+        },
+        {
+          "line_id": "L16",
+          "order_id": "O12",
+          "product_id": "B",
+          "quantity": 4,
+          "unit_price": 45
+        },
+        {
+          "line_id": "L17",
+          "order_id": "O13",
+          "product_id": "C",
+          "quantity": 2,
+          "unit_price": 200
+        },
+        {
+          "line_id": "L18",
+          "order_id": "O14",
+          "product_id": "D",
+          "quantity": 4,
+          "unit_price": 25
+        },
+        {
+          "line_id": "L19",
+          "order_id": "O15",
+          "product_id": "C",
+          "quantity": 1,
+          "unit_price": 180
+        },
+        {
+          "line_id": "L20",
+          "order_id": "O15",
+          "product_id": "A",
+          "quantity": 1,
+          "unit_price": 100
+        },
+        {
+          "line_id": "L21",
+          "order_id": "O16",
+          "product_id": "B",
+          "quantity": 3,
+          "unit_price": 50
+        },
+        {
+          "line_id": "L22",
+          "order_id": "O17",
+          "product_id": "D",
+          "quantity": 2,
+          "unit_price": 25
+        },
+        {
+          "line_id": "L23",
+          "order_id": "O18",
+          "product_id": "A",
+          "quantity": 2,
+          "unit_price": 100
+        }
+      ],
+      "refunds": [
+        {
+          "refund_id": "R01",
+          "order_id": "O01",
+          "amount": 30,
+          "status": "settled"
+        },
+        {
+          "refund_id": "R02",
+          "order_id": "O01",
+          "amount": 20,
+          "status": "settled"
+        },
+        {
+          "refund_id": "R03",
+          "order_id": "O07",
+          "amount": 50,
+          "status": "settled"
+        },
+        {
+          "refund_id": "R04",
+          "order_id": "O08",
+          "amount": 25,
+          "status": "pending"
+        },
+        {
+          "refund_id": "R05",
+          "order_id": "O12",
+          "amount": 45,
+          "status": "settled"
+        },
+        {
+          "refund_id": "R06",
+          "order_id": "O15",
+          "amount": 60,
+          "status": "settled"
+        },
+        {
+          "refund_id": "R07",
+          "order_id": "O18",
+          "amount": 20,
+          "status": "rejected"
+        }
+      ],
+      "targets": [
+        {
+          "month": "2026-01",
+          "region": "华东",
+          "target": 300
+        },
+        {
+          "month": "2026-01",
+          "region": "华南",
+          "target": 300
+        },
+        {
+          "month": "2026-01",
+          "region": "华北",
+          "target": 400
+        },
+        {
+          "month": "2026-02",
+          "region": "华东",
+          "target": 300
+        },
+        {
+          "month": "2026-02",
+          "region": "华南",
+          "target": 300
+        },
+        {
+          "month": "2026-02",
+          "region": "华北",
+          "target": 400
+        },
+        {
+          "month": "2026-03",
+          "region": "华东",
+          "target": 400
+        },
+        {
+          "month": "2026-03",
+          "region": "华南",
+          "target": 400
+        },
+        {
+          "month": "2026-03",
+          "region": "华北",
+          "target": 500
+        },
+        {
+          "month": "2026-04",
+          "region": "华东",
+          "target": 0
+        },
+        {
+          "month": "2026-04",
+          "region": "华南",
+          "target": 300
+        },
+        {
+          "month": "2026-05",
+          "region": "华东",
+          "target": 0
+        }
+      ]
+    },
+    "dirty": {
+      "orders": [
+        {
+          "order_id": "D01",
+          "order_date": "2026-02-01",
+          "status": "completed",
+          "amount": 100
+        },
+        {
+          "order_id": "D02",
+          "order_date": "2026-02-02",
+          "status": " completed ",
+          "amount": 50
+        },
+        {
+          "order_id": "D03",
+          "order_date": "bad-date",
+          "status": "completed",
+          "amount": 200
+        },
+        {
+          "order_id": "D04",
+          "order_date": "2026-02-03",
+          "status": "completed",
+          "amount": null
+        },
+        {
+          "order_id": "D05",
+          "order_date": "2026-02-04",
+          "status": "canceled",
+          "amount": 900
+        },
+        {
+          "order_id": "D06",
+          "order_date": "2026-03-01",
+          "status": "completed",
+          "amount": 70
+        },
+        {
+          "order_id": "D07",
+          "order_date": "2026-02-05",
+          "status": "completed",
+          "amount": 0
+        }
+      ]
+    },
+    "presentation": {
+      "daily_sales": [
+        {
+          "sale_date": "2026-02-01",
+          "region": "华东地区—直营网点及线上业务联合经营组",
+          "channel": "online",
+          "amount": 100
+        },
+        {
+          "sale_date": "2026-02-01",
+          "region": "华北地区—直营网点及线上业务联合经营组",
+          "channel": "store",
+          "amount": 60
+        },
+        {
+          "sale_date": "2026-02-02",
+          "region": "华东地区—直营网点及线上业务联合经营组",
+          "channel": "online",
+          "amount": null
+        },
+        {
+          "sale_date": "2026-02-02",
+          "region": "华北地区—直营网点及线上业务联合经营组",
+          "channel": "store",
+          "amount": 80
+        },
+        {
+          "sale_date": "2026-02-04",
+          "region": "华东地区—直营网点及线上业务联合经营组",
+          "channel": "online",
+          "amount": 0
+        },
+        {
+          "sale_date": "2026-02-04",
+          "region": "华北地区—直营网点及线上业务联合经营组",
+          "channel": "store",
+          "amount": 40
+        },
+        {
+          "sale_date": "2026-02-05",
+          "region": "华东地区—直营网点及线上业务联合经营组",
+          "channel": "online",
+          "amount": 120
+        },
+        {
+          "sale_date": "2026-02-05",
+          "region": "华北地区—直营网点及线上业务联合经营组",
+          "channel": "store",
+          "amount": null
+        }
+      ]
+    }
+  }
+}

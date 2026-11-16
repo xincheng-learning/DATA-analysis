@@ -1,0 +1,8 @@
+order_id,order_date,status,amount
+D01,2026-02-01,completed,100
+D02,2026-02-02, completed ,50
+D03,bad-date,completed,200
+D04,2026-02-03,completed,
+D05,2026-02-04,canceled,900
+D06,2026-03-01,completed,70
+D07,2026-02-05,completed,0

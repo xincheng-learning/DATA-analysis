@@ -1,0 +1,318 @@
+{
+  "version": "1.0.0",
+  "scope": "24 fixed-input development references; not blind tests or complete AI analysis certification",
+  "original_synthetic_data": true,
+  "license": "project MIT; no third-party benchmark items copied",
+  "reference_source_sha256": "f9b20d4a5a1129ef206fb1dc6db889d52a79da9e3980df09b63a288ee1111391",
+  "families_sha256": "7c485b5a5fe46d0ed873c407e47842817d3a452843e9a22430984fb46819d87b",
+  "cases": [
+    {
+      "id": "SM01",
+      "name": "文本表",
+      "kind": "text_table",
+      "oracle": {
+        "row_count": 4,
+        "null_count": 2,
+        "input_sha256": "c9f95acc7a6f5708037c2db3ff3d81f055444062bed439c618866e82a9127bda"
+      }
+    },
+    {
+      "id": "SM02",
+      "name": "热图",
+      "kind": "heatmap_marks",
+      "oracle": {
+        "row_count": 6,
+        "null_count": 1,
+        "input_sha256": "66422ddfb7e7cf53b76c3afb260a72748483657538b06fe043766d4b72096a31"
+      }
+    },
+    {
+      "id": "SM03",
+      "name": "高亮表",
+      "kind": "highlight_table",
+      "oracle": {
+        "row_count": 6,
+        "null_count": 1,
+        "input_sha256": "66422ddfb7e7cf53b76c3afb260a72748483657538b06fe043766d4b72096a31"
+      }
+    },
+    {
+      "id": "SM04",
+      "name": "符号地图",
+      "kind": "symbol_map",
+      "oracle": {
+        "row_count": 2,
+        "null_count": 0,
+        "input_sha256": "631b20d2c77aef08e15dafe9feff406e5936fe2a390ca6eefb9153aba7f394f3",
+        "areas": [
+          4,
+          9
+        ]
+      }
+    },
+    {
+      "id": "SM05",
+      "name": "填充地图",
+      "kind": "filled_map",
+      "oracle": {
+        "row_count": 2,
+        "null_count": 0,
+        "input_sha256": "e361aa9a187d206dd418aa62112e41e38aa616444bf9fb84aca229692cffece3"
+      }
+    },
+    {
+      "id": "SM06",
+      "name": "饼图",
+      "kind": "pie",
+      "oracle": {
+        "row_count": 4,
+        "null_count": 0,
+        "input_sha256": "934e5f1062d0de80311a62de9604bea1d08183b057732a4d0925a6de3c9bee0a"
+      }
+    },
+    {
+      "id": "SM07",
+      "name": "水平条形",
+      "kind": "bar",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 0,
+        "input_sha256": "4fe7f87e0e23b4454459254c076f0f0e7d7aedd6fc7e6823f6dfcba1f727e338"
+      }
+    },
+    {
+      "id": "SM08",
+      "name": "堆叠条形",
+      "kind": "bar",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 0,
+        "input_sha256": "4fe7f87e0e23b4454459254c076f0f0e7d7aedd6fc7e6823f6dfcba1f727e338"
+      }
+    },
+    {
+      "id": "SM09",
+      "name": "并排条形",
+      "kind": "bar",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 0,
+        "input_sha256": "4fe7f87e0e23b4454459254c076f0f0e7d7aedd6fc7e6823f6dfcba1f727e338"
+      }
+    },
+    {
+      "id": "SM10",
+      "name": "圆点视图",
+      "kind": "circle",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 0,
+        "input_sha256": "4fe7f87e0e23b4454459254c076f0f0e7d7aedd6fc7e6823f6dfcba1f727e338"
+      }
+    },
+    {
+      "id": "SM11",
+      "name": "并排圆点",
+      "kind": "circle",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 0,
+        "input_sha256": "4fe7f87e0e23b4454459254c076f0f0e7d7aedd6fc7e6823f6dfcba1f727e338"
+      }
+    },
+    {
+      "id": "SM12",
+      "name": "连续折线",
+      "kind": "line",
+      "oracle": {
+        "row_count": 4,
+        "null_count": 2,
+        "input_sha256": "c9f95acc7a6f5708037c2db3ff3d81f055444062bed439c618866e82a9127bda"
+      }
+    },
+    {
+      "id": "SM13",
+      "name": "离散折线",
+      "kind": "line",
+      "oracle": {
+        "row_count": 4,
+        "null_count": 2,
+        "input_sha256": "c9f95acc7a6f5708037c2db3ff3d81f055444062bed439c618866e82a9127bda"
+      }
+    },
+    {
+      "id": "SM14",
+      "name": "双轴折线",
+      "kind": "dual_line",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 1,
+        "input_sha256": "18201240a6db79eb32a042cb2643e948eeb2a06fe98b1ec9f421da22dbbb2015"
+      }
+    },
+    {
+      "id": "SM15",
+      "name": "连续面积",
+      "kind": "area",
+      "oracle": {
+        "row_count": 4,
+        "null_count": 2,
+        "input_sha256": "c9f95acc7a6f5708037c2db3ff3d81f055444062bed439c618866e82a9127bda"
+      }
+    },
+    {
+      "id": "SM16",
+      "name": "离散面积",
+      "kind": "area",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 0,
+        "input_sha256": "4fe7f87e0e23b4454459254c076f0f0e7d7aedd6fc7e6823f6dfcba1f727e338"
+      }
+    },
+    {
+      "id": "SM17",
+      "name": "双轴组合",
+      "kind": "combo",
+      "oracle": {
+        "row_count": 3,
+        "null_count": 1,
+        "input_sha256": "18201240a6db79eb32a042cb2643e948eeb2a06fe98b1ec9f421da22dbbb2015"
+      }
+    },
+    {
+      "id": "SM18",
+      "name": "散点",
+      "kind": "scatter",
+      "oracle": {
+        "row_count": 5,
+        "null_count": 1,
+        "input_sha256": "f480bf182889a51ef404f3695a9706afad3d84fad499914aba060d2427c51085"
+      }
+    },
+    {
+      "id": "SM19",
+      "name": "直方图",
+      "kind": "histogram",
+      "oracle": {
+        "row_count": 9,
+        "null_count": 1,
+        "input_sha256": "8a6645dbb4f572b6483f60224390209f18e41adae65e38cc5f9517c3cd712cb8",
+        "valid_n": 8,
+        "missing_n": 1,
+        "distinct_n": 5,
+        "teacher_edges": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "teacher_counts": [
+          4,
+          3,
+          1
+        ],
+        "bin_policy": "Other disclosed bins are accepted if every nonmissing observation contributes exactly once."
+      }
+    },
+    {
+      "id": "SM20",
+      "name": "箱线图",
+      "kind": "box",
+      "oracle": {
+        "row_count": 10,
+        "null_count": 0,
+        "input_sha256": "64be932f515074728efd488add3edf536418d8156823888ce25a91af634b53ff",
+        "stats": [
+          {
+            "group": "A",
+            "n": 6,
+            "q1": 2,
+            "median": 3.5,
+            "q3": 5,
+            "low": 1,
+            "high": 5,
+            "outliers": [
+              100
+            ]
+          },
+          {
+            "group": "B",
+            "n": 4,
+            "q1": 3,
+            "median": 5,
+            "q3": 7,
+            "low": 2,
+            "high": 8,
+            "outliers": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "SM21",
+      "name": "甘特图",
+      "kind": "gantt",
+      "oracle": {
+        "row_count": 2,
+        "null_count": 0,
+        "input_sha256": "574740c10a54e8700fb647559f9e920c4a5ff354bb15c201c73c7b95b8549166",
+        "days": [
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "SM22",
+      "name": "子弹图",
+      "kind": "bullet",
+      "oracle": {
+        "row_count": 2,
+        "null_count": 0,
+        "input_sha256": "23f72e6ec9f11de6f28f37eaad58ad312e87d8acc3cc5a6439d6c398e46cf4f6",
+        "gaps": [
+          -20,
+          10
+        ]
+      }
+    },
+    {
+      "id": "SM23",
+      "name": "紧密气泡",
+      "kind": "packed_bubble",
+      "oracle": {
+        "row_count": 4,
+        "null_count": 0,
+        "input_sha256": "b2b66373fd3d44f9d4e0a47391e08c7ad546ffdcbb5eb589882e386e728dfdce",
+        "areas": [
+          1,
+          4,
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "id": "SM24",
+      "name": "树图",
+      "kind": "treemap",
+      "oracle": {
+        "row_count": 4,
+        "null_count": 0,
+        "input_sha256": "676e9dbb76777f46d6f25d64fa4ba0d39091b9efa76388e4164383dfbda9b120",
+        "total": 100,
+        "parents": {
+          "东区": 50,
+          "西区": 50
+        },
+        "leaf_weights": [
+          20,
+          30,
+          10,
+          40
+        ]
+      }
+    }
+  ]
+}

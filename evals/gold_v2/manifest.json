@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0-supplement",
+  "cases": 12,
+  "question_turns": 12,
+  "references_cross_checked": true,
+  "scope": "冻结后仅运行一次；与v1同领域的补充检查，不冒充外部盲测",
+  "source_sha256": "2f012f4cf3e8bd161d983cbbeafe53ec2ba3445f22bbf31a401c298202d4eef8",
+  "files": {
+    "answers.json": "a9f244e59e96e34b7acc0a39eabd8c3398abd75335c8371f1c9be31c02a72685",
+    "cases.json": "10d9dc754dd7f90a22840f0e322d1b8f52a77d86df2e2ac079da9db2bae5ba2a",
+    "fixtures.json": "1558da45e02abf624164b54b0275e9a2b5dc4b841e1b3b3be8615534d03c06c4",
+    "data/cost/lines.csv": "11adb07f3e65fbfdb33d3ddb524b6decadc0e062485a379bcd67299bf59d545f",
+    "data/dirty/ledger.csv": "e3af75b383fe0676af1a913a812b2b8ddac27f2c9c64533c8491d8374b3730ec",
+    "data/trade/accounts.csv": "0410a88d2ecaef8dd5a0de2097123e520c013aebeffa32ad3f01f10d3b7af515",
+    "data/trade/targets.csv": "bd0927ffe745664de064a4703c8a4721d6168f96327edb7184cf4f2a18ef817c",
+    "data/trade/targets.xlsx": "e3a203e055bb872b43c704efff12aadb01e7b96f11e3b20483e7440eca03c88f",
+    "data/trade/tickets.csv": "bbd68e8a880d34463c16f8aebf9d874ae0f774fa6dbc8af68afb37fb10146b0c"
+  }
+}

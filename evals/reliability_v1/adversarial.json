@@ -1,0 +1,221 @@
+{
+  "version": "1.0.0",
+  "mutants": [
+    {
+      "case": "RG001",
+      "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT p.region,SUM(p.amount) AS amount,SUM(t.target) AS target FROM per_order p LEFT JOIN targets t ON p.region=t.region AND t.month='2026-01' GROUP BY p.region",
+      "expected": "fail",
+      "failure": "join_target"
+    },
+    {
+      "case": "RG002",
+      "sql": "SELECT COUNT(*) AS order_count FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01'",
+      "expected": "fail",
+      "failure": "order_grain"
+    },
+    {
+      "case": "RG003",
+      "sql": "SELECT AVG(l.amount) AS average_amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01'",
+      "expected": "fail",
+      "failure": "order_denominator"
+    },
+    {
+      "case": "RG004",
+      "sql": "SELECT COALESCE((SELECT target FROM targets WHERE month='2026-01' AND region='华北'),0) AS target",
+      "expected": "fail",
+      "failure": "missing_target"
+    },
+    {
+      "case": "RG005",
+      "sql": "SELECT CASE WHEN target=0 THEN 0 ELSE 100.0/target END AS attainment_pct FROM targets WHERE month='2026-02' AND region='华东'",
+      "expected": "fail",
+      "failure": "zero_denominator"
+    },
+    {
+      "case": "RG006",
+      "sql": "SELECT SUM(amount) AS refund_amount FROM refunds",
+      "expected": "fail",
+      "failure": "refund_status"
+    },
+    {
+      "case": "RG007",
+      "sql": "SELECT 100.0*SUM(CASE WHEN n>=2 THEN 1 ELSE 0 END)/COUNT(*) AS repeat_pct FROM (SELECT customer_id,COUNT(*) AS n FROM orders WHERE ordered_at LIKE '2026-01%' GROUP BY customer_id)",
+      "expected": "fail",
+      "failure": "repeat_denominator"
+    },
+    {
+      "case": "RG008",
+      "sql": "SELECT SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP) BETWEEN TIMESTAMP '2026-01-01' AND TIMESTAMP '2026-01-31'",
+      "expected": "fail",
+      "failure": "month_endpoint"
+    },
+    {
+      "case": "RG009",
+      "sql": "SELECT AVG(COALESCE(value,0)) AS mean FROM observations",
+      "expected": "fail",
+      "failure": "null_mean"
+    },
+    {
+      "case": "RG010",
+      "sql": "SELECT DISTINCT value FROM observations ORDER BY value",
+      "expected": "fail",
+      "failure": "duplicate_observation"
+    },
+    {
+      "case": "RG011",
+      "sql": "SELECT order_id FROM orders WHERE status='completed'",
+      "expected": "fail",
+      "failure": "legitimate_empty"
+    },
+    {
+      "case": "RG012",
+      "sql": "SELECT COUNT(tiny) AS n,AVG(tiny) AS mean,STDDEV_POP(tiny) AS std FROM observations",
+      "expected": "fail",
+      "failure": "tiny_sample_statistics"
+    },
+    {
+      "case": "RG013",
+      "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT p.region,SUM(p.amount) AS amount,SUM(t.target) AS target FROM per_order p LEFT JOIN targets t ON p.region=t.region AND t.month='2026-01' GROUP BY p.region",
+      "expected": "fail",
+      "failure": "join_target"
+    },
+    {
+      "case": "RG014",
+      "sql": "SELECT COUNT(*) AS order_count FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01'",
+      "expected": "fail",
+      "failure": "order_grain"
+    },
+    {
+      "case": "RG015",
+      "sql": "SELECT AVG(l.amount) AS average_amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01'",
+      "expected": "fail",
+      "failure": "order_denominator"
+    },
+    {
+      "case": "RG016",
+      "sql": "SELECT COALESCE((SELECT target FROM targets WHERE month='2026-01' AND region='华北'),0) AS target",
+      "expected": "fail",
+      "failure": "missing_target"
+    },
+    {
+      "case": "RG017",
+      "sql": "SELECT CASE WHEN target=0 THEN 0 ELSE 100.0/target END AS attainment_pct FROM targets WHERE month='2026-02' AND region='华东'",
+      "expected": "fail",
+      "failure": "zero_denominator"
+    },
+    {
+      "case": "RG018",
+      "sql": "SELECT SUM(amount) AS refund_amount FROM refunds",
+      "expected": "fail",
+      "failure": "refund_status"
+    },
+    {
+      "case": "RG019",
+      "sql": "SELECT 100.0*SUM(CASE WHEN n>=2 THEN 1 ELSE 0 END)/COUNT(*) AS repeat_pct FROM (SELECT customer_id,COUNT(*) AS n FROM orders WHERE ordered_at LIKE '2026-01%' GROUP BY customer_id)",
+      "expected": "fail",
+      "failure": "repeat_denominator"
+    },
+    {
+      "case": "RG020",
+      "sql": "SELECT SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP) BETWEEN TIMESTAMP '2026-01-01' AND TIMESTAMP '2026-01-31'",
+      "expected": "fail",
+      "failure": "month_endpoint"
+    },
+    {
+      "case": "RG021",
+      "sql": "SELECT AVG(COALESCE(value,0)) AS mean FROM observations",
+      "expected": "fail",
+      "failure": "null_mean"
+    },
+    {
+      "case": "RG022",
+      "sql": "SELECT DISTINCT value FROM observations ORDER BY value",
+      "expected": "fail",
+      "failure": "duplicate_observation"
+    },
+    {
+      "case": "RG023",
+      "sql": "SELECT order_id FROM orders WHERE status='completed'",
+      "expected": "fail",
+      "failure": "legitimate_empty"
+    },
+    {
+      "case": "RG024",
+      "sql": "SELECT COUNT(tiny) AS n,AVG(tiny) AS mean,STDDEV_POP(tiny) AS std FROM observations",
+      "expected": "fail",
+      "failure": "tiny_sample_statistics"
+    },
+    {
+      "case": "RG025",
+      "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT p.region,SUM(p.amount) AS amount,SUM(t.target) AS target FROM per_order p LEFT JOIN targets t ON p.region=t.region AND t.month='2026-01' GROUP BY p.region",
+      "expected": "fail",
+      "failure": "join_target"
+    },
+    {
+      "case": "RG026",
+      "sql": "SELECT COUNT(*) AS order_count FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01'",
+      "expected": "fail",
+      "failure": "order_grain"
+    },
+    {
+      "case": "RG027",
+      "sql": "SELECT AVG(l.amount) AS average_amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01'",
+      "expected": "fail",
+      "failure": "order_denominator"
+    },
+    {
+      "case": "RG028",
+      "sql": "SELECT COALESCE((SELECT target FROM targets WHERE month='2026-01' AND region='华北'),0) AS target",
+      "expected": "fail",
+      "failure": "missing_target"
+    },
+    {
+      "case": "RG029",
+      "sql": "SELECT CASE WHEN target=0 THEN 0 ELSE 100.0/target END AS attainment_pct FROM targets WHERE month='2026-02' AND region='华东'",
+      "expected": "fail",
+      "failure": "zero_denominator"
+    },
+    {
+      "case": "RG030",
+      "sql": "SELECT SUM(amount) AS refund_amount FROM refunds",
+      "expected": "fail",
+      "failure": "refund_status"
+    },
+    {
+      "case": "RG031",
+      "sql": "SELECT 100.0*SUM(CASE WHEN n>=2 THEN 1 ELSE 0 END)/COUNT(*) AS repeat_pct FROM (SELECT customer_id,COUNT(*) AS n FROM orders WHERE ordered_at LIKE '2026-01%' GROUP BY customer_id)",
+      "expected": "fail",
+      "failure": "repeat_denominator"
+    },
+    {
+      "case": "RG032",
+      "sql": "SELECT SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP) BETWEEN TIMESTAMP '2026-01-01' AND TIMESTAMP '2026-01-31'",
+      "expected": "fail",
+      "failure": "month_endpoint"
+    },
+    {
+      "case": "RG033",
+      "sql": "SELECT AVG(COALESCE(value,0)) AS mean FROM observations",
+      "expected": "fail",
+      "failure": "null_mean"
+    },
+    {
+      "case": "RG034",
+      "sql": "SELECT DISTINCT value FROM observations ORDER BY value",
+      "expected": "fail",
+      "failure": "duplicate_observation"
+    },
+    {
+      "case": "RG035",
+      "sql": "SELECT order_id FROM orders WHERE status='completed'",
+      "expected": "fail",
+      "failure": "legitimate_empty"
+    },
+    {
+      "case": "RG036",
+      "sql": "SELECT COUNT(tiny) AS n,AVG(tiny) AS mean,STDDEV_POP(tiny) AS std FROM observations",
+      "expected": "fail",
+      "failure": "tiny_sample_statistics"
+    }
+  ]
+}

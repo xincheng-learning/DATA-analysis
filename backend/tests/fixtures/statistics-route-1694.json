@@ -1,0 +1,59 @@
+{
+  "route": "python",
+  "reason": "需要 scipy 单样本 t 检验与样本标准差计算，属 SQL 之外的统计计算，且用户明确要求 Docker 隔离 Python。",
+  "analysis_brief": {
+    "goal": "对 observations.amount_cny 做单样本 t 检验（与 0 比较），输出一行统计表并说明检验假设与前提限制。",
+    "requirements": [
+      "计算 amount_cny 的样本数 n、均值 mean、样本标准差 std（ddof=1）",
+      "计算与 0 比较的单样本 t 统计量 t_stat 与双侧 p 值 p_value",
+      "只输出一行统计表，列名依次为 n、mean、std、t_stat、p_value",
+      "解释检验假设、适用前提，并说明不能推断因果",
+      "声明数据为61条合成回归观测，不代表真实业务总体"
+    ],
+    "acceptance": [
+      {
+        "requirement_index": 0,
+        "answer_type": "table",
+        "result_columns": [
+          "n",
+          "mean",
+          "std",
+          "t_stat",
+          "p_value"
+        ]
+      },
+      {
+        "requirement_index": 1,
+        "answer_type": "value",
+        "result_columns": [
+          "t_stat",
+          "p_value"
+        ]
+      },
+      {
+        "requirement_index": 2,
+        "answer_type": "constraint",
+        "subject": "输出格式：仅一行统计表，列顺序 n、mean、std、t_stat、p_value"
+      },
+      {
+        "requirement_index": 3,
+        "answer_type": "explanation",
+        "subject": "单样本t检验的原假设/备择假设、正态性与独立性前提、样本量小与合成数据的解释边界，以及不能推断因果"
+      },
+      {
+        "requirement_index": 4,
+        "answer_type": "constraint",
+        "subject": "数据性质声明：61条合成观测，非真实业务总体"
+      }
+    ],
+    "confirmed_scope": [
+      "数据为61条合成回归观测，不代表真实业务总体",
+      "标准差使用样本标准差 ddof=1",
+      "检验为与0比较的单样本t检验，双侧p值",
+      "不清洗、不筛行、不绘图"
+    ],
+    "unverified_constraints": [
+      "建议同时报告均值置信区间与效应量以辅助解读"
+    ]
+  }
+}

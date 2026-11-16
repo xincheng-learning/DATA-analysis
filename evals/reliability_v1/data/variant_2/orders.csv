@@ -1,0 +1,6 @@
+order_id,customer_id,region,status,ordered_at
+o1,A,华东,completed,2026-01-01 00:00:00
+o2,A,华东,completed,2026-01-31 23:59:59
+o3,B,华北,completed,2026-01-15 12:00:00
+o4,C,华东,cancelled,2026-01-10 00:00:00
+o5,D,华东,completed,2026-02-01 00:00:00

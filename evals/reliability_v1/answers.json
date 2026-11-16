@@ -1,0 +1,716 @@
+{
+  "version": "1.0.0",
+  "answers": {
+    "RG001": [
+      {
+        "columns": [
+          "region",
+          "amount",
+          "target"
+        ],
+        "rows": [
+          {
+            "region": "华东",
+            "amount": 61.0,
+            "target": 101
+          },
+          {
+            "region": "华北",
+            "amount": 32.0,
+            "target": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT p.region,SUM(p.amount) AS amount,MAX(t.target) AS target FROM per_order p LEFT JOIN targets t ON p.region=t.region AND t.month='2026-01' GROUP BY p.region"
+      }
+    ],
+    "RG002": [
+      {
+        "columns": [
+          "order_count"
+        ],
+        "rows": [
+          {
+            "order_count": 3
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT COUNT(*) AS order_count FROM per_order"
+      }
+    ],
+    "RG003": [
+      {
+        "columns": [
+          "average_amount"
+        ],
+        "rows": [
+          {
+            "average_amount": 31.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT AVG(amount) AS average_amount FROM per_order"
+      }
+    ],
+    "RG004": [
+      {
+        "columns": [
+          "target"
+        ],
+        "rows": [
+          {
+            "target": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT (SELECT target FROM targets WHERE month='2026-01' AND region='华北') AS target"
+      }
+    ],
+    "RG005": [
+      {
+        "columns": [
+          "attainment_pct"
+        ],
+        "rows": [
+          {
+            "attainment_pct": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT CASE WHEN target=0 THEN NULL ELSE 100.0/target END AS attainment_pct FROM targets WHERE month='2026-02' AND region='华东'"
+      }
+    ],
+    "RG006": [
+      {
+        "columns": [
+          "refund_amount"
+        ],
+        "rows": [
+          {
+            "refund_amount": 5
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT SUM(amount) AS refund_amount FROM refunds WHERE status='settled'"
+      }
+    ],
+    "RG007": [
+      {
+        "columns": [
+          "repeat_pct"
+        ],
+        "rows": [
+          {
+            "repeat_pct": 50.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT 100.0*SUM(CASE WHEN n>=2 THEN 1 ELSE 0 END)/COUNT(*) AS repeat_pct FROM (SELECT customer_id,COUNT(*) AS n FROM per_order GROUP BY customer_id)"
+      }
+    ],
+    "RG008": [
+      {
+        "columns": [
+          "amount"
+        ],
+        "rows": [
+          {
+            "amount": 93.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT SUM(amount) AS amount FROM per_order"
+      }
+    ],
+    "RG009": [
+      {
+        "columns": [
+          "mean"
+        ],
+        "rows": [
+          {
+            "mean": 2.25
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT AVG(value) AS mean FROM observations"
+      }
+    ],
+    "RG010": [
+      {
+        "columns": [
+          "value"
+        ],
+        "rows": [
+          {
+            "value": 0
+          },
+          {
+            "value": null
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 5
+          }
+        ],
+        "comparison": {
+          "ordered": true,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT value FROM observations ORDER BY record_id"
+      }
+    ],
+    "RG011": [
+      {
+        "columns": [
+          "order_id"
+        ],
+        "rows": [],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT order_id FROM orders WHERE region='西区' AND status='completed'"
+      }
+    ],
+    "RG012": [
+      {
+        "columns": [
+          "n",
+          "mean",
+          "std"
+        ],
+        "rows": [
+          {
+            "n": 4,
+            "mean": 2.5e-12,
+            "std": 1.7320508075688772e-12
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 0,
+          "rel_tol": 1e-08
+        },
+        "sql": "SELECT COUNT(tiny) AS n,AVG(tiny) AS mean,STDDEV_SAMP(tiny) AS std FROM observations"
+      }
+    ],
+    "RG013": [
+      {
+        "columns": [
+          "region",
+          "amount",
+          "target"
+        ],
+        "rows": [
+          {
+            "region": "华东",
+            "amount": 182.0,
+            "target": 302
+          },
+          {
+            "region": "华北",
+            "amount": 94.0,
+            "target": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT p.region,SUM(p.amount) AS amount,MAX(t.target) AS target FROM per_order p LEFT JOIN targets t ON p.region=t.region AND t.month='2026-01' GROUP BY p.region"
+      }
+    ],
+    "RG014": [
+      {
+        "columns": [
+          "order_count"
+        ],
+        "rows": [
+          {
+            "order_count": 3
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT COUNT(*) AS order_count FROM per_order"
+      }
+    ],
+    "RG015": [
+      {
+        "columns": [
+          "average_amount"
+        ],
+        "rows": [
+          {
+            "average_amount": 92.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT AVG(amount) AS average_amount FROM per_order"
+      }
+    ],
+    "RG016": [
+      {
+        "columns": [
+          "target"
+        ],
+        "rows": [
+          {
+            "target": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT (SELECT target FROM targets WHERE month='2026-01' AND region='华北') AS target"
+      }
+    ],
+    "RG017": [
+      {
+        "columns": [
+          "attainment_pct"
+        ],
+        "rows": [
+          {
+            "attainment_pct": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT CASE WHEN target=0 THEN NULL ELSE 100.0/target END AS attainment_pct FROM targets WHERE month='2026-02' AND region='华东'"
+      }
+    ],
+    "RG018": [
+      {
+        "columns": [
+          "refund_amount"
+        ],
+        "rows": [
+          {
+            "refund_amount": 15
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT SUM(amount) AS refund_amount FROM refunds WHERE status='settled'"
+      }
+    ],
+    "RG019": [
+      {
+        "columns": [
+          "repeat_pct"
+        ],
+        "rows": [
+          {
+            "repeat_pct": 50.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT 100.0*SUM(CASE WHEN n>=2 THEN 1 ELSE 0 END)/COUNT(*) AS repeat_pct FROM (SELECT customer_id,COUNT(*) AS n FROM per_order GROUP BY customer_id)"
+      }
+    ],
+    "RG020": [
+      {
+        "columns": [
+          "amount"
+        ],
+        "rows": [
+          {
+            "amount": 276.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT SUM(amount) AS amount FROM per_order"
+      }
+    ],
+    "RG021": [
+      {
+        "columns": [
+          "mean"
+        ],
+        "rows": [
+          {
+            "mean": 6.75
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT AVG(value) AS mean FROM observations"
+      }
+    ],
+    "RG022": [
+      {
+        "columns": [
+          "value"
+        ],
+        "rows": [
+          {
+            "value": 0
+          },
+          {
+            "value": null
+          },
+          {
+            "value": 6
+          },
+          {
+            "value": 6
+          },
+          {
+            "value": 15
+          }
+        ],
+        "comparison": {
+          "ordered": true,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT value FROM observations ORDER BY record_id"
+      }
+    ],
+    "RG023": [
+      {
+        "columns": [
+          "order_id"
+        ],
+        "rows": [],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT order_id FROM orders WHERE region='西区' AND status='completed'"
+      }
+    ],
+    "RG024": [
+      {
+        "columns": [
+          "n",
+          "mean",
+          "std"
+        ],
+        "rows": [
+          {
+            "n": 4,
+            "mean": 7.5e-12,
+            "std": 5.196152422706632e-12
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 0,
+          "rel_tol": 1e-08
+        },
+        "sql": "SELECT COUNT(tiny) AS n,AVG(tiny) AS mean,STDDEV_SAMP(tiny) AS std FROM observations"
+      }
+    ],
+    "RG025": [
+      {
+        "columns": [
+          "region",
+          "amount",
+          "target"
+        ],
+        "rows": [
+          {
+            "region": "华东",
+            "amount": 423.0,
+            "target": 703
+          },
+          {
+            "region": "华北",
+            "amount": 216.0,
+            "target": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT p.region,SUM(p.amount) AS amount,MAX(t.target) AS target FROM per_order p LEFT JOIN targets t ON p.region=t.region AND t.month='2026-01' GROUP BY p.region"
+      }
+    ],
+    "RG026": [
+      {
+        "columns": [
+          "order_count"
+        ],
+        "rows": [
+          {
+            "order_count": 3
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT COUNT(*) AS order_count FROM per_order"
+      }
+    ],
+    "RG027": [
+      {
+        "columns": [
+          "average_amount"
+        ],
+        "rows": [
+          {
+            "average_amount": 213.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT AVG(amount) AS average_amount FROM per_order"
+      }
+    ],
+    "RG028": [
+      {
+        "columns": [
+          "target"
+        ],
+        "rows": [
+          {
+            "target": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT (SELECT target FROM targets WHERE month='2026-01' AND region='华北') AS target"
+      }
+    ],
+    "RG029": [
+      {
+        "columns": [
+          "attainment_pct"
+        ],
+        "rows": [
+          {
+            "attainment_pct": null
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT CASE WHEN target=0 THEN NULL ELSE 100.0/target END AS attainment_pct FROM targets WHERE month='2026-02' AND region='华东'"
+      }
+    ],
+    "RG030": [
+      {
+        "columns": [
+          "refund_amount"
+        ],
+        "rows": [
+          {
+            "refund_amount": 35
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT SUM(amount) AS refund_amount FROM refunds WHERE status='settled'"
+      }
+    ],
+    "RG031": [
+      {
+        "columns": [
+          "repeat_pct"
+        ],
+        "rows": [
+          {
+            "repeat_pct": 50.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT 100.0*SUM(CASE WHEN n>=2 THEN 1 ELSE 0 END)/COUNT(*) AS repeat_pct FROM (SELECT customer_id,COUNT(*) AS n FROM per_order GROUP BY customer_id)"
+      }
+    ],
+    "RG032": [
+      {
+        "columns": [
+          "amount"
+        ],
+        "rows": [
+          {
+            "amount": 639.0
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "WITH per_order AS (SELECT o.order_id,o.customer_id,o.region,SUM(l.amount) AS amount FROM orders o JOIN lines l USING(order_id) WHERE status='completed' AND CAST(ordered_at AS TIMESTAMP)>=TIMESTAMP '2026-01-01' AND CAST(ordered_at AS TIMESTAMP)<TIMESTAMP '2026-02-01' GROUP BY ALL) SELECT SUM(amount) AS amount FROM per_order"
+      }
+    ],
+    "RG033": [
+      {
+        "columns": [
+          "mean"
+        ],
+        "rows": [
+          {
+            "mean": 15.75
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT AVG(value) AS mean FROM observations"
+      }
+    ],
+    "RG034": [
+      {
+        "columns": [
+          "value"
+        ],
+        "rows": [
+          {
+            "value": 0
+          },
+          {
+            "value": null
+          },
+          {
+            "value": 14
+          },
+          {
+            "value": 14
+          },
+          {
+            "value": 35
+          }
+        ],
+        "comparison": {
+          "ordered": true,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT value FROM observations ORDER BY record_id"
+      }
+    ],
+    "RG035": [
+      {
+        "columns": [
+          "order_id"
+        ],
+        "rows": [],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 1e-09,
+          "rel_tol": 1e-09
+        },
+        "sql": "SELECT order_id FROM orders WHERE region='西区' AND status='completed'"
+      }
+    ],
+    "RG036": [
+      {
+        "columns": [
+          "n",
+          "mean",
+          "std"
+        ],
+        "rows": [
+          {
+            "n": 4,
+            "mean": 1.7499999999999998e-11,
+            "std": 1.212435565298214e-11
+          }
+        ],
+        "comparison": {
+          "ordered": false,
+          "abs_tol": 0,
+          "rel_tol": 1e-08
+        },
+        "sql": "SELECT COUNT(tiny) AS n,AVG(tiny) AS mean,STDDEV_SAMP(tiny) AS std FROM observations"
+      }
+    ]
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "version": "2026-11-15-chart24",
+  "base_commit": "c866285",
+  "scope": "live chart selection plus fixed-input production builders and actual QA application replay; NOT 24 full AI analyses",
+  "frozen_manifest_sha256": "a5dd18053bdb0d7bc225223bf38504a4a899cc295f19ece3203ec0cface7a4f2",
+  "numeric": {
+    "cases": 24,
+    "numeric_passed": 24,
+    "wrong_number_rejected": 24
+  },
+  "application": {
+    "passed": true,
+    "cases": 24,
+    "png_dimensions": [
+      2800,
+      1700
+    ],
+    "appearance_save_reopen": true,
+    "dark_and_light": true,
+    "narrow_fullscreen_width": 390,
+    "csv_method": "actual HTTP export endpoint, not CSV button click",
+    "csv_cases_verified": 24,
+    "page_errors": 0,
+    "external_requests": 0,
+    "paid_analysis_requests": 0
+  },
+  "manual_visual_review": {
+    "pairs_reviewed": 24,
+    "scope": "independent teachers versus actual UI exports; endpoint retouch re-reviewed after final full browser run",
+    "defects_found_and_fixed": [
+      "unknown month filled as zero in stacked area",
+      "packed bubble overlap and clipping in exported PNG",
+      "isolated area endpoint markers clipped"
+    ]
+  },
+  "packed_png": {
+    "passed": true,
+    "components": [
+      {
+        "pixels": 50551,
+        "box": [
+          1134,
+          432,
+          1388,
+          686
+        ]
+      },
+      {
+        "pixels": 204625,
+        "box": [
+          1396,
+          304,
+          1907,
+          815
+        ]
+      },
+      {
+        "pixels": 462259,
+        "box": [
+          881,
+          694,
+          1649,
+          1462
+        ]
+      }
+    ],
+    "reason": ""
+  },
+  "cost_upper_cny": 0.167636,
+  "engineering": {
+    "backend_passed": 835,
+    "backend_skipped": 2,
+    "backend_warnings": 4,
+    "frontend_passed": 145,
+    "lint_passed": true,
+    "typecheck_passed": true,
+    "production_build_passed": true,
+    "build_memory_resolution": "one worker; run separately; initial OOM log retained",
+    "log_sha256": {
+      "budget40-backend-final.log": "75aa8a0929cfbcd3f3460e0b0a59a4166b4dd6dce94249205d24b91467332957",
+      "frontend-all-final.log": "2c01686aed1cf8a53c0d6026850c274a1dea384363a7bf15f93d135e468e409c",
+      "frontend-lint-final.log": "65d10c2da0781691adc45c185308c222c2a92911360ade0a27a4e555be91c5bb",
+      "frontend-typecheck-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frontend-build-serial-final.log": "bf18f68a70e8c47f87001c04ffdabdda940864854102391c492553159921e698",
+      "final-targeted.log": "14cdba0685f6b36d92c0d4bddfde6dc6559b0db6043ae807d3a5f0de1ccf40f0"
+    }
+  },
+  "evidence_sha256": {
+    "numeric-final.json": "f8469a0de1f367ced35c825efd544c3760c5d99e589cad22320f174d7e7d5426",
+    "browser-final/result.json": "4f852592a5b28f065b86152b5f508c719c1251e089c0f86e276bb3f6adcd1028",
+    "export-pixels-before.json": "6278ac9117f08f1b874a3c394ebe3e2ad2c843a07a475d49b5835e925bb970b3",
+    "export-pixels-final.json": "10a2bc76ce19be056035e799b5086b9cdce13baa935d01dc6159b3932ec03c74",
+    "teacher/reference.json": "8d867ab9a73e2c2246af3412a8c11b6c9c487ea6787434b060bb892831a815a0",
+    "index.html": "bb7a9ab180f47483cd48ef97a6a10be8812551307a120ced76005558d5f7c367"
+  },
+  "candidate_frontend_sha256": {
+    "frontend/next.config.ts": "dd644a330bd598dc45c77280ed28d9d4ae685a1743bdd2bcf10de9592aff42b3",
+    "frontend/src/lib/chart.ts": "9f806fe2118c68b0a31d2e1a0544ac0606e72ddbc24e3622501028f0ebf73532",
+    "frontend/src/lib/packed-bubbles.ts": "76992942448a0ce671fe3c18317cc1647ae32a49fd81a22a2c7cd0cd5a1c2afb",
+    "frontend/src/components/chart-view.tsx": "00ec25f2fcb091facff85b94d3e1448e49b0c703e169e565125672bc1fcc9371"
+  },
+  "outcomes": [
+    {
+      "id": "SM01",
+      "name": "文本表",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM02",
+      "name": "热图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM03",
+      "name": "高亮表",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM04",
+      "name": "符号地图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM05",
+      "name": "填充地图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM06",
+      "name": "饼图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM07",
+      "name": "水平条形",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM08",
+      "name": "堆叠条形",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM09",
+      "name": "并排条形",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM10",
+      "name": "圆点视图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM11",
+      "name": "并排圆点",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM12",
+      "name": "连续折线",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM13",
+      "name": "离散折线",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM14",
+      "name": "双轴折线",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM15",
+      "name": "连续面积",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM16",
+      "name": "离散面积",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM17",
+      "name": "双轴组合",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM18",
+      "name": "散点",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM19",
+      "name": "直方图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM20",
+      "name": "箱线图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM21",
+      "name": "甘特图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM22",
+      "name": "子弹图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM23",
+      "name": "紧密气泡",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    },
+    {
+      "id": "SM24",
+      "name": "树图",
+      "numeric": "pass",
+      "wrong_number_rejected": true,
+      "application_passed": true
+    }
+  ],
+  "limitations": [
+    "public calibrated development set, not blind",
+    "fixed inputs, not full AI SQL/report tasks",
+    "Windows teacher font only",
+    "no large-data, cross-industry or cross-browser generalization",
+    "no third-party independent review"
+  ],
+  "raw_private_records_in_git": false
+}
